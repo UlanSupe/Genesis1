@@ -1,0 +1,14 @@
+# generated / local artefacts
+__pycache__/
+*.pyc
+*.egg-info/
+.pytest_cache/
+.venv/
+venv/
+build/
+dist/
+reports/
+trajectories/*.jsonl
+# developer tooling folders (not part of the submission)
+graphify-out/
+.claude/

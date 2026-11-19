@@ -1,0 +1,46 @@
+[
+  {
+    "affected_ids": [
+      "ROW-00071",
+      "ROW-00072"
+    ],
+    "allowed_evidence_sets": [
+      [
+        "DOC-0030",
+        "ROW-00072"
+      ],
+      [
+        "DOC-0030",
+        "ROW-00071"
+      ]
+    ],
+    "currency": "GBP",
+    "expected_amount_minor": 188875,
+    "explanation": "PAY-0005 (DOC-0030) is dated 2024-01-01T06:23:00+09:00 (before the period) but its journal was booked at 2024-01-02T06:05:00+02:00 (inside the period), in a different reporting period. How to see it: compare the document timestamp with the booking timestamp of the ledger lines against the period [2024-01-01T00:00:00+02:00, 2024-02-01T00:00:00+02:00) (end exclusive, instants compared across offsets). Expected amount: 188875 GBP minor units (currency GBP).",
+    "issue_id": "ISS-001",
+    "root_cause": "booked_in_wrong_reporting_period",
+    "type": "cutoff"
+  },
+  {
+    "affected_ids": [
+      "ROW-00055",
+      "ROW-00056"
+    ],
+    "allowed_evidence_sets": [
+      [
+        "DOC-0040",
+        "ROW-00056"
+      ],
+      [
+        "DOC-0040",
+        "ROW-00055"
+      ]
+    ],
+    "currency": "GBP",
+    "expected_amount_minor": 2759458,
+    "explanation": "INV-0031 (DOC-0040) is dated 2024-01-03T09:31:00+02:00 (inside the period) but its journal was booked at 2023-12-30T22:33:00+02:00 (before the period), in a different reporting period. How to see it: compare the document timestamp with the booking timestamp of the ledger lines against the period [2024-01-01T00:00:00+02:00, 2024-02-01T00:00:00+02:00) (end exclusive, instants compared across offsets). Expected amount: 2759458 GBP minor units (currency GBP).",
+    "issue_id": "ISS-002",
+    "root_cause": "booked_in_wrong_reporting_period",
+    "type": "cutoff"
+  }
+]

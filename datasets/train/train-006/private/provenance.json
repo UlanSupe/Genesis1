@@ -1,0 +1,486 @@
+{
+  "compound_scenarios": [
+    {
+      "description": "Foreign-currency invoice settled in two partial payments: one payment was mis-allocated, the other was converted with the wrong date's rate.",
+      "issue_ids": [
+        "ISS-001",
+        "ISS-002"
+      ],
+      "roles": {
+        "alloc_payment": "PAY-0009",
+        "fx_payment": "PAY-0018",
+        "invoice": "INV-0029"
+      },
+      "scenario": "cross_border_partial"
+    }
+  ],
+  "generator": {
+    "attempt": 0,
+    "config": {
+      "base_currency": "EUR",
+      "clean": null,
+      "clean_rate": 0.2,
+      "compound_rate": 0.15,
+      "difficulty": "easy",
+      "episode_id": "train-006",
+      "foreign_currencies": null,
+      "issue_counts": null,
+      "max_issues": 6,
+      "min_issues": 1,
+      "min_ledger_rows": 200,
+      "mutation_weights": {
+        "allocation": 1,
+        "cutoff": 1,
+        "duplicate": 1,
+        "fx": 1
+      },
+      "n_entities": null,
+      "n_invoices": null,
+      "period_start": null,
+      "scenarios": [
+        "cross_border_partial"
+      ],
+      "timezone_minutes": null
+    },
+    "plan": {
+      "clean": false,
+      "counts": {
+        "allocation": 0,
+        "cutoff": 0,
+        "duplicate": 0,
+        "fx": 0
+      },
+      "explicit": true,
+      "scenarios": [
+        "cross_border_partial"
+      ]
+    },
+    "seed": 1006,
+    "traceforge_version": "1.0.0"
+  },
+  "mutations": [
+    {
+      "available_evidence": [
+        [
+          "ROW-00089",
+          "DOC-0033",
+          "DOC-0045"
+        ]
+      ],
+      "causal_description": "Allocation of PAY-0009 to INV-0029 was never applied: the line was parked in unapplied receipts (2300), leaving the invoice open.",
+      "changed_amount_minor": 103147,
+      "document_ids": [
+        "DOC-0045"
+      ],
+      "issue_id": "ISS-001",
+      "issue_type": "allocation",
+      "modified_rows": [
+        {
+          "account": "2300",
+          "credit_minor": 103147,
+          "currency": "KWD",
+          "debit_minor": 0,
+          "entity_id": "ENT-001",
+          "invoice_id": null,
+          "payment_id": "PAY-0009",
+          "row_id": "ROW-00089",
+          "timestamp": "2025-04-07T17:36:00+05:30"
+        }
+      ],
+      "mutation_id": "MUT-001",
+      "root_cause": "allocation_not_applied",
+      "scenario": "cross_border_partial",
+      "source_rows": [
+        {
+          "account": "1200",
+          "credit_minor": 103147,
+          "currency": "KWD",
+          "debit_minor": 0,
+          "entity_id": "ENT-001",
+          "invoice_id": "INV-0029",
+          "payment_id": "PAY-0009",
+          "row_id": "ROW-00089",
+          "timestamp": "2025-04-07T17:36:00+05:30"
+        }
+      ],
+      "variant": "unallocated"
+    },
+    {
+      "available_evidence": [
+        [
+          "DOC-0064",
+          "ROW-00133",
+          "FX-2025-04-14-KWD-EUR"
+        ],
+        [
+          "DOC-0064",
+          "ROW-00134",
+          "FX-2025-04-14-KWD-EUR"
+        ]
+      ],
+      "causal_description": "PAY-0018 (KWD) was converted with a wrong FX input: used the rate of 2025-04-09 instead of 2025-04-14.",
+      "changed_amount_minor": 530,
+      "document_ids": [
+        "DOC-0064"
+      ],
+      "issue_id": "ISS-002",
+      "issue_type": "fx",
+      "modified_rows": [
+        {
+          "account": "1000",
+          "credit_minor": 0,
+          "currency": "KWD",
+          "debit_minor": 71501,
+          "entity_id": "ENT-001",
+          "invoice_id": null,
+          "payment_id": "PAY-0018",
+          "row_id": "ROW-00133",
+          "timestamp": "2025-04-14T15:16:00+05:30"
+        },
+        {
+          "account": "1200",
+          "credit_minor": 71501,
+          "currency": "KWD",
+          "debit_minor": 0,
+          "entity_id": "ENT-001",
+          "invoice_id": "INV-0029",
+          "payment_id": "PAY-0018",
+          "row_id": "ROW-00134",
+          "timestamp": "2025-04-14T15:16:00+05:30"
+        }
+      ],
+      "mutation_id": "MUT-002",
+      "root_cause": "fx_rate_of_wrong_date_used",
+      "scenario": "cross_border_partial",
+      "source_rows": [
+        {
+          "account": "1000",
+          "credit_minor": 0,
+          "currency": "KWD",
+          "debit_minor": 72031,
+          "entity_id": "ENT-001",
+          "invoice_id": null,
+          "payment_id": "PAY-0018",
+          "row_id": "ROW-00133",
+          "timestamp": "2025-04-14T15:16:00+05:30"
+        },
+        {
+          "account": "1200",
+          "credit_minor": 72031,
+          "currency": "KWD",
+          "debit_minor": 0,
+          "entity_id": "ENT-001",
+          "invoice_id": "INV-0029",
+          "payment_id": "PAY-0018",
+          "row_id": "ROW-00134",
+          "timestamp": "2025-04-14T15:16:00+05:30"
+        }
+      ],
+      "variant": "wrong_date"
+    }
+  ],
+  "validation": {
+    "checks": [
+      {
+        "detail": [],
+        "name": "1_clean_baseline_consistent",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "2_public_data_consistent",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "1b_baseline_equals_independent_expected_ledger",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "2b_referential_integrity_and_balances",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "4b_baseline_plus_manifests_equals_public_ledger",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "4c_manifest_causality",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "3_truth_equals_independent_derivation",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "4_mutations_changed_exactly_the_intended_documents",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "5_expected_amounts_exceed_tolerance",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "6_evidence_available_to_agent",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "7_issue_count_bounds",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "8_no_private_markers_in_public",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "9_size_requirements",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "10_affected_ids_exist_in_public_data",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "11_every_evidence_set_reconstructs_its_finding",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "12_clean_decoys_intact_and_not_labeled_as_errors",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "13_financial_totals_change_only_by_declared_anomalies",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "14_every_issue_has_root_cause_and_explanation",
+        "ok": true
+      }
+    ],
+    "ok": true
+  },
+  "world": {
+    "clean_decoys": [
+      "INV-0004",
+      "INV-0006",
+      "INV-0011",
+      "INV-0013",
+      "INV-0014",
+      "INV-0015",
+      "INV-0016",
+      "INV-0017",
+      "INV-0019",
+      "INV-0021",
+      "INV-0024",
+      "INV-0026",
+      "INV-0027",
+      "INV-0030",
+      "INV-0032",
+      "INV-0035",
+      "INV-0040",
+      "INV-0041",
+      "INV-0042",
+      "INV-0043",
+      "INV-0047",
+      "INV-0052",
+      "INV-0053",
+      "INV-0055",
+      "PAY-0002",
+      "PAY-0003",
+      "PAY-0004",
+      "PAY-0007",
+      "PAY-0011",
+      "PAY-0012",
+      "PAY-0014",
+      "PAY-0017",
+      "PAY-0020",
+      "PAY-0021",
+      "PAY-0022",
+      "PAY-0024",
+      "PAY-0026",
+      "PAY-0027",
+      "PAY-0028",
+      "PAY-0029",
+      "PAY-0031",
+      "PAY-0034",
+      "PAY-0035"
+    ],
+    "company": {
+      "name": "Aurora Energy Ltd"
+    },
+    "difficulty": "easy",
+    "document_tags": {
+      "INV-0001": "regular",
+      "INV-0002": "regular",
+      "INV-0003": "regular",
+      "INV-0004": "decoy",
+      "INV-0005": "regular",
+      "INV-0006": "decoy",
+      "INV-0007": "regular",
+      "INV-0008": "regular",
+      "INV-0009": "regular",
+      "INV-0010": "regular",
+      "INV-0011": "decoy",
+      "INV-0012": "regular",
+      "INV-0013": "decoy",
+      "INV-0014": "decoy",
+      "INV-0015": "decoy",
+      "INV-0016": "decoy",
+      "INV-0017": "decoy",
+      "INV-0018": "regular",
+      "INV-0019": "decoy",
+      "INV-0020": "regular",
+      "INV-0021": "decoy",
+      "INV-0022": "regular",
+      "INV-0023": "regular",
+      "INV-0024": "decoy",
+      "INV-0025": "regular",
+      "INV-0026": "decoy",
+      "INV-0027": "decoy",
+      "INV-0028": "regular",
+      "INV-0029": "compound:cross_border_partial",
+      "INV-0030": "decoy",
+      "INV-0031": "regular",
+      "INV-0032": "decoy",
+      "INV-0033": "regular",
+      "INV-0034": "regular",
+      "INV-0035": "decoy",
+      "INV-0036": "regular",
+      "INV-0037": "regular",
+      "INV-0038": "regular",
+      "INV-0039": "regular",
+      "INV-0040": "decoy",
+      "INV-0041": "decoy",
+      "INV-0042": "decoy",
+      "INV-0043": "decoy",
+      "INV-0044": "regular",
+      "INV-0045": "regular",
+      "INV-0046": "regular",
+      "INV-0047": "decoy",
+      "INV-0048": "regular",
+      "INV-0049": "regular",
+      "INV-0050": "regular",
+      "INV-0051": "regular",
+      "INV-0052": "decoy",
+      "INV-0053": "decoy",
+      "INV-0054": "regular",
+      "INV-0055": "decoy",
+      "INV-0056": "regular",
+      "INV-0057": "regular",
+      "INV-0058": "regular",
+      "INV-0059": "regular",
+      "INV-0060": "regular",
+      "INV-0061": "regular",
+      "INV-0062": "regular",
+      "INV-0063": "regular",
+      "INV-0064": "regular",
+      "INV-0065": "regular",
+      "INV-0066": "regular",
+      "INV-0067": "regular",
+      "INV-0068": "regular",
+      "PAY-0001": "regular",
+      "PAY-0002": "decoy",
+      "PAY-0003": "decoy",
+      "PAY-0004": "decoy",
+      "PAY-0005": "regular",
+      "PAY-0006": "regular",
+      "PAY-0007": "decoy",
+      "PAY-0008": "regular",
+      "PAY-0009": "compound:cross_border_partial",
+      "PAY-0010": "regular",
+      "PAY-0011": "decoy",
+      "PAY-0012": "decoy",
+      "PAY-0013": "regular",
+      "PAY-0014": "decoy",
+      "PAY-0015": "regular",
+      "PAY-0016": "regular",
+      "PAY-0017": "decoy",
+      "PAY-0018": "compound:cross_border_partial",
+      "PAY-0019": "regular",
+      "PAY-0020": "decoy",
+      "PAY-0021": "decoy",
+      "PAY-0022": "decoy",
+      "PAY-0023": "regular",
+      "PAY-0024": "decoy",
+      "PAY-0025": "regular",
+      "PAY-0026": "decoy",
+      "PAY-0027": "decoy",
+      "PAY-0028": "decoy",
+      "PAY-0029": "decoy",
+      "PAY-0030": "regular",
+      "PAY-0031": "decoy",
+      "PAY-0032": "regular",
+      "PAY-0033": "regular",
+      "PAY-0034": "decoy",
+      "PAY-0035": "decoy",
+      "PAY-0036": "regular",
+      "PAY-0037": "regular",
+      "PAY-0038": "regular",
+      "PAY-0039": "regular",
+      "PAY-0040": "regular",
+      "PAY-0041": "regular",
+      "PAY-0042": "regular",
+      "PAY-0043": "regular",
+      "PAY-0044": "regular"
+    },
+    "entities": [
+      {
+        "currency": "KWD",
+        "entity_id": "ENT-001",
+        "name": "Counterparty Helix 1",
+        "tz_minutes": -360
+      },
+      {
+        "currency": "GBP",
+        "entity_id": "ENT-002",
+        "name": "Counterparty Indigo 2",
+        "tz_minutes": 720
+      },
+      {
+        "currency": "GBP",
+        "entity_id": "ENT-003",
+        "name": "Counterparty Ember 3",
+        "tz_minutes": 60
+      },
+      {
+        "currency": "EUR",
+        "entity_id": "ENT-004",
+        "name": "Counterparty Delta 4",
+        "tz_minutes": 330
+      },
+      {
+        "currency": "GBP",
+        "entity_id": "ENT-005",
+        "name": "Counterparty Falcon 5",
+        "tz_minutes": 720
+      },
+      {
+        "currency": "EUR",
+        "entity_id": "ENT-006",
+        "name": "Counterparty Falcon 6",
+        "tz_minutes": 330
+      },
+      {
+        "currency": "KWD",
+        "entity_id": "ENT-007",
+        "name": "Counterparty Indigo 7",
+        "tz_minutes": 60
+      }
+    ]
+  }
+}

@@ -1,0 +1,340 @@
+{
+  "compound_scenarios": [],
+  "generator": {
+    "attempt": 0,
+    "config": {
+      "base_currency": "EUR",
+      "clean": true,
+      "clean_rate": 0.2,
+      "compound_rate": 0.15,
+      "difficulty": "easy",
+      "episode_id": "train-000",
+      "foreign_currencies": null,
+      "issue_counts": null,
+      "max_issues": 6,
+      "min_issues": 1,
+      "min_ledger_rows": 200,
+      "mutation_weights": {
+        "allocation": 1,
+        "cutoff": 1,
+        "duplicate": 1,
+        "fx": 1
+      },
+      "n_entities": null,
+      "n_invoices": null,
+      "period_start": null,
+      "scenarios": null,
+      "timezone_minutes": null
+    },
+    "plan": {
+      "clean": true,
+      "counts": {
+        "allocation": 0,
+        "cutoff": 0,
+        "duplicate": 0,
+        "fx": 0
+      },
+      "explicit": false,
+      "scenarios": []
+    },
+    "seed": 1000,
+    "traceforge_version": "1.0.0"
+  },
+  "mutations": [],
+  "validation": {
+    "checks": [
+      {
+        "detail": [],
+        "name": "1_clean_baseline_consistent",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "2_public_data_consistent",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "1b_baseline_equals_independent_expected_ledger",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "2b_referential_integrity_and_balances",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "4b_baseline_plus_manifests_equals_public_ledger",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "4c_manifest_causality",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "3_truth_equals_independent_derivation",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "4_mutations_changed_exactly_the_intended_documents",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "5_expected_amounts_exceed_tolerance",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "6_evidence_available_to_agent",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "7_issue_count_bounds",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "8_no_private_markers_in_public",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "9_size_requirements",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "10_affected_ids_exist_in_public_data",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "11_every_evidence_set_reconstructs_its_finding",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "12_clean_decoys_intact_and_not_labeled_as_errors",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "13_financial_totals_change_only_by_declared_anomalies",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "14_every_issue_has_root_cause_and_explanation",
+        "ok": true
+      }
+    ],
+    "ok": true
+  },
+  "world": {
+    "clean_decoys": [
+      "INV-0007",
+      "INV-0009",
+      "INV-0014",
+      "INV-0015",
+      "INV-0016",
+      "INV-0017",
+      "INV-0018",
+      "INV-0022",
+      "INV-0023",
+      "INV-0024",
+      "INV-0025",
+      "INV-0036",
+      "INV-0037",
+      "INV-0043",
+      "INV-0044",
+      "INV-0045",
+      "INV-0047",
+      "INV-0048",
+      "INV-0049",
+      "INV-0053",
+      "INV-0055",
+      "INV-0059",
+      "PAY-0002",
+      "PAY-0003",
+      "PAY-0004",
+      "PAY-0005",
+      "PAY-0006",
+      "PAY-0008",
+      "PAY-0010",
+      "PAY-0011",
+      "PAY-0016",
+      "PAY-0019",
+      "PAY-0022",
+      "PAY-0023",
+      "PAY-0024",
+      "PAY-0028",
+      "PAY-0029",
+      "PAY-0032",
+      "PAY-0037",
+      "PAY-0038",
+      "PAY-0039",
+      "PAY-0047",
+      "PAY-0048"
+    ],
+    "company": {
+      "name": "Delta Energy Ltd"
+    },
+    "difficulty": "easy",
+    "document_tags": {
+      "INV-0001": "regular",
+      "INV-0002": "regular",
+      "INV-0003": "regular",
+      "INV-0004": "regular",
+      "INV-0005": "regular",
+      "INV-0006": "regular",
+      "INV-0007": "decoy",
+      "INV-0008": "regular",
+      "INV-0009": "decoy",
+      "INV-0010": "regular",
+      "INV-0011": "regular",
+      "INV-0012": "regular",
+      "INV-0013": "regular",
+      "INV-0014": "decoy",
+      "INV-0015": "decoy",
+      "INV-0016": "decoy",
+      "INV-0017": "decoy",
+      "INV-0018": "decoy",
+      "INV-0019": "regular",
+      "INV-0020": "regular",
+      "INV-0021": "regular",
+      "INV-0022": "decoy",
+      "INV-0023": "decoy",
+      "INV-0024": "decoy",
+      "INV-0025": "decoy",
+      "INV-0026": "regular",
+      "INV-0027": "regular",
+      "INV-0028": "regular",
+      "INV-0029": "regular",
+      "INV-0030": "regular",
+      "INV-0031": "regular",
+      "INV-0032": "regular",
+      "INV-0033": "regular",
+      "INV-0034": "regular",
+      "INV-0035": "regular",
+      "INV-0036": "decoy",
+      "INV-0037": "decoy",
+      "INV-0038": "regular",
+      "INV-0039": "regular",
+      "INV-0040": "regular",
+      "INV-0041": "regular",
+      "INV-0042": "regular",
+      "INV-0043": "decoy",
+      "INV-0044": "decoy",
+      "INV-0045": "decoy",
+      "INV-0046": "regular",
+      "INV-0047": "decoy",
+      "INV-0048": "decoy",
+      "INV-0049": "decoy",
+      "INV-0050": "regular",
+      "INV-0051": "regular",
+      "INV-0052": "regular",
+      "INV-0053": "decoy",
+      "INV-0054": "regular",
+      "INV-0055": "decoy",
+      "INV-0056": "regular",
+      "INV-0057": "regular",
+      "INV-0058": "regular",
+      "INV-0059": "decoy",
+      "INV-0060": "regular",
+      "INV-0061": "regular",
+      "INV-0062": "regular",
+      "INV-0063": "regular",
+      "INV-0064": "regular",
+      "INV-0065": "regular",
+      "INV-0066": "regular",
+      "INV-0067": "regular",
+      "INV-0068": "regular",
+      "PAY-0001": "regular",
+      "PAY-0002": "decoy",
+      "PAY-0003": "decoy",
+      "PAY-0004": "decoy",
+      "PAY-0005": "decoy",
+      "PAY-0006": "decoy",
+      "PAY-0007": "regular",
+      "PAY-0008": "decoy",
+      "PAY-0009": "regular",
+      "PAY-0010": "decoy",
+      "PAY-0011": "decoy",
+      "PAY-0012": "regular",
+      "PAY-0013": "regular",
+      "PAY-0014": "regular",
+      "PAY-0015": "regular",
+      "PAY-0016": "decoy",
+      "PAY-0017": "regular",
+      "PAY-0018": "regular",
+      "PAY-0019": "decoy",
+      "PAY-0020": "regular",
+      "PAY-0021": "regular",
+      "PAY-0022": "decoy",
+      "PAY-0023": "decoy",
+      "PAY-0024": "decoy",
+      "PAY-0025": "regular",
+      "PAY-0026": "regular",
+      "PAY-0027": "regular",
+      "PAY-0028": "decoy",
+      "PAY-0029": "decoy",
+      "PAY-0030": "regular",
+      "PAY-0031": "regular",
+      "PAY-0032": "decoy",
+      "PAY-0033": "regular",
+      "PAY-0034": "regular",
+      "PAY-0035": "regular",
+      "PAY-0036": "regular",
+      "PAY-0037": "decoy",
+      "PAY-0038": "decoy",
+      "PAY-0039": "decoy",
+      "PAY-0040": "regular",
+      "PAY-0041": "regular",
+      "PAY-0042": "regular",
+      "PAY-0043": "regular",
+      "PAY-0044": "regular",
+      "PAY-0045": "regular",
+      "PAY-0046": "regular",
+      "PAY-0047": "decoy",
+      "PAY-0048": "decoy"
+    },
+    "entities": [
+      {
+        "currency": "GBP",
+        "entity_id": "ENT-001",
+        "name": "Counterparty Meridian 1",
+        "tz_minutes": -420
+      },
+      {
+        "currency": "JPY",
+        "entity_id": "ENT-002",
+        "name": "Counterparty Aurora 2",
+        "tz_minutes": 540
+      },
+      {
+        "currency": "EUR",
+        "entity_id": "ENT-003",
+        "name": "Counterparty Cobalt 3",
+        "tz_minutes": 0
+      },
+      {
+        "currency": "JPY",
+        "entity_id": "ENT-004",
+        "name": "Counterparty Cobalt 4",
+        "tz_minutes": 600
+      },
+      {
+        "currency": "EUR",
+        "entity_id": "ENT-005",
+        "name": "Counterparty Cobalt 5",
+        "tz_minutes": 0
+      }
+    ]
+  }
+}

@@ -1,0 +1,55 @@
+[
+  {
+    "affected_ids": [
+      "INV-0041",
+      "PAY-0015"
+    ],
+    "allowed_evidence_sets": [
+      [
+        "DOC-0051",
+        "DOC-0070",
+        "ROW-00139",
+        "ROW-00140"
+      ],
+      [
+        "DOC-0051",
+        "DOC-0070",
+        "ROW-00140"
+      ],
+      [
+        "DOC-0051",
+        "DOC-0070",
+        "ROW-00139"
+      ]
+    ],
+    "currency": "USD",
+    "expected_amount_minor": 9968,
+    "explanation": "Only part of the PAY-0015 allocation to INV-0041 was applied; 9968 minor units were left in unapplied receipts. How to see it: the AR credit ROW-00140 for INV-0041 is smaller than the converted allocation in DOC-0070; the difference sits in unapplied line ROW-00139 (2300). Invoice documents DOC-0051 show which invoices are involved. Expected amount: 9968 USD minor units (currency USD).",
+    "issue_id": "ISS-001",
+    "root_cause": "allocation_partially_applied",
+    "type": "allocation"
+  },
+  {
+    "affected_ids": [
+      "PAY-0026"
+    ],
+    "allowed_evidence_sets": [
+      [
+        "DOC-0091",
+        "FX-2025-01-13-CAD-USD",
+        "ROW-00183"
+      ],
+      [
+        "DOC-0091",
+        "FX-2025-01-13-CAD-USD",
+        "ROW-00182"
+      ]
+    ],
+    "currency": "USD",
+    "expected_amount_minor": 443,
+    "explanation": "PAY-0026 (CAD) was converted with a wrong FX input: used the rate of 2025-01-11 instead of 2025-01-13. How to see it: policy prescribes the rate of 2025-01-13 (FX-2025-01-13-CAD-USD); converting the document amount with it gives 51802 but the ledger anchor line ROW-00183 carries 51359 (the booked amount matches the rate of 2025-01-11). Expected amount: 443 USD minor units (currency USD).",
+    "issue_id": "ISS-002",
+    "root_cause": "fx_rate_of_wrong_date_used",
+    "type": "fx"
+  }
+]

@@ -1,0 +1,138 @@
+[
+  {
+    "affected_ids": [
+      "INV-0009"
+    ],
+    "allowed_evidence_sets": [
+      [
+        "DOC-0010",
+        "ROW-00021",
+        "ROW-00022"
+      ],
+      [
+        "DOC-0010",
+        "ROW-00019",
+        "ROW-00020"
+      ]
+    ],
+    "currency": "JPY",
+    "expected_amount_minor": 353438,
+    "explanation": "The journal of INV-0009 (DOC-0010) was posted twice with identical accounts, amounts and timestamp; the extra posting overstates the ledger by 353438 minor units. How to see it: the ledger holds two identical postings for INV-0009 while only one source document DOC-0010 exists (compare the anchor lines ROW-00021 and ROW-00022); a legitimate repeat would have its own document id. Expected amount: 353438 JPY minor units (currency JPY).",
+    "issue_id": "ISS-001",
+    "root_cause": "journal_posted_twice",
+    "type": "duplicate"
+  },
+  {
+    "affected_ids": [
+      "INV-0019"
+    ],
+    "allowed_evidence_sets": [
+      [
+        "DOC-0023",
+        "ROW-00047",
+        "ROW-00048"
+      ],
+      [
+        "DOC-0023",
+        "ROW-00045",
+        "ROW-00046"
+      ]
+    ],
+    "currency": "JPY",
+    "expected_amount_minor": 2430010,
+    "explanation": "The journal of INV-0019 (DOC-0023) was posted twice with identical accounts, amounts and timestamp; the extra posting overstates the ledger by 2430010 minor units. How to see it: the ledger holds two identical postings for INV-0019 while only one source document DOC-0023 exists (compare the anchor lines ROW-00048 and ROW-00047); a legitimate repeat would have its own document id. Expected amount: 2430010 JPY minor units (currency JPY).",
+    "issue_id": "ISS-002",
+    "root_cause": "journal_posted_twice",
+    "type": "duplicate"
+  },
+  {
+    "affected_ids": [
+      "PAY-0041"
+    ],
+    "allowed_evidence_sets": [
+      [
+        "DOC-0106",
+        "ROW-00224",
+        "ROW-00225"
+      ],
+      [
+        "DOC-0106",
+        "ROW-00222",
+        "ROW-00223"
+      ]
+    ],
+    "currency": "JPY",
+    "expected_amount_minor": 6220103,
+    "explanation": "The journal of PAY-0041 (DOC-0106) was posted twice with identical accounts, amounts and timestamp; the extra posting overstates the ledger by 6220103 minor units. How to see it: the ledger holds two identical postings for PAY-0041 while only one source document DOC-0106 exists (compare the anchor lines ROW-00224 and ROW-00225); a legitimate repeat would have its own document id. Expected amount: 6220103 JPY minor units (currency JPY).",
+    "issue_id": "ISS-003",
+    "root_cause": "journal_posted_twice",
+    "type": "duplicate"
+  },
+  {
+    "affected_ids": [
+      "PAY-0039"
+    ],
+    "allowed_evidence_sets": [
+      [
+        "DOC-0103",
+        "FX-2023-09-02-KWD-JPY",
+        "ROW-00219"
+      ],
+      [
+        "DOC-0103",
+        "FX-2023-09-02-KWD-JPY",
+        "ROW-00218"
+      ]
+    ],
+    "currency": "JPY",
+    "expected_amount_minor": 373308,
+    "explanation": "PAY-0039 (KWD) was converted with a wrong FX input: used rate 506.29873297 instead of 488.46959283 (2023-09-02). How to see it: policy prescribes the rate of 2023-09-02 (FX-2023-09-02-KWD-JPY); converting the document amount with it gives 10227597 but the ledger anchor line ROW-00219 carries 10600905. Expected amount: 373308 JPY minor units (currency JPY).",
+    "issue_id": "ISS-004",
+    "root_cause": "wrong_fx_rate_used",
+    "type": "fx"
+  },
+  {
+    "affected_ids": [
+      "ROW-00198",
+      "ROW-00199"
+    ],
+    "allowed_evidence_sets": [
+      [
+        "DOC-0105",
+        "ROW-00198"
+      ],
+      [
+        "DOC-0105",
+        "ROW-00199"
+      ]
+    ],
+    "currency": "JPY",
+    "expected_amount_minor": 12700078,
+    "explanation": "PAY-0040 (DOC-0105) is dated 2023-09-04T03:35:00-04:00 (after the period) but its journal was booked at 2023-08-30T02:59:00+03:00 (inside the period), in a different reporting period. How to see it: compare the document timestamp with the booking timestamp of the ledger lines against the period [2023-08-01T00:00:00+03:00, 2023-09-01T00:00:00+03:00) (end exclusive, instants compared across offsets). Expected amount: 12700078 JPY minor units (currency JPY).",
+    "issue_id": "ISS-005",
+    "root_cause": "booked_in_wrong_reporting_period",
+    "type": "cutoff"
+  },
+  {
+    "affected_ids": [
+      "ROW-00059",
+      "ROW-00060"
+    ],
+    "allowed_evidence_sets": [
+      [
+        "DOC-0021",
+        "ROW-00060"
+      ],
+      [
+        "DOC-0021",
+        "ROW-00059"
+      ]
+    ],
+    "currency": "JPY",
+    "expected_amount_minor": 5845833,
+    "explanation": "INV-0018 (DOC-0021) is dated 2023-07-31T14:03:00+03:00 (before the period) but its journal was booked at 2023-08-02T20:31:00+03:00 (inside the period), in a different reporting period. How to see it: compare the document timestamp with the booking timestamp of the ledger lines against the period [2023-08-01T00:00:00+03:00, 2023-09-01T00:00:00+03:00) (end exclusive, instants compared across offsets). Expected amount: 5845833 JPY minor units (currency JPY).",
+    "issue_id": "ISS-006",
+    "root_cause": "booked_in_wrong_reporting_period",
+    "type": "cutoff"
+  }
+]

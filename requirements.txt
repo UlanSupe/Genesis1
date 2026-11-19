@@ -1,0 +1,3 @@
+# TraceForge has NO third-party runtime dependencies: the whole package, the CLI and the demo use the
+# Python standard library only (Python >= 3.11). This file lists what is needed to RUN THE TESTS.
+pytest==9.1.1

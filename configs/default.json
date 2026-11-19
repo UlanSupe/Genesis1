@@ -1,0 +1,19 @@
+{
+  "base_currency": "EUR",
+  "foreign_currencies": null,
+  "timezone_minutes": null,
+  "period_start": null,
+  "difficulty": "medium",
+  "n_invoices": 48,
+  "n_entities": 8,
+  "min_ledger_rows": 200,
+  "clean_rate": 0.2,
+  "min_issues": 1,
+  "max_issues": 6,
+  "mutation_weights": {"duplicate": 1, "allocation": 1, "fx": 1, "cutoff": 1},
+  "compound_rate": 0.15,
+  "issue_counts": null,
+  "scenarios": null,
+  "clean": null,
+  "episode_id": null
+}

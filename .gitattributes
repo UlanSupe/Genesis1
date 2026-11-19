@@ -1,0 +1,8 @@
+# Keep text files LF on every platform: stored datasets and the benchmark dataset digest are byte-sensitive.
+* text=auto eol=lf
+*.csv text eol=lf
+*.json text eol=lf
+*.jsonl text eol=lf
+*.md text eol=lf
+*.py text eol=lf
+*.sh text eol=lf

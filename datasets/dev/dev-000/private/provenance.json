@@ -1,0 +1,334 @@
+{
+  "compound_scenarios": [],
+  "generator": {
+    "attempt": 0,
+    "config": {
+      "base_currency": "GBP",
+      "clean": true,
+      "clean_rate": 0.2,
+      "compound_rate": 0.15,
+      "difficulty": "easy",
+      "episode_id": "dev-000",
+      "foreign_currencies": null,
+      "issue_counts": null,
+      "max_issues": 6,
+      "min_issues": 1,
+      "min_ledger_rows": 200,
+      "mutation_weights": {
+        "allocation": 1,
+        "cutoff": 1,
+        "duplicate": 1,
+        "fx": 1
+      },
+      "n_entities": null,
+      "n_invoices": null,
+      "period_start": null,
+      "scenarios": null,
+      "timezone_minutes": null
+    },
+    "plan": {
+      "clean": true,
+      "counts": {
+        "allocation": 0,
+        "cutoff": 0,
+        "duplicate": 0,
+        "fx": 0
+      },
+      "explicit": false,
+      "scenarios": []
+    },
+    "seed": 2000,
+    "traceforge_version": "1.0.0"
+  },
+  "mutations": [],
+  "validation": {
+    "checks": [
+      {
+        "detail": [],
+        "name": "1_clean_baseline_consistent",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "2_public_data_consistent",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "1b_baseline_equals_independent_expected_ledger",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "2b_referential_integrity_and_balances",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "4b_baseline_plus_manifests_equals_public_ledger",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "4c_manifest_causality",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "3_truth_equals_independent_derivation",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "4_mutations_changed_exactly_the_intended_documents",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "5_expected_amounts_exceed_tolerance",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "6_evidence_available_to_agent",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "7_issue_count_bounds",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "8_no_private_markers_in_public",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "9_size_requirements",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "10_affected_ids_exist_in_public_data",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "11_every_evidence_set_reconstructs_its_finding",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "12_clean_decoys_intact_and_not_labeled_as_errors",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "13_financial_totals_change_only_by_declared_anomalies",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "14_every_issue_has_root_cause_and_explanation",
+        "ok": true
+      }
+    ],
+    "ok": true
+  },
+  "world": {
+    "clean_decoys": [
+      "INV-0011",
+      "INV-0016",
+      "INV-0017",
+      "INV-0018",
+      "INV-0021",
+      "INV-0023",
+      "INV-0027",
+      "INV-0028",
+      "INV-0030",
+      "INV-0032",
+      "INV-0033",
+      "INV-0034",
+      "INV-0035",
+      "INV-0037",
+      "INV-0038",
+      "INV-0047",
+      "INV-0052",
+      "PAY-0003",
+      "PAY-0004",
+      "PAY-0005",
+      "PAY-0009",
+      "PAY-0010",
+      "PAY-0012",
+      "PAY-0015",
+      "PAY-0016",
+      "PAY-0018",
+      "PAY-0019",
+      "PAY-0023",
+      "PAY-0026",
+      "PAY-0029",
+      "PAY-0032",
+      "PAY-0036",
+      "PAY-0043"
+    ],
+    "company": {
+      "name": "Orion Trading Ltd"
+    },
+    "difficulty": "easy",
+    "document_tags": {
+      "INV-0001": "regular",
+      "INV-0002": "regular",
+      "INV-0003": "regular",
+      "INV-0004": "regular",
+      "INV-0005": "regular",
+      "INV-0006": "regular",
+      "INV-0007": "regular",
+      "INV-0008": "regular",
+      "INV-0009": "regular",
+      "INV-0010": "regular",
+      "INV-0011": "decoy",
+      "INV-0012": "regular",
+      "INV-0013": "regular",
+      "INV-0014": "regular",
+      "INV-0015": "regular",
+      "INV-0016": "decoy",
+      "INV-0017": "decoy",
+      "INV-0018": "decoy",
+      "INV-0019": "regular",
+      "INV-0020": "regular",
+      "INV-0021": "decoy",
+      "INV-0022": "regular",
+      "INV-0023": "decoy",
+      "INV-0024": "regular",
+      "INV-0025": "regular",
+      "INV-0026": "regular",
+      "INV-0027": "decoy",
+      "INV-0028": "decoy",
+      "INV-0029": "regular",
+      "INV-0030": "decoy",
+      "INV-0031": "regular",
+      "INV-0032": "decoy",
+      "INV-0033": "decoy",
+      "INV-0034": "decoy",
+      "INV-0035": "decoy",
+      "INV-0036": "regular",
+      "INV-0037": "decoy",
+      "INV-0038": "decoy",
+      "INV-0039": "regular",
+      "INV-0040": "regular",
+      "INV-0041": "regular",
+      "INV-0042": "regular",
+      "INV-0043": "regular",
+      "INV-0044": "regular",
+      "INV-0045": "regular",
+      "INV-0046": "regular",
+      "INV-0047": "decoy",
+      "INV-0048": "regular",
+      "INV-0049": "regular",
+      "INV-0050": "regular",
+      "INV-0051": "regular",
+      "INV-0052": "decoy",
+      "INV-0053": "regular",
+      "INV-0054": "regular",
+      "INV-0055": "regular",
+      "INV-0056": "regular",
+      "INV-0057": "regular",
+      "INV-0058": "regular",
+      "INV-0059": "regular",
+      "INV-0060": "regular",
+      "INV-0061": "regular",
+      "INV-0062": "regular",
+      "INV-0063": "regular",
+      "INV-0064": "regular",
+      "INV-0065": "regular",
+      "INV-0066": "regular",
+      "PAY-0001": "regular",
+      "PAY-0002": "regular",
+      "PAY-0003": "decoy",
+      "PAY-0004": "decoy",
+      "PAY-0005": "decoy",
+      "PAY-0006": "regular",
+      "PAY-0007": "regular",
+      "PAY-0008": "regular",
+      "PAY-0009": "decoy",
+      "PAY-0010": "decoy",
+      "PAY-0011": "regular",
+      "PAY-0012": "decoy",
+      "PAY-0013": "regular",
+      "PAY-0014": "regular",
+      "PAY-0015": "decoy",
+      "PAY-0016": "decoy",
+      "PAY-0017": "regular",
+      "PAY-0018": "decoy",
+      "PAY-0019": "decoy",
+      "PAY-0020": "regular",
+      "PAY-0021": "regular",
+      "PAY-0022": "regular",
+      "PAY-0023": "decoy",
+      "PAY-0024": "regular",
+      "PAY-0025": "regular",
+      "PAY-0026": "decoy",
+      "PAY-0027": "regular",
+      "PAY-0028": "regular",
+      "PAY-0029": "decoy",
+      "PAY-0030": "regular",
+      "PAY-0031": "regular",
+      "PAY-0032": "decoy",
+      "PAY-0033": "regular",
+      "PAY-0034": "regular",
+      "PAY-0035": "regular",
+      "PAY-0036": "decoy",
+      "PAY-0037": "regular",
+      "PAY-0038": "regular",
+      "PAY-0039": "regular",
+      "PAY-0040": "regular",
+      "PAY-0041": "regular",
+      "PAY-0042": "regular",
+      "PAY-0043": "decoy",
+      "PAY-0044": "regular",
+      "PAY-0045": "regular",
+      "PAY-0046": "regular",
+      "PAY-0047": "regular",
+      "PAY-0048": "regular"
+    },
+    "entities": [
+      {
+        "currency": "KWD",
+        "entity_id": "ENT-001",
+        "name": "Counterparty Prism 1",
+        "tz_minutes": -420
+      },
+      {
+        "currency": "CAD",
+        "entity_id": "ENT-002",
+        "name": "Counterparty Indigo 2",
+        "tz_minutes": 600
+      },
+      {
+        "currency": "GBP",
+        "entity_id": "ENT-003",
+        "name": "Counterparty Delta 3",
+        "tz_minutes": 0
+      },
+      {
+        "currency": "KWD",
+        "entity_id": "ENT-004",
+        "name": "Counterparty Ember 4",
+        "tz_minutes": 0
+      },
+      {
+        "currency": "GBP",
+        "entity_id": "ENT-005",
+        "name": "Counterparty Borealis 5",
+        "tz_minutes": 0
+      },
+      {
+        "currency": "KWD",
+        "entity_id": "ENT-006",
+        "name": "Counterparty Prism 6",
+        "tz_minutes": 60
+      }
+    ]
+  }
+}

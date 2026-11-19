@@ -1,0 +1,56 @@
+{
+  "accounts": {
+    "1000": "Cash",
+    "1200": "Accounts receivable",
+    "2300": "Unapplied customer receipts",
+    "4000": "Revenue"
+  },
+  "amount_tolerance_minor": 1,
+  "base_currency": "EUR",
+  "finding_conventions": {
+    "allocation": "affected_ids=[payment_id] plus every invoice_id whose ledger allocation differs from the payment's invoice_refs; amount=total base-currency shortfall; evidence must include the payment doc_id, the doc_id of EVERY invoice listed in affected_ids, and the changed or added ledger row(s) of that payment (e.g. the unapplied line).",
+    "cutoff": "affected_ids=all ledger row_ids of the document's journal whose reporting period differs from the document's period; amount=larger of the debit/credit totals of those rows; evidence must include the doc_id and one such row.",
+    "duplicate": "affected_ids=[invoice_id|payment_id of a document whose journal is posted more than once]; amount=base-currency amount of the extra posting(s) (anchor line); evidence must include the document doc_id and the anchor line of the original and of the repost.",
+    "fx": "affected_ids=[invoice_id|payment_id]; amount=|booked - correct| of the anchor line in base currency; evidence must include the doc_id, one ledger row of the journal and the fx record id (FX-date-SRC-TGT) that policy prescribes."
+  },
+  "finding_types": [
+    "duplicate",
+    "allocation",
+    "fx",
+    "cutoff"
+  ],
+  "fx": {
+    "rate_date_rule": "calendar date of the document timestamp converted to the company timezone; daily rates incl. weekends",
+    "record_id": "FX-{date}-{source_currency}-{target_currency}",
+    "semantics": "1 unit of source_currency = rate units of base currency",
+    "table": "fx.csv"
+  },
+  "journal_key": "payment_id if present else invoice_id",
+  "ledger_amounts": "debit_minor/credit_minor are base-currency minor units; the currency column is the currency of the source document.",
+  "period": {
+    "end": "2025-05-01T00:00:00+05:30",
+    "end_inclusive": false,
+    "start": "2025-04-01T00:00:00+05:30",
+    "timezone": "+05:30"
+  },
+  "postings": {
+    "invoice": "Dr 1200 total | Cr 4000 total",
+    "payment": "Dr 1000 cash = sum of lines | Cr 1200 per invoice_ref | Cr 2300 for amount not allocated",
+    "refund (negative payment)": "mirror image of a payment"
+  },
+  "recognition_rule": "A journal belongs to the reporting period that contains its document timestamp (invoice.issued_at / payment.timestamp) compared as an instant; the booking timestamp must fall in the same period.",
+  "rounding": {
+    "currency_decimals": {
+      "CAD": 2,
+      "CHF": 2,
+      "EUR": 2,
+      "GBP": 2,
+      "JPY": 0,
+      "KWD": 3,
+      "SEK": 2,
+      "USD": 2
+    },
+    "mode": "ROUND_HALF_UP",
+    "scope": "per_ledger_line"
+  }
+}

@@ -1,0 +1,90 @@
+[
+  {
+    "affected_ids": [
+      "INV-0157"
+    ],
+    "allowed_evidence_sets": [
+      [
+        "DOC-0236",
+        "ROW-00481",
+        "ROW-00482"
+      ],
+      [
+        "DOC-0236",
+        "ROW-00483",
+        "ROW-00484"
+      ]
+    ],
+    "currency": "EUR",
+    "expected_amount_minor": 757787,
+    "explanation": "The journal of INV-0157 (DOC-0236) was posted twice with identical accounts, amounts and timestamp; the extra posting overstates the ledger by 757787 minor units. How to see it: the ledger holds two identical postings for INV-0157 while only one source document DOC-0236 exists (compare the anchor lines ROW-00482 and ROW-00481); a legitimate repeat would have its own document id. Expected amount: 757787 EUR minor units (currency EUR).",
+    "issue_id": "ISS-001",
+    "root_cause": "journal_posted_twice",
+    "type": "duplicate"
+  },
+  {
+    "affected_ids": [
+      "ROW-00511",
+      "ROW-00512"
+    ],
+    "allowed_evidence_sets": [
+      [
+        "DOC-0239",
+        "ROW-00512"
+      ],
+      [
+        "DOC-0239",
+        "ROW-00511"
+      ]
+    ],
+    "currency": "EUR",
+    "expected_amount_minor": 757787,
+    "explanation": "INV-0160 (DOC-0239) is dated 2023-04-29T18:03:00+05:30 (inside the period) but its journal was booked at 2023-05-01T02:55:00+05:30 (after the period), in a different reporting period. How to see it: compare the document timestamp with the booking timestamp of the ledger lines against the period [2023-04-01T00:00:00+05:30, 2023-05-01T00:00:00+05:30) (end exclusive, instants compared across offsets). Expected amount: 757787 EUR minor units (currency EUR).",
+    "issue_id": "ISS-002",
+    "root_cause": "booked_in_wrong_reporting_period",
+    "type": "cutoff"
+  },
+  {
+    "affected_ids": [
+      "INV-0047",
+      "INV-0076",
+      "PAY-0030"
+    ],
+    "allowed_evidence_sets": [
+      [
+        "DOC-0048",
+        "DOC-0094",
+        "DOC-0132",
+        "ROW-00267"
+      ]
+    ],
+    "currency": "EUR",
+    "expected_amount_minor": 85427,
+    "explanation": "Allocation of PAY-0030 was applied to INV-0047 instead of INV-0076 (DOC-0132). How to see it: DOC-0132 allocates to INV-0076, but ledger line ROW-00267 carries invoice_id INV-0047; compare both invoices: INV-0076 is left open and INV-0047 is over-credited. Invoice documents DOC-0048, DOC-0094 show which invoices are involved. Expected amount: 85427 EUR minor units (currency EUR).",
+    "issue_id": "ISS-003",
+    "root_cause": "allocation_applied_to_wrong_invoice",
+    "type": "allocation"
+  },
+  {
+    "affected_ids": [
+      "ROW-00501",
+      "ROW-00502"
+    ],
+    "allowed_evidence_sets": [
+      [
+        "DOC-0248",
+        "ROW-00502"
+      ],
+      [
+        "DOC-0248",
+        "ROW-00501"
+      ]
+    ],
+    "currency": "EUR",
+    "expected_amount_minor": 760204,
+    "explanation": "PAY-0087 (DOC-0248) is dated 2023-04-30T14:55:00-05:00 (after the period) but its journal was booked at 2023-04-30T23:19:00+05:30 (inside the period), in a different reporting period. How to see it: compare the document timestamp with the booking timestamp of the ledger lines against the period [2023-04-01T00:00:00+05:30, 2023-05-01T00:00:00+05:30) (end exclusive, instants compared across offsets). Expected amount: 760204 EUR minor units (currency EUR).",
+    "issue_id": "ISS-004",
+    "root_cause": "booked_in_wrong_reporting_period",
+    "type": "cutoff"
+  }
+]

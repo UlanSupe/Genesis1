@@ -1,0 +1,40 @@
+[
+  {
+    "affected_ids": [
+      "INV-0004",
+      "PAY-0002"
+    ],
+    "allowed_evidence_sets": [
+      [
+        "DOC-0004",
+        "DOC-0008",
+        "ROW-00016"
+      ]
+    ],
+    "currency": "EUR",
+    "expected_amount_minor": 662937,
+    "explanation": "Allocation of PAY-0002 to INV-0004 was never applied: the line was parked in unapplied receipts (2300), leaving the invoice open. How to see it: DOC-0008 lists INV-0004 in invoice_refs, but ledger line ROW-00016 of PAY-0002 credits account 2300 with no invoice_id instead of 1200 for INV-0004. Invoice documents DOC-0004 show which invoices are involved. Expected amount: 662937 EUR minor units (currency EUR).",
+    "issue_id": "ISS-001",
+    "root_cause": "allocation_not_applied",
+    "type": "allocation"
+  },
+  {
+    "affected_ids": [
+      "INV-0023",
+      "PAY-0042"
+    ],
+    "allowed_evidence_sets": [
+      [
+        "DOC-0032",
+        "DOC-0102",
+        "ROW-00208"
+      ]
+    ],
+    "currency": "EUR",
+    "expected_amount_minor": 631537,
+    "explanation": "Allocation of PAY-0042 to INV-0023 was never applied: the line was parked in unapplied receipts (2300), leaving the invoice open. How to see it: DOC-0102 lists INV-0023 in invoice_refs, but ledger line ROW-00208 of PAY-0042 credits account 2300 with no invoice_id instead of 1200 for INV-0023. Invoice documents DOC-0032 show which invoices are involved. Expected amount: 631537 EUR minor units (currency EUR).",
+    "issue_id": "ISS-002",
+    "root_cause": "allocation_not_applied",
+    "type": "allocation"
+  }
+]

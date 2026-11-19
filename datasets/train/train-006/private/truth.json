@@ -1,0 +1,44 @@
+[
+  {
+    "affected_ids": [
+      "INV-0029",
+      "PAY-0009"
+    ],
+    "allowed_evidence_sets": [
+      [
+        "DOC-0033",
+        "DOC-0045",
+        "ROW-00089"
+      ]
+    ],
+    "currency": "EUR",
+    "expected_amount_minor": 103147,
+    "explanation": "Allocation of PAY-0009 to INV-0029 was never applied: the line was parked in unapplied receipts (2300), leaving the invoice open. How to see it: DOC-0045 lists INV-0029 in invoice_refs, but ledger line ROW-00089 of PAY-0009 credits account 2300 with no invoice_id instead of 1200 for INV-0029. Invoice documents DOC-0033 show which invoices are involved. Expected amount: 103147 EUR minor units (currency EUR).",
+    "issue_id": "ISS-001",
+    "root_cause": "allocation_not_applied",
+    "type": "allocation"
+  },
+  {
+    "affected_ids": [
+      "PAY-0018"
+    ],
+    "allowed_evidence_sets": [
+      [
+        "DOC-0064",
+        "FX-2025-04-14-KWD-EUR",
+        "ROW-00133"
+      ],
+      [
+        "DOC-0064",
+        "FX-2025-04-14-KWD-EUR",
+        "ROW-00134"
+      ]
+    ],
+    "currency": "EUR",
+    "expected_amount_minor": 530,
+    "explanation": "PAY-0018 (KWD) was converted with a wrong FX input: used the rate of 2025-04-09 instead of 2025-04-14. How to see it: policy prescribes the rate of 2025-04-14 (FX-2025-04-14-KWD-EUR); converting the document amount with it gives 72031 but the ledger anchor line ROW-00133 carries 71501 (the booked amount matches the rate of 2025-04-09). Expected amount: 530 EUR minor units (currency EUR).",
+    "issue_id": "ISS-002",
+    "root_cause": "fx_rate_of_wrong_date_used",
+    "type": "fx"
+  }
+]
