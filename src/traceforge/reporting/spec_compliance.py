@@ -338,6 +338,11 @@ REQUIREMENTS = [
                                               "test_pairs_eval.py::test_retime_can_be_switched_off",
                                               "test_pairs_eval.py::test_verify_links_catches_a_shifted_instant",
                                               "test_pairs_eval.py::test_paired_eval_separates_a_parser_of_instants_from_a_wall_clock_reader"]),
+    ("Step-by-step play interface for human/LLM agents (deterministic replay, no truth, no reward shown) and reproducible LLM-run verdicts",
+     "runner/play.py, llm_runs/", ["test_play.py::test_start_prints_the_task_manifest_and_policy_but_no_truth",
+                                   "test_play.py::test_replay_is_deterministic_across_calls",
+                                   "test_play.py::test_submit_ends_the_episode_and_writes_a_verdict_but_prints_no_reward",
+                                   "test_play.py::test_stored_llm_runs_replay_to_the_stored_verdicts"]),
 ]
 
 

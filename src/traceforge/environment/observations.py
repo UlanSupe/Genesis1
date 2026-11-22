@@ -12,7 +12,9 @@ TASK = (
     "list_records{table: ledger|invoices|payments|fx, cursor, limit<=50}, "
     "get_record{table, id}, get_document{doc_id}, calculator{expression}, "
     "submit{findings}. A finding is {type, affected_ids, claimed_amount_minor (int, base "
-    "currency minor units), currency, evidence_ids (<=10), explanation (<=1000 chars)}; "
+    "currency minor units), currency (the currency of claimed_amount_minor, i.e. the BASE "
+    "currency from the manifest, not the source document's currency), evidence_ids (<=10), "
+    "explanation (<=1000 chars)}; "
     "at most 30 findings. Score: F1 of exact matches minus a small cost per inspection step."
 )
 

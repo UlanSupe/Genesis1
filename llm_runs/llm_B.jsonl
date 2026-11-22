@@ -1,0 +1,26 @@
+{"seed": 202, "config": {"difficulty": "hard", "clean_rate": 0.1, "min_issues": 4, "max_issues": 9, "compound_rate": 0.6}}
+{"action":"list_records","table":"ledger","cursor":null,"limit":50}
+{"action":"list_records","table":"ledger","cursor":"c50","limit":50}
+{"action":"list_records","table":"ledger","cursor":"c100","limit":50}
+{"action":"list_records","table":"ledger","cursor":"c150","limit":50}
+{"action":"list_records","table":"ledger","cursor":"c200","limit":50}
+{"action":"list_records","table":"ledger","cursor":"c250","limit":50}
+{"action":"list_records","table":"ledger","cursor":"c300","limit":50}
+{"action":"list_records","table":"ledger","cursor":"c350","limit":50}
+{"action":"list_records","table":"payments","cursor":null,"limit":50}
+{"action":"list_records","table":"payments","cursor":"c50","limit":50}
+{"action":"list_records","table":"invoices","cursor":null,"limit":50}
+{"action":"list_records","table":"invoices","cursor":"c50","limit":50}
+{"action":"list_records","table":"fx","cursor":null,"limit":50}
+{"action":"list_records","table":"fx","cursor":"c50","limit":50}
+{"action":"list_records","table":"fx","cursor":"c100","limit":50}
+{"action":"list_records","table":"fx","cursor":"c150","limit":50}
+{"action":"list_records","table":"fx","cursor":"c200","limit":50}
+{"action":"list_records","table":"fx","cursor":"c250","limit":50}
+{"action":"list_records","table":"fx","cursor":"c300","limit":50}
+{"action":"list_records","table":"invoices","cursor":"c100","limit":50}
+{"action":"get_document","doc_id":"DOC-0146"}
+{"action":"get_document","doc_id":"DOC-0039"}
+{"action":"calculator","expression":"308168*0.00615006*100"}
+{"action":"calculator","expression":"61033/100*1.04260372*100"}
+{"action":"submit","findings":[{"type":"duplicate","affected_ids":["INV-0087"],"claimed_amount_minor":230702,"currency":"EUR","evidence_ids":["DOC-0144","ROW-00292","ROW-00293","ROW-00294","ROW-00295"],"explanation":"Invoice INV-0087 journal (Dr 1200/Cr 4000 230702) is posted twice at the same timestamp 2023-12-29T22:33 (ROW-00292/293 and ROW-00294/295); only one invoice document DOC-0144 exists."},{"type":"cutoff","affected_ids":["ROW-00320","ROW-00321"],"claimed_amount_minor":230702,"currency":"EUR","evidence_ids":["DOC-0146","ROW-00320","ROW-00321"],"explanation":"INV-0089 was issued 2023-12-30T03:33Z (December period, DOC-0146) but its journal is booked 2024-01-01T02:11Z, i.e. in the next period."},{"type":"fx","affected_ids":["INV-0027"],"claimed_amount_minor":1327,"currency":"JPY","evidence_ids":["DOC-0028","ROW-00056","ROW-00055","FX-2023-11-29-JPY-EUR"],"explanation":"INV-0027 JPY 308168 issued 2023-11-29; rate 0.00615006 gives 189525 EUR minor but ledger booked 190852; difference 1327."},{"type":"fx","affected_ids":["INV-0053"],"claimed_amount_minor":566,"currency":"CHF","evidence_ids":["DOC-0067","ROW-00136","ROW-00137","FX-2023-12-09-CHF-EUR"],"explanation":"INV-0053 CHF 610.33 issued 2023-12-09; rate 1.04260372 gives 63633 EUR minor but ledger booked 63067 (sibling INV-0052 same amount same day booked 63633); difference 566."}]}

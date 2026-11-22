@@ -26,6 +26,7 @@ Genesis1/
 ├── DEMO_SCRIPT.md               сценарий презентации на 3 минуты (терминал + HTML-отчёт)
 ├── FINAL_BENCHMARK.json/.csv    бенчмарк: 52 эпизода × 4 политики = 208 прогонов (+ _summary, _by_level)
 ├── FINAL_ABLATION.json/.csv     чувствительность награды: аудитор с одной убранной способностью
+├── LLM_RUN.md · llm_runs/       реальный прогон LLM-аудитора (6 эпизодов): журналы, вердикты, разбор; PRESENTATION.md — слайды
 ├── Dockerfile · .github/workflows/ci.yml   контейнер для недоверенных агентов; CI (3 ОС × Python 3.11/3.12)
 ├── pyproject.toml · requirements*.txt · LICENSE · configs/default.json
 │
@@ -56,7 +57,7 @@ Genesis1/
 ├── datasets/
 │   ├── train/ dev/            по 10 эпизодов; public/ (ledger.csv, invoices.jsonl, payments.jsonl, fx.csv, policy, manifest) и private/ (truth, provenance, clean_baseline)
 │   └── pairs/train|dev/       по 10 пар-двойников (+ private/transformation.json с картой id)
-├── tests/            32 файла, 1370+ тестов (контракт, изоляция, генератор, матчер, награда, метаморфика, песочница, ablation, пары, CI/контейнер)
+├── tests/            32 файла, 1376+ тестов (контракт, изоляция, генератор, матчер, награда, метаморфика, песочница, ablation, пары, CI/контейнер)
 ├── examples/         gym_loop.py (reset/step), custom_agent.py + run_custom_agent.py (внешний агент по JSON-протоколу)
 └── tools/            clean_env_check.sh (проверка в чистом venv), container_smoke.sh, mutation_check.py (проверка самих тестов), stress_gen.py, ...
 ```
@@ -86,7 +87,7 @@ seed + config ─► generator ─► чистая компания ─► му�
 | **Data & Ground Truth (25)** | реалистичные данные, 4 типа ошибок + 2 compound, чистые компании, decoys, достоверная истина | `generator/` | `test_generator*`, `test_mutations`, `test_compound_scenarios`, `test_validator_integrity` (независимый пересчёт), `test_property`; `python -m traceforge audit` |
 | **Reward & Evaluation (25)** | one-to-one, TP/FP/FN, precision/recall/F1, официальная формула, 4 политики | `evaluation/`, `policies/` | `test_matcher*`, `test_reward`, `test_evidence`, `test_policies`; `FINAL_BENCHMARK.*`; **`FINAL_ABLATION.*`** — награда реагирует на каждую способность, текст объяснения не оценивается |
 | **Reproducibility & Generalization (15)** | один seed → те же байты, пары-преобразования, скрытый набор | `generator/transformations.py`, `pairs.py`, `runner/paired.py` | `test_reproducibility` (в т.ч. между процессами и `PYTHONHASHSEED`), `test_transformations`, `test_metamorphic`, `test_pairs_eval`; `paired-eval`: устойчивый аудитор consistent = 1.000, читающий время «по настенным часам» — 0.000 |
-| **Engineering & Explanation (10)** | структура, документация, демо, воспроизводимый запуск | весь репозиторий | `README.md` (EN-сводка + RU), `python -m traceforge demo` + HTML-отчёт, `verify` → `SPEC_COMPLIANCE.md` (75 требований), `tools/clean_env_check.sh` |
+| **Engineering & Explanation (10)** | структура, документация, демо, воспроизводимый запуск | весь репозиторий | `README.md` (EN-сводка + RU), `python -m traceforge demo` + HTML-отчёт, `verify` → `SPEC_COMPLIANCE.md` (76 требований), `tools/clean_env_check.sh` |
 
 ## 5. Шпаргалка команд
 
@@ -106,10 +107,10 @@ bash tools/clean_env_check.sh                     # чистое окружен�
 ## 6. Честные ограничения (не скрываем)
 
 * Эталонный аудитор `reconciliation` решает все эпизоды (F1 = 1.000): это следствие того, что каждая ошибка по построению выводима из публичных данных. Бенчмарк из 4 политик
-  поэтому не различает сильных агентов; различие награды по способностям показано в `FINAL_ABLATION.*`. **LLM-агент не запускался**, выводов о качестве моделей нет.
+  поэтому не различает сильных агентов; различие награды по способностям показано в `FINAL_ABLATION.*`. Малый реальный прогон LLM-агента (6 эпизодов, одна модель, «честное слово», `LLM_RUN.md`): 5 из 6 решены с F1 = 1.000, один выявил неоднозначность соглашения о валюте (исправлено); выводов о качестве моделей из этого делать нельзя.
 * Песочница — audit-hook только для Python-агентов (скоростная неровность, не граница безопасности). Контейнерная граница (`Dockerfile`, `container.py`) проверена только на уровне
   сформированной команды: Docker в среде разработки не было.
-* CI (`.github/workflows/ci.yml`) описан, но его результат не наблюдался из среды разработки. Python 3.11, Linux и macOS локально не проверялись.
+* CI (`.github/workflows/ci.yml`) описан, но его результат не наблюдался из среды разработки. Linux и macOS локально не проверялись; Python 3.11.16 проверен (полный набор тестов, benchmark и ablation идентичны 3.12).
 * Допущения генератора: четыре семейства ошибок, фиксированные смещения UTC без DST, ежедневные курсы включая выходные; допуск суммы ±1 minor unit и определение `inspection_steps`
   (действия до `submit`) — опубликованные решения реализации.
 * Знание кода и угадываемого seed позволяет восстановить истину: скрытый набор нужно генерировать из секрета (`generate-eval`), а не из малых seed.
@@ -122,9 +123,9 @@ bash tools/clean_env_check.sh                     # чистое окружен�
 3. Убедиться, что в репозитории последний коммит (`git log -1`) и ссылка на репозиторий вписаны в форму сдачи.
 
 **Развитие после хакатона (по убыванию пользы):**
-1. **Адаптер LLM-агента** (локальная модель, без платных API) поверх JSON-протокола — первый честный замер того, чего не может простой сверщик; сложность добавлять через `difficulty`, число валют и бюджет шагов.
+1. **Систематический замер LLM-агентов** (несколько моделей, десятки эпизодов, локальная модель без платных API) поверх JSON-протокола или `play`; сложность добавлять через `difficulty`, число валют и бюджет шагов. Первый малый прогон уже есть (`LLM_RUN.md`).
 2. **Более трудные задачи, где простая сверка не хватает:** ошибки, выводимые только из нескольких документов и политики; шумные описания; частично наблюдаемые данные.
 3. **Новые семейства ошибок и DST/часовые пояса с переходом времени;** отдельная таблица `allocations` как самостоятельная сущность.
-4. **Проверка на Linux/macOS/Python 3.11** (CI) и запуск `container_smoke.sh` на машине с Docker; затем перевести статус изоляции из «PARTIAL» в «PASS».
+4. **Проверка на Linux/macOS** (CI) и запуск `container_smoke.sh` на машине с Docker; затем перевести статус изоляции из «PARTIAL» в «PASS».
 5. **Обёртка Gymnasium** (`gym.register`) и цикл обучения с траекториями (`trajectories/`) для RL/SFT.
 6. **Публичный лидерборд** скрытого набора: `generate-eval` + `paired-eval` на стороне организатора, секрет не хранится в репозитории.

@@ -9,7 +9,7 @@ rm -rf "$D" && mkdir -p "$D/repo/trajectories"
 cd "$SRC"
 cp -r src tests datasets configs examples tools "$D/repo/"
 cp ./*.md ./*.toml ./*.txt LICENSE .gitignore Dockerfile FINAL_BENCHMARK* FINAL_ABLATION* "$D/repo/"
-cp -r .github "$D/repo/"
+cp -r .github llm_runs "$D/repo/"
 find "$D/repo" -name __pycache__ -type d -prune -exec rm -rf {} + 2>/dev/null
 rm -rf "$D/repo/src/traceforge.egg-info" "$D/repo/reports" "$D/repo/graphify-out"
 echo "== copied files: $(find "$D/repo" -type f | wc -l)   (no reports/, no graphify-out/, no cached trajectories)"

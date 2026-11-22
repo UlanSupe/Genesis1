@@ -1,0 +1,26 @@
+{"seed": 303, "config": {"difficulty": "hard", "clean_rate": 0.0, "min_issues": 2, "max_issues": 6, "compound_rate": 1.0}}
+{"action":"list_records","table":"ledger","cursor":null,"limit":50}
+{"action":"list_records","table":"ledger","cursor":"c50","limit":50}
+{"action":"list_records","table":"ledger","cursor":"c100","limit":50}
+{"action":"list_records","table":"ledger","cursor":"c150","limit":50}
+{"action":"list_records","table":"ledger","cursor":"c200","limit":50}
+{"action":"list_records","table":"ledger","cursor":"c250","limit":50}
+{"action":"list_records","table":"ledger","cursor":"c300","limit":50}
+{"action":"list_records","table":"ledger","cursor":"c350","limit":50}
+{"action":"list_records","table":"payments","cursor":null,"limit":50}
+{"action":"list_records","table":"payments","cursor":"c50","limit":50}
+{"action":"list_records","table":"invoices","cursor":null,"limit":50}
+{"action":"list_records","table":"invoices","cursor":"c50","limit":50}
+{"action":"calculator","expression":"[2046485/3293500, 1610917/2588950, 1618270/2588950]"}
+{"action":"list_records","table":"fx","cursor":null,"limit":50}
+{"action":"list_records","table":"fx","cursor":"c50","limit":50}
+{"action":"list_records","table":"fx","cursor":"c100","limit":50}
+{"action":"list_records","table":"fx","cursor":"c150","limit":50}
+{"action":"list_records","table":"fx","cursor":"c200","limit":50}
+{"action":"list_records","table":"fx","cursor":"c250","limit":50}
+{"action":"list_records","table":"fx","cursor":"c300","limit":50}
+{"action":"get_document","doc_id":"DOC-0097"}
+{"action":"get_document","doc_id":"DOC-0147"}
+{"action":"calculator","expression":"689717*0.00624973*100"}
+{"action":"calculator","expression":"2577050*0.00613879*100"}
+{"action":"submit","findings":[{"type":"duplicate","affected_ids":["INV-0070"],"claimed_amount_minor":1598218,"currency":"EUR","evidence_ids":["DOC-0110","ROW-00225","ROW-00226","ROW-00227","ROW-00228"],"explanation":"Invoice INV-0070 journal posted twice with identical timestamp and amounts (ROW-00225/226 and ROW-00227/228); only one invoice document DOC-0110 exists."},{"type":"allocation","affected_ids":["PAY-0032","INV-0061"],"claimed_amount_minor":386472,"currency":"EUR","evidence_ids":["DOC-0097","DOC-0086","ROW-00197"],"explanation":"Payment PAY-0032 allocates its full amount to INV-0061 per the payment document, but the ledger credits the whole amount to 2300 unapplied receipts instead of 1200 against INV-0061."},{"type":"fx","affected_ids":["PAY-0046"],"claimed_amount_minor":1078,"currency":"EUR","evidence_ids":["DOC-0123","ROW-00253","FX-2023-01-23-JPY-EUR"],"explanation":"Payment timestamp 2023-01-24T06:59+09:00 is 2023-01-23 in company timezone +02:00; booked at the 2023-01-24 rate (432133) instead of 2023-01-23 rate 0.00624973 (431055)."},{"type":"fx","affected_ids":["PAY-0072"],"claimed_amount_minor":23572,"currency":"EUR","evidence_ids":["DOC-0165","ROW-00338","FX-2023-02-06-JPY-EUR"],"explanation":"JPY 2577050 booked at 1605569 EUR minor, implying rate ~0.00623, but the 2023-02-06 rate 0.00613879 gives 1581997."},{"type":"cutoff","affected_ids":["ROW-00306","ROW-00307"],"claimed_amount_minor":553338,"currency":"EUR","evidence_ids":["DOC-0141","ROW-00306"],"explanation":"Payment PAY-0056 document timestamp 2023-01-31T02:36+09:00 falls in the January period, but its journal is booked 2023-02-01T02:48+02:00, in the next period."},{"type":"cutoff","affected_ids":["ROW-00300","ROW-00301"],"claimed_amount_minor":1766614,"currency":"EUR","evidence_ids":["DOC-0147","ROW-00300"],"explanation":"Payment PAY-0059 document timestamp 2023-01-31T18:58-04:00 (2023-01-31T22:58Z) is after period end, but its journal is booked 2023-01-31T23:40+02:00, inside January."}]}

@@ -1,0 +1,35 @@
+{"seed": 212, "config": {"difficulty": "hard", "clean_rate": 0.1, "min_issues": 4, "max_issues": 9, "compound_rate": 0.6}}
+{"action":"list_records","table":"ledger","cursor":null,"limit":50}
+{"action":"list_records","table":"ledger","cursor":"c50","limit":50}
+{"action":"list_records","table":"ledger","cursor":"c100","limit":50}
+{"action":"list_records","table":"ledger","cursor":"c150","limit":50}
+{"action":"list_records","table":"ledger","cursor":"c200","limit":50}
+{"action":"list_records","table":"ledger","cursor":"c250","limit":50}
+{"action":"list_records","table":"ledger","cursor":"c300","limit":50}
+{"action":"list_records","table":"ledger","cursor":"c350","limit":50}
+{"action":"list_records","table":"ledger","cursor":"c400","limit":50}
+{"action":"list_records","table":"payments","cursor":null,"limit":50}
+{"action":"list_records","table":"payments","cursor":"c50","limit":50}
+{"action":"list_records","table":"invoices","cursor":null,"limit":50}
+{"action":"list_records","table":"invoices","cursor":"c50","limit":50}
+{"action":"list_records","table":"invoices","cursor":"c100","limit":50}
+{"action":"list_records","table":"fx","cursor":null,"limit":50}
+{"action":"list_records","table":"invoices","cursor":null,"limit":50}
+{"action":"list_records","table":"payments","cursor":null,"limit":50}
+{"action":"list_records","table":"payments","cursor":"c50","limit":50}
+{"action":"list_records","table":"ledger","cursor":null,"limit":50}
+{"action":"list_records","table":"ledger","cursor":"c50","limit":50}
+{"action":"list_records","table":"ledger","cursor":"c100","limit":50}
+{"action":"list_records","table":"ledger","cursor":"c150","limit":50}
+{"action":"list_records","table":"ledger","cursor":"c200","limit":50}
+{"action":"list_records","table":"ledger","cursor":"c250","limit":50}
+{"action":"list_records","table":"ledger","cursor":"c300","limit":50}
+{"action":"list_records","table":"ledger","cursor":"c350","limit":50}
+{"action":"list_records","table":"ledger","cursor":"c400","limit":50}
+{"action":"list_records","table":"fx","cursor":"c50","limit":50}
+{"action":"list_records","table":"fx","cursor":"c100","limit":50}
+{"action":"list_records","table":"fx","cursor":"c150","limit":50}
+{"action":"list_records","table":"fx","cursor":"c200","limit":50}
+{"action":"list_records","table":"fx","cursor":"c250","limit":50}
+{"action":"list_records","table":"fx","cursor":"c300","limit":50}
+{"action":"submit","findings":[{"type":"duplicate","affected_ids":["INV-0017"],"claimed_amount_minor":1728090,"currency":"EUR","evidence_ids":["DOC-0019","ROW-00037","ROW-00038","ROW-00039","ROW-00040"],"explanation":"INV-0017 journal posted twice (ROW-00037/38 and ROW-00039/40), single invoice document DOC-0019."},{"type":"duplicate","affected_ids":["INV-0047"],"claimed_amount_minor":1145550,"currency":"EUR","evidence_ids":["DOC-0057","ROW-00115","ROW-00116","ROW-00117","ROW-00118"],"explanation":"INV-0047 journal posted twice (ROW-00115/16 and ROW-00117/18), single invoice document DOC-0057."},{"type":"cutoff","affected_ids":["ROW-00077","ROW-00078"],"claimed_amount_minor":1145550,"currency":"EUR","evidence_ids":["DOC-0033","ROW-00077","ROW-00078"],"explanation":"INV-0029 issued 2025-12-31T15:51+05:30 (prior period) but booked 2026-01-01T00:44 (in period)."},{"type":"cutoff","affected_ids":["ROW-00073","ROW-00074"],"claimed_amount_minor":1037329,"currency":"EUR","evidence_ids":["DOC-0054","ROW-00073","ROW-00074"],"explanation":"INV-0044 issued 2026-01-04 (in period) but booked 2025-12-31T22:27 (prior period)."},{"type":"allocation","affected_ids":["PAY-0037","INV-0063"],"claimed_amount_minor":466594,"currency":"EUR","evidence_ids":["DOC-0108","DOC-0088","ROW-00222","ROW-00224"],"explanation":"PAY-0037 allocates 1145550 fully to INV-0063 but ledger applies only 678956 to 1200 and puts 466594 to 2300 unapplied."},{"type":"allocation","affected_ids":["PAY-0080","INV-0073","INV-0022"],"claimed_amount_minor":2196874,"currency":"EUR","evidence_ids":["DOC-0180","DOC-0113","DOC-0024","ROW-00373"],"explanation":"PAY-0080 refers to INV-0073 but ledger credits AR of INV-0022 (already settled by PAY-0015) instead."}]}

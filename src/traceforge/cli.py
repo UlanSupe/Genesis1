@@ -120,6 +120,17 @@ def cmd_ablation(ns) -> int:
     return 0
 
 
+def cmd_play(ns) -> int:
+    from .runner import play
+    if ns.cmd == "start":
+        print(play.start(ns.log, ns.seed, _config_arg(ns)))
+    elif ns.cmd == "act":
+        print(play.act(ns.log, ns.json))
+    else:
+        print(json.dumps(play.result(ns.log), indent=2))
+    return 0
+
+
 def cmd_demo(ns) -> int:
     from .reporting.demo_report import DEMO_SEED, run_demo
     cfg = _config_arg(ns)
@@ -239,6 +250,15 @@ def build_parser() -> argparse.ArgumentParser:
     b.add_argument("--seed", type=int, default=0, help="seed of the random policy")
     b.add_argument("--name", default="benchmark", help="output file stem (e.g. FINAL_BENCHMARK)")
     b.set_defaults(fn=cmd_benchmark)
+
+    pl = sub.add_parser("play", help="one step per command for a human/LLM agent (eval mode, deterministic replay)")
+    pl.add_argument("cmd", choices=("start", "act", "result"))
+    pl.add_argument("--log", required=True)
+    pl.add_argument("--seed", type=int, default=0)
+    pl.add_argument("--preset", choices=("easy", "medium", "hard", "compound"))
+    pl.add_argument("--difficulty", choices=("easy", "medium", "hard"))
+    pl.add_argument("--json", default="{}", help="the action as a JSON object (for `act`)")
+    pl.set_defaults(fn=cmd_play)
 
     ab = sub.add_parser("ablation", help="reward-sensitivity study: the auditor with one capability removed (real runs)")
     ab.add_argument("--split", choices=("dev", "train", "all"), default="all")

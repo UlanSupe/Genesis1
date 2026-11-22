@@ -1,0 +1,21 @@
+{"seed": 111, "config": {"difficulty": "medium", "clean_rate": 0.15, "min_issues": 2, "max_issues": 5, "compound_rate": 0.1}}
+{"action":"list_records","table":"ledger","cursor":null,"limit":50}
+{"action":"list_records","table":"invoices","cursor":null,"limit":50}
+{"action":"list_records","table":"invoices","cursor":"c50","limit":50}
+{"action":"list_records","table":"payments","cursor":null,"limit":50}
+{"action":"list_records","table":"payments","cursor":"c50","limit":50}
+{"action":"list_records","table":"ledger","cursor":"c50","limit":50}
+{"action":"list_records","table":"ledger","cursor":"c100","limit":50}
+{"action":"list_records","table":"ledger","cursor":"c150","limit":50}
+{"action":"list_records","table":"ledger","cursor":"c200","limit":50}
+{"action":"list_records","table":"ledger","cursor":"c250","limit":50}
+{"action":"list_records","table":"fx","cursor":null,"limit":50}
+{"action":"list_records","table":"fx","cursor":"c50","limit":50}
+{"action":"list_records","table":"fx","cursor":"c100","limit":50}
+{"action":"list_records","table":"fx","cursor":"c150","limit":50}
+{"action":"list_records","table":"fx","cursor":"c200","limit":50}
+{"action":"get_document","doc_id":"DOC-0030"}
+{"action":"get_document","doc_id":"DOC-0097"}
+{"action":"get_document","doc_id":"DOC-0129"}
+{"action":"list_records","table":"ledger","cursor":"c300","limit":50}
+{"action":"submit","findings":[{"type":"duplicate","affected_ids":["INV-0026"],"claimed_amount_minor":28381,"currency":"EUR","evidence_ids":["DOC-0030","ROW-00059","ROW-00060","ROW-00061","ROW-00062"],"explanation":"Invoice INV-0026 journal (Dr 1200 / Cr 4000 28381 EUR) is posted twice at the same timestamp: ROW-00059/60 and ROW-00061/62; the invoice document exists once."},{"type":"allocation","affected_ids":["PAY-0032","INV-0053"],"claimed_amount_minor":2244795,"currency":"EUR","evidence_ids":["DOC-0097","DOC-0076","ROW-00198","ROW-00199"],"explanation":"PAY-0032 document allocates the full 2244795 to INV-0053 but the ledger credits the whole amount to 2300 unapplied receipts (ROW-00198) and nothing to 1200 for INV-0053."},{"type":"allocation","affected_ids":["PAY-0050","INV-0073"],"claimed_amount_minor":71566,"currency":"EUR","evidence_ids":["DOC-0129","DOC-0115","ROW-00264","ROW-00265","ROW-00263"],"explanation":"PAY-0050 document allocates the full 1373296 SEK to INV-0073 but the ledger credits only 50409 to 1200 and 71566 to 2300 unapplied (ROW-00264) although cash 121975 equals the correctly converted payment."}]}

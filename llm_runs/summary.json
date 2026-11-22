@@ -1,0 +1,90 @@
+{
+  "agent": "Claude Sonnet 5.5 (subagent, shell access to `traceforge play` only, honour-system)",
+  "mode": "eval",
+  "rows": [
+    {
+      "run": "A",
+      "round": "round 1",
+      "preset": "medium",
+      "seed": 101,
+      "tp": 3,
+      "fp": 0,
+      "fn": 0,
+      "f1": 1.0,
+      "reward": 0.92,
+      "inspection_steps": 40,
+      "n_truth": 3,
+      "n_findings": 3
+    },
+    {
+      "run": "B",
+      "round": "round 1",
+      "preset": "hard",
+      "seed": 202,
+      "tp": 2,
+      "fp": 2,
+      "fn": 2,
+      "f1": 0.5,
+      "reward": -0.048,
+      "inspection_steps": 24,
+      "n_truth": 4,
+      "n_findings": 4
+    },
+    {
+      "run": "C",
+      "round": "round 1",
+      "preset": "compound",
+      "seed": 303,
+      "tp": 6,
+      "fp": 0,
+      "fn": 0,
+      "f1": 1.0,
+      "reward": 0.952,
+      "inspection_steps": 24,
+      "n_truth": 6,
+      "n_findings": 6
+    },
+    {
+      "run": "D",
+      "round": "round 2",
+      "preset": "medium",
+      "seed": 111,
+      "tp": 3,
+      "fp": 0,
+      "fn": 0,
+      "f1": 1.0,
+      "reward": 0.962,
+      "inspection_steps": 19,
+      "n_truth": 3,
+      "n_findings": 3
+    },
+    {
+      "run": "E",
+      "round": "round 2",
+      "preset": "hard",
+      "seed": 212,
+      "tp": 6,
+      "fp": 0,
+      "fn": 0,
+      "f1": 1.0,
+      "reward": 0.934,
+      "inspection_steps": 33,
+      "n_truth": 6,
+      "n_findings": 6
+    },
+    {
+      "run": "F",
+      "round": "round 2",
+      "preset": "compound",
+      "seed": 313,
+      "tp": 5,
+      "fp": 0,
+      "fn": 0,
+      "f1": 1.0,
+      "reward": 0.906,
+      "inspection_steps": 47,
+      "n_truth": 5,
+      "n_findings": 5
+    }
+  ]
+}

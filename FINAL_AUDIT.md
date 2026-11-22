@@ -7,7 +7,7 @@ Status legend: **PASS** = verified by execution or inspection in this audit; **P
 ## 0. Scope and honest caveats
 
 * The "official competition specification" was **not available as a separate document**: requirements were taken from the task statements given to this project. Where those statements leave a parameter open (the numeric amount tolerance, the exact definition of `inspection_steps`), the implementation's published choice is verified and the gap is stated (rows E3, F2).
-* Environment: Windows 11, Python 3.12.0 only. Python 3.11 is registered on this machine but its executable does not exist, so runtime support on 3.11 could **not** be tested (all 93 Python files do parse under the 3.11 grammar: `ast.parse(feature_version=(3, 11))`). Linux/macOS were not available.
+* Environment: Windows 11, Python 3.12.0 only. Python 3.11 is registered on this machine but its executable does not exist, so runtime support on 3.11 could **not** be tested (all 93 Python files do parse under the 3.11 grammar: `ast.parse(feature_version=(3, 11))`); this was later resolved - see the addendum (Python 3.11.16 verified). Linux/macOS were not available.
 * Starting state (before any change in this audit): **1278 passed, 0 failed** (`python -m pytest`).
 
 ## 1. Findings of this audit
@@ -64,7 +64,7 @@ Columns: implementation | verification (command or test) | actual result | statu
 | H4 | Recorded, replayable trajectories | `trajectories/` | `test_H_*`, `test_trajectories.py`, `test_sec2_*` | replay exact; agent-view only | **PASS** |
 | H5 | Determinism across processes | audit | `python -m traceforge audit` | same digest under 4 `PYTHONHASHSEED` values | **PASS** |
 | I1 | Source code | `src/traceforge/` | `compileall`, suite | no broken imports | **PASS** |
-| I2 | Tests | `tests/` (29 files, 1370 tests) | suite | see §6 | **PASS** |
+| I2 | Tests | `tests/` (29 files, 1376 tests) | suite | see §6 | **PASS** |
 | I3 | CLI | `cli.py` | `--help`, `test_integration.py`, `test_demo.py` | generate, verify, demo, evaluate, inspect, audit, benchmark all run | **PASS** |
 | I4 | README | `README.md` | inspection + quick-start run (§7) | present, commands verified | **PASS** |
 | I5 | Demo | `reporting/demo_report.py` | `python -m traceforge demo`, `test_demo.py` (24) | 4/4 anomalies, F1 1.000, reward 0.958, HTML report | **PASS** |
@@ -72,9 +72,9 @@ Columns: implementation | verification (command or test) | actual result | statu
 | I7 | Documentation | README, ARCHITECTURE, DEMO_SCRIPT, DESIGN, SPEC_COMPLIANCE, ENGINEERING_AUDIT, FINAL_ENGINEERING_REPORT, FINAL_AUDIT, JUDGE_SUMMARY | `test_I_deliverables_exist_and_commands_work` | present | **PASS** |
 | I8 | 10 train + 10 dev episodes | `datasets/` | same + `test_integration.py` | 10 + 10, each validated and regenerated bit-for-bit | **PASS** |
 | J1 | Runs offline, no external services | stdlib only | audit AST scan, booby-trapped sockets during episodes, `test_demo.py::test_demo_works_with_the_standard_library_only` (`python -S`) | no network/third-party imports; `dependencies = []` | **PASS** |
-| J2 | Python ≥ 3.11 | `requires-python` | grammar check only | all 93 files parse under 3.11; **runtime on 3.11 not run** (no interpreter) | **NOT VERIFIED** |
+| J2 | Python ≥ 3.11 | `requires-python` | grammar check only | all 93 files parse under 3.11; **runtime later verified on Python 3.11.16** (full suite, benchmark and ablation identical to 3.12; see addendum) | **PASS** |
 | J3 | Non-Windows operating systems | `os.name`-guarded code | none available | not run | **NOT VERIFIED** |
-| J4 | Clean-environment install, tests, benchmark and demo | §7 | fresh virtual environment from a stripped copy | Fresh virtual environment (Python 3.12.0, contained only pip) built from a stripped copy of 514 submission files (re-run after the addendum changes) (no `reports/`, no cached trajectories, no tooling folders) by `tools/clean_env_check.sh`: `pip install -r requirements.txt` and `pip install -e .` exit 0; installed packages = traceforge, pytest and pytest's dependencies only; full suite **1370 passed, 0 failed**; benchmark 208 runs **identical** to `FINAL_BENCHMARK.json` (same dataset digest); demo 4/4 anomalies, reward 0.958. Windows / Python 3.12 only; needs network for `pip` | **PASS** |
+| J4 | Clean-environment install, tests, benchmark and demo | §7 | fresh virtual environment from a stripped copy | Fresh virtual environment (Python 3.12.0, contained only pip) built from a stripped copy of 531 submission files (re-run after the addendum changes) (no `reports/`, no cached trajectories, no tooling folders) by `tools/clean_env_check.sh`: `pip install -r requirements.txt` and `pip install -e .` exit 0; installed packages = traceforge, pytest and pytest's dependencies only; full suite **1376 passed, 0 failed**; benchmark 208 runs **identical** to `FINAL_BENCHMARK.json` (same dataset digest); demo 4/4 anomalies, reward 0.958. Windows / Python 3.12 only; needs network for `pip` | **PASS** |
 | J5 | Conformance to the original official specification text | — | the document was not provided | requirements verified against the task statements only | **NOT VERIFIED** |
 | K1 | No secrets / credentials | repository | regex scan for key/token/password patterns | none | **PASS** |
 | K2 | No absolute local paths | repository | scan of `src tests datasets configs examples tools *.md pyproject.toml` | none, except the substring "Genesis" inside a test that checks environment variables | **PASS** |
@@ -107,7 +107,7 @@ Source: `FINAL_BENCHMARK.json` / `.csv` (+ `_summary.csv`, `_by_level.csv`), pro
 
 ## 6. Final test results
 
-Final run (`python -m traceforge verify`, which runs `python -m pytest` once): **1370 tests: 1370 passed, 0 failed, 0 skipped** (after the addendum below; the audit itself ended at 1324). The 1370-test suite also passed in the clean environment (1370 / 0 / 0). Before this audit the suite had 1278 tests; this audit added 46 (37 official-requirement tests, 9 security regression tests), the addendum 24 (8 sandbox, 16 pairs/eval/alias).
+Final run (`python -m traceforge verify`, which runs `python -m pytest` once): **1376 tests: 1376 passed, 0 failed, 0 skipped** (after the addendum below; the audit itself ended at 1324). The 1376-test suite also passed in the clean environment (1376 / 0 / 0). Before this audit the suite had 1278 tests; this audit added 46 (37 official-requirement tests, 9 security regression tests), the addendum 24 (8 sandbox, 16 pairs/eval/alias).
 
 | Area | Files | Tests |
 |---|---|---|
@@ -130,13 +130,13 @@ Exact sequence a judge can use (Windows or POSIX; Python >= 3.11, tested on 3.12
 python -m venv .venv                      # optional but recommended; activate it
 pip install -r requirements.txt           # only pytest==9.1.1 (the package itself has no dependencies)
 pip install -e .                          # or, without installing: set PYTHONPATH=src
-python -m pytest                          # 1370 tests, about 2.5-3 minutes
+python -m pytest                          # 1376 tests, about 2.5-3 minutes
 python -m traceforge benchmark --suite all --seeds 8     # all 4 policies -> reports/benchmark.json / .csv
 python -m traceforge demo                 # fixed-seed demonstration -> reports/demo_report.html
 python -m traceforge verify               # everything above plus spec matrix, audit, metamorphic pairs
 ```
 
-This sequence was executed in a freshly created virtual environment from a copy containing only the submission files (`bash tools/clean_env_check.sh`; log summarised in row J4, re-run on the final state): install exit 0, `pytest` 1370 passed, benchmark identical to `FINAL_BENCHMARK.json`, demo 4/4 with reward 0.958. Not verified: other operating systems and Python 3.11 (rows J2, J3). The demo, benchmark and tests use no previously generated local artefacts (the stripped copy had none).
+This sequence was executed in a freshly created virtual environment from a copy containing only the submission files (`bash tools/clean_env_check.sh`; log summarised in row J4, re-run on the final state): install exit 0, `pytest` 1376 passed, benchmark identical to `FINAL_BENCHMARK.json`, demo 4/4 with reward 0.958. Not verified: other operating systems and Python 3.11 (rows J2, J3). The demo, benchmark and tests use no previously generated local artefacts (the stripped copy had none).
 
 ## 8. Repository cleanup
 
@@ -148,7 +148,7 @@ Removed or excluded: generated trajectories (6.3 MB), stale and probe reports, `
 
 Requirement matrix (section 2, 52 rows): **46 PASS, 3 PARTIAL, 0 FAIL, 3 NOT VERIFIED.**
 * PARTIAL: C5 (no OS-level sandbox for a hostile agent *process*), E3 (the numeric amount tolerance is this implementation's published choice, not given in the brief), F2 (definition of `inspection_steps` is this implementation's published choice).
-* NOT VERIFIED: J2 (Python 3.11 runtime: no interpreter available; grammar-checked only), J3 (non-Windows systems), J5 (the original official specification text was not provided).
+* NOT VERIFIED: J3 (non-Windows systems), J5 (the original official specification text was not provided).
 * No FAIL. No Critical vulnerability. One **High** vulnerability (F-1, seed recoverable from the episode id) and one Medium (F-2, trajectory inflation) were found, fixed and covered by regression tests.
 
 Why not simply "READY": the three PARTIAL items and three NOT VERIFIED items are real, stated limits, and the benchmark cannot yet separate strong agents (the transparent rule-based baseline is perfect and no learned agent was run). The evidence supports a correct, reproducible, offline environment with a verified evaluator; it does not support claims about model improvement or about hostile-agent containment beyond the tool interface.
@@ -159,9 +159,11 @@ Why not simply "READY": the three PARTIAL items and three NOT VERIFIED items are
 * **Field name**: the finding amount is also accepted as `amount` / `amount_minor` (ints only).
 * **Scale**: hard episodes were above the brief's 20-200 documents guidance; invoice ranges were retuned (mean documents: easy ~116, medium ~155, hard ~179; about 95% of hard episodes <= 200). Stored datasets were regenerated; `FINAL_BENCHMARK.*` and `SPEC_COMPLIANCE.md` (71/71 PASS) were regenerated from real runs (same 175 issues; reconciliation reward 0.968).
 * **Organizer tooling**: `pairs`, `paired-eval`, `generate-eval` commands (stored pairs in `datasets/pairs`, robustness metric, secret-derived hidden set).
-* Clean-environment run (J4) repeated on this final state: install exit 0, 1370 passed, benchmark identical to `FINAL_BENCHMARK.json`, demo 4/4 (reward 0.958). Demo figures in `DEMO_SCRIPT.md` / `FINAL_ENGINEERING_REPORT.md` were refreshed from the live demo (seed 7 now yields 141 documents, 289 ledger lines, 21 inspection steps).
+* Clean-environment run (J4) repeated on this final state: install exit 0, 1376 passed, benchmark identical to `FINAL_BENCHMARK.json`, demo 4/4 (reward 0.958). Demo figures in `DEMO_SCRIPT.md` / `FINAL_ENGINEERING_REPORT.md` were refreshed from the live demo (seed 7 now yields 141 documents, 289 ledger lines, 21 inspection steps).
 * **Reward sensitivity**: `python -m traceforge ablation` (`FINAL_ABLATION.json/.csv`, reproduced by `tests/test_ablations.py`): the auditor with one capability removed loses exactly what it should; explanation text changes nothing.
 * **OS boundary for hostile agents**: `Dockerfile`, `runner/container.py`, `tools/container_smoke.sh` (no network, read-only, no capabilities, only the agent folder mounted read-only). Only the generated command line is tested here; **no container was run** (no Docker in this environment).
 * **CI**: `.github/workflows/ci.yml` (Ubuntu/Windows/macOS x Python 3.11/3.12). Defined, but its result was not observed from this environment.
-* Not verified: Linux/macOS, Python 3.11 (a local 3.11 interpreter was not usable).
+* **Python 3.11 (J2) verified**: Python 3.11.16 (uv standalone build, downloaded with the user's permission) - full suite passed, `benchmark --suite all --seeds 8` rows identical to `FINAL_BENCHMARK.json` (same dataset digest), `ablation` dev rows identical, demo 4/4 (reward 0.958). The stored-dataset regeneration test passing on both versions shows byte-identical generation across 3.11 and 3.12.
+* **LLM run**: `LLM_RUN.md` / `llm_runs/` - six real episodes by Claude Sonnet 5.5 subagents through `python -m traceforge play` (honour-system, one model, small sample). Result: F1 1.000 in 5 of 6; the one miss exposed a real ambiguity (`currency` = base currency was not stated) that all three round-1 agents reported; the task text was clarified and round 2 ran on new seeds. Verdicts are reproduced by `test_stored_llm_runs_replay_to_the_stored_verdicts`.
+* Not verified: Linux/macOS (CI defined, result not observed; the repository is private so it could not be read from here), Docker container (no Docker).
 * **Representation change in the paired twins** (final addition): document timestamps are re-expressed at other UTC offsets (same instants); `verify_links` compares instants. `paired-eval` on the stored dev/train pairs: reconciliation consistent 1.000; the wall-clock reader `naive_clock` (an ablation policy) consistent 0.000. Tests: `test_pairs_eval.py::test_retime_*`, `test_paired_eval_separates_*`. Added documents: `PROJECT_STRUCTURE.md` (structure, criteria map, roadmap), `VIDEO_SCRIPT.md`.

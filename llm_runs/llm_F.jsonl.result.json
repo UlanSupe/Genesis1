@@ -1,0 +1,15 @@
+{
+  "tp": 5,
+  "fp": 0,
+  "fn": 0,
+  "precision": 1.0,
+  "recall": 1.0,
+  "f1": 1.0,
+  "reward": 0.906,
+  "inspection_steps": 47,
+  "elapsed_time": 0.016,
+  "valid": true,
+  "n_findings": 5,
+  "n_truth": 5,
+  "steps": 48
+}
