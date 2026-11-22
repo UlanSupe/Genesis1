@@ -207,7 +207,7 @@ def build_parser() -> argparse.ArgumentParser:
     pe.add_argument("--source", default="datasets")
     pe.add_argument("--pairs", default="datasets/pairs")
     pe.add_argument("--split", default="dev")
-    pe.add_argument("--policy", default="all", choices=("all", "random", "reconciliation", "mark_all", "oracle"))
+    pe.add_argument("--policy", default="all", help="all | random | reconciliation | mark_all | oracle | an ablation name (e.g. naive_clock)")
     pe.add_argument("--mode", choices=("train", "eval"), default="eval")
     pe.add_argument("--isolated", action="store_true")
     pe.add_argument("--seed", type=int, default=0)

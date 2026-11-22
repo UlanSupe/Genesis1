@@ -73,6 +73,17 @@
     },
     {
       "split": "dev",
+      "policy": "naive_clock",
+      "episodes": 10,
+      "tp": 29,
+      "fp": 173,
+      "fn": 1,
+      "mean_f1": 0.1949,
+      "mean_reward": -0.6347,
+      "mean_inspection_steps": 15.3
+    },
+    {
+      "split": "dev",
       "policy": "budget_8",
       "episodes": 10,
       "tp": 15,
@@ -190,6 +201,17 @@
       "fn": 8,
       "mean_f1": 0.819,
       "mean_reward": 0.6095,
+      "mean_inspection_steps": 16.1
+    },
+    {
+      "split": "train",
+      "policy": "naive_clock",
+      "episodes": 10,
+      "tp": 26,
+      "fp": 224,
+      "fn": 2,
+      "mean_f1": 0.1648,
+      "mean_reward": -0.6967,
       "mean_inspection_steps": 16.1
     },
     {

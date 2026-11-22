@@ -56,6 +56,7 @@
     },
     "remap_ids": true,
     "rename": true,
+    "retime": true,
     "seed": 0,
     "shuffle": true
   },

@@ -145,3 +145,48 @@ def test_stored_pairs_match_regeneration(split, tmp_path):
 def test_stored_dev_pairs_oracle_robustness_is_one():
     res = run_paired(STORED, PAIRS, "dev", ["oracle"], mode="eval")
     assert res["summary"][0]["robustness"] == 1.0 and res["summary"][0]["pairs"] == 10
+
+
+# --- representation change: same instants, other UTC offsets ----------------------------------------------
+def _doc_instants(ep):
+    from datetime import datetime
+    inv = {d["invoice_id"]: (datetime.fromisoformat(d["issued_at"]), datetime.fromisoformat(d["due_at"])) for d in ep.public.invoices}
+    pay = {d["payment_id"]: datetime.fromisoformat(d["timestamp"]) for d in ep.public.payments}
+    return inv, pay
+
+
+def test_retime_changes_offsets_but_not_instants(tiny_source):
+    from traceforge.generator.transformations import transform_episode
+    orig = load_episode(tiny_source / "train" / "s-000")
+    new, mapping = transform_episode(orig, 5)
+    io, po = _doc_instants(orig)
+    inn, pn = _doc_instants(new)
+    assert {mapping[k]: v for k, v in io.items()} == inn and {mapping[k]: v for k, v in po.items()} == pn   # same instants
+    changed = sum(a.utcoffset() != b.utcoffset() for (a, _), (b, _) in zip(io.values(), [inn[mapping[k]] for k in io]))
+    assert changed == len(io)                                                                              # every offset differs
+    assert new.private.provenance["transformation"]["retime"] is True
+
+
+def test_retime_can_be_switched_off(tiny_source):
+    from traceforge.generator.transformations import transform_episode
+    orig = load_episode(tiny_source / "train" / "s-000")
+    new, mapping = transform_episode(orig, 5, retime=False)
+    assert {d["issued_at"] for d in orig.public.invoices} == {d["issued_at"] for d in new.public.invoices}
+    assert new.private.provenance["transformation"]["retime"] is False
+
+
+def test_verify_links_catches_a_shifted_instant(tiny_source):
+    import copy
+    from traceforge.generator.transformations import check_pair, transform_episode
+    orig = load_episode(tiny_source / "train" / "s-000")
+    new, mapping = transform_episode(orig, 5)
+    assert check_pair(orig, new, mapping)["retime_applied_when_requested"]
+    bad = copy.deepcopy(new)
+    bad.public.payments[0]["timestamp"] = "2000-01-01T00:00:00+00:00"          # a different instant, not a different offset
+    assert not check_pair(orig, bad, mapping)["payments_isomorphic"]
+
+
+def test_paired_eval_separates_a_parser_of_instants_from_a_wall_clock_reader():
+    res = run_paired(STORED, PAIRS, "dev", ["reconciliation", "naive_clock"], mode="eval")
+    s = {r["policy"]: r for r in res["summary"]}
+    assert s["reconciliation"]["consistent_rate"] == 1.0 and s["naive_clock"]["consistent_rate"] <= 0.2

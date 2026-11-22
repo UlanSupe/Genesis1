@@ -12,7 +12,7 @@ clean baseline). An independent validator proves every error is derivable from p
 * **Reward:** one-to-one maximum matching (amount +-1 minor unit, evidence must cover an allowed set); `clip(2*F1 - 1 - 0.002*inspection_steps, -1, 1)`; invalid submission = -1.
 * **Isolation:** the agent runs in a separate process (scrubbed env, empty cwd, bounded I/O, deadlines) plus an audit-hook sandbox for Python agents; the oracle is evaluator-only; trajectories never contain hidden truth.
 * **Generalisation:** metamorphic twins (re-labelled ids, shuffled rows, renamed text, identical economics) via `python -m traceforge pairs` / `paired-eval`; a hidden evaluation set (+ twins) is derived from an organizer secret via `python -m traceforge generate-eval`.
-* **Verify in 3 commands:** `python -m pytest` (1366 tests) - `python -m traceforge benchmark` (4 policies, identical episodes) - `python -m traceforge demo` (investigation + HTML report). `SPEC_COMPLIANCE.md` maps 71 requirements to passing tests.
+* **Verify in 3 commands:** `python -m pytest` (1370 tests) - `python -m traceforge benchmark` (4 policies, identical episodes) - `python -m traceforge demo` (investigation + HTML report). `SPEC_COMPLIANCE.md` maps 71 requirements to passing tests.
 * **Honest limits:** no LLM was run (the rule-based baseline solves every episode, so the benchmark does not yet separate strong agents); isolation is process-level + a Python-only audit hook, not an OS sandbox; verified on Windows / Python 3.12 only. Details: `JUDGE_SUMMARY.md`, `FINAL_AUDIT.md`.
 
 ---
@@ -57,7 +57,7 @@ pip install -r requirements-dev.txt   # pytest==9.1.1, только для те�
 
 python -m traceforge demo        # ДЕМОНСТРАЦИЯ: фиксированный seed, расследование, оценка, benchmark, reports/demo_report.html
 python -m traceforge benchmark   # все 4 политики на одинаковых эпизодах -> reports/benchmark.json/.csv (+ по уровням сложности)
-python -m pytest                 # 1366 тестов
+python -m pytest                 # 1370 тестов
 python -m traceforge verify      # тесты + матрица SPEC_COMPLIANCE.md + аудит + метаморфика + benchmark
 python -m traceforge generate    # datasets/train (10) и datasets/dev (10)
 ```
@@ -65,6 +65,7 @@ python -m traceforge generate    # datasets/train (10) и datasets/dev (10)
 `demo` работает без цвета (`--no-color` или переменная `NO_COLOR`), печатает только ASCII и пишет `reports/demo_report.html`
 (самодостаточная страница с SVG-графиками по реальным данным), `reports/demo_result.json` и траекторию агента
 `trajectories/demo_seed7.jsonl`. Эталон в обычном запуске не показывается (`--instructor` — отдельный явный блок).
+Структура проекта, соответствие критериям и план развития — [PROJECT_STRUCTURE.md](PROJECT_STRUCTURE.md); сценарий видео — [VIDEO_SCRIPT.md](VIDEO_SCRIPT.md).
 Для жюри: [JUDGE_SUMMARY.md](JUDGE_SUMMARY.md) (краткое описание и результаты), [FINAL_AUDIT.md](FINAL_AUDIT.md) (аудит требований, безопасности и воспроизводимости),
 `FINAL_BENCHMARK.json/.csv` (реальный benchmark, 52 эпизода x 4 политики), `requirements.txt`. Проверка в чистом окружении: `bash tools/clean_env_check.sh`.
 Сценарий презентации на 3 минуты — [DEMO_SCRIPT.md](DEMO_SCRIPT.md), устройство системы — [ARCHITECTURE.md](ARCHITECTURE.md) (диаграммы Mermaid).
@@ -326,7 +327,7 @@ inspection_steps, elapsed_time (соглашение для пустых мно�
 ## Метаморфическое тестирование
 
 `generator/transformations.py` меняет id документов/проводок/контрагентов (с обновлением всех ссылок, truth,
-provenance, baseline), переставляет порядок строк и документов, переименовывает нейтральные описания.
+provenance, baseline), переставляет порядок строк и документов, переименовывает нейтральные описания и **переписывает время документов в других смещениях UTC (тот же момент, другое представление)**; `verify_links` сравнивает моменты времени, а не строки. Политика `naive_clock` (читает время «по настенным часам») на парах даёт consistent 0.000, `reconciliation` — 1.000.
 Проверяется: Oracle и `reconciliation` получают одинаковые F1, reward и число шагов на оригинале и
 преобразовании; сохранение экономического смысла; повторная валидация. Результаты 24 пар (структурная проверка связей, 10 негативных контролей) пишутся в
 `reports/transformation_report.json`.
@@ -343,13 +344,13 @@ provenance, baseline), переставляет порядок строк и д�
 
 ## Тесты
 
-`python -m pytest` — **1366 тестов** (≈3 мин; последний прогон: 1366 passed, 0 failed, 0 skipped): контракт среды (`test_environment`,
+`python -m pytest` — **1370 тестов** (≈3 мин; последний прогон: 1370 passed, 0 failed, 0 skipped): контракт среды (`test_environment`,
 `test_pagination`, `test_calculator`, `test_isolation`, `test_trajectories`), атаки (`test_adversarial`), оценщик (`test_matcher`,
 `test_matcher_stress`, `test_reward`, `test_evidence`, `test_edge_cases`), генератор/данные (`test_generator`, `test_generator_quality`,
 `test_realism_levels`, `test_mutations`, `test_compound_scenarios`, `test_validator_integrity`, `test_property`, `test_reproducibility`),
 метаморфические пары (`test_metamorphic`, `test_transformations`), политики, отчёты и интеграция (`test_policies`, `test_reports`,
 `test_integration`), песочница, пары, ablation, контейнер/CI (`test_sandbox`, `test_pairs_eval`, `test_ablations`, `test_container_ci`). `python -m traceforge verify` запускает набор один раз, строит `SPEC_COMPLIANCE.md` из реальных результатов
-(74 требования, PASS только при прохождении всех процитированных тестов) и отчёты `reports/*`. Итоговый отчёт — `FINAL_ENGINEERING_REPORT.md`,
+(75 требований, PASS только при прохождении всех процитированных тестов) и отчёты `reports/*`. Итоговый отчёт — `FINAL_ENGINEERING_REPORT.md`,
 аудит — `ENGINEERING_AUDIT.md`. Проверка самих тестов внедрением ошибок: `python tools/mutation_check.py`.
 
 ## Ограничения

@@ -6,6 +6,8 @@ every error family, the amount, the evidence set, precision (false accusations) 
 that the free-text explanation is NOT scored. Same observations only; no hidden data."""
 from __future__ import annotations
 
+from datetime import datetime, timezone
+
 from ..constants import ALLOCATION, CUTOFF, DUPLICATE, FX
 from .policy_base import finding
 from .reconciliation_policy import ReconciliationPolicy
@@ -68,6 +70,16 @@ class OverAccuser(_Variant):
         return findings + extra
 
 
+class NaiveClock(ReconciliationPolicy):
+    """Reads every timestamp as wall-clock time and ignores the UTC offset (a representation-fragile auditor).
+    Right when all offsets happen to agree; wrong - and DIFFERENT on a re-timed twin - when they do not."""
+    name = "naive_clock"
+
+    @staticmethod
+    def when(ts: str) -> datetime:
+        return datetime.fromisoformat(ts).replace(tzinfo=timezone.utc)
+
+
 class Budgeted(ReconciliationPolicy):
     """Stops reading after `pages` list_records calls and decides on the partial books."""
     pages = 8
@@ -93,4 +105,4 @@ class Budget4(Budgeted):
 
 
 ABLATIONS = {c.name: c for c in (*(_blind(k) for k in (DUPLICATE, ALLOCATION, FX, CUTOFF)), ThinEvidence, WrongAmount,
-                                 NoExplanation, OverAccuser, Budget8, Budget4)}
+                                 NoExplanation, OverAccuser, NaiveClock, Budget8, Budget4)}

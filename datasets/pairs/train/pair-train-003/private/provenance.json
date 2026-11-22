@@ -151,6 +151,7 @@
     },
     "remap_ids": true,
     "rename": true,
+    "retime": true,
     "seed": 3,
     "shuffle": true
   },

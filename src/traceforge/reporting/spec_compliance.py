@@ -333,6 +333,11 @@ REQUIREMENTS = [
                                          "test_container_ci.py::test_dockerfile_runs_as_an_unprivileged_user"]),
     ("Cross-platform CI definition (3 operating systems x Python 3.11/3.12)",
      ".github/workflows/ci.yml", ["test_container_ci.py::test_ci_covers_three_operating_systems_and_both_python_versions"]),
+    ("Representation change in paired transformations: same instants at other UTC offsets, proven by verify_links; a wall-clock reader is detected",
+     "generator/transformations.py (retime)", ["test_pairs_eval.py::test_retime_changes_offsets_but_not_instants",
+                                              "test_pairs_eval.py::test_retime_can_be_switched_off",
+                                              "test_pairs_eval.py::test_verify_links_catches_a_shifted_instant",
+                                              "test_pairs_eval.py::test_paired_eval_separates_a_parser_of_instants_from_a_wall_clock_reader"]),
 ]
 
 

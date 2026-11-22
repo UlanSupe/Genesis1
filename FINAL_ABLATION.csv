@@ -5,6 +5,7 @@ dev,blind_duplicate,10,21,0,9,0.819,0.6103,15.3
 dev,blind_allocation,10,24,0,6,0.8524,0.6772,15.3
 dev,blind_fx,10,23,0,7,0.8433,0.6594,15.3
 dev,blind_cutoff,10,22,0,8,0.8324,0.6366,15.3
+dev,naive_clock,10,29,173,1,0.1949,-0.6347,15.3
 dev,budget_8,10,15,0,15,0.5576,0.1056,8.0
 dev,over_accuser,10,30,30,0,0.5117,-0.0009,15.3
 dev,thin_evidence,10,0,30,30,0.2,-0.6062,15.3
@@ -16,6 +17,7 @@ train,blind_duplicate,10,21,0,7,0.8381,0.6478,16.1
 train,blind_allocation,10,21,0,7,0.8381,0.6464,16.1
 train,blind_fx,10,22,0,6,0.8524,0.6758,16.1
 train,blind_cutoff,10,20,0,8,0.819,0.6095,16.1
+train,naive_clock,10,26,224,2,0.1648,-0.6967,16.1
 train,budget_8,10,6,0,22,0.4067,-0.1947,8.0
 train,over_accuser,10,28,30,0,0.5045,-0.0173,16.1
 train,thin_evidence,10,0,28,28,0.2,-0.606,16.1

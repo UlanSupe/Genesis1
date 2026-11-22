@@ -334,6 +334,7 @@
     },
     "remap_ids": true,
     "rename": true,
+    "retime": true,
     "seed": 8,
     "shuffle": true
   },

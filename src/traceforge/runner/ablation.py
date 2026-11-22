@@ -11,12 +11,12 @@ from ..policies.ablations import ABLATIONS
 from .episode_runner import run_split
 
 ORDER = ("reconciliation", "no_explanation", "blind_duplicate", "blind_allocation", "blind_fx", "blind_cutoff",
-         "budget_8", "over_accuser", "thin_evidence", "wrong_amount", "budget_4")
+         "naive_clock", "budget_8", "over_accuser", "thin_evidence", "wrong_amount", "budget_4")
 COLUMNS = ("split", "policy", "episodes", "tp", "fp", "fn", "mean_f1", "mean_reward", "mean_inspection_steps")
 WHAT = {"reconciliation": "full auditor (reference)", "no_explanation": "empty explanation text (not scored)",
         "blind_duplicate": "never reports duplicates", "blind_allocation": "never reports allocation errors",
         "blind_fx": "never reports fx errors", "blind_cutoff": "never reports cut-off errors",
-        "budget_8": "reads only 8 pages of data", "budget_4": "reads only 4 pages of data",
+        "naive_clock": "ignores UTC offsets (wall-clock reading)", "budget_8": "reads only 8 pages of data", "budget_4": "reads only 4 pages of data",
         "over_accuser": "correct + 3 unfounded accusations per episode", "thin_evidence": "cites only the source document",
         "wrong_amount": "claimed amount off by 5 minor units (tolerance 1)"}
 

@@ -7,6 +7,10 @@ Operations (each can be switched off):
                 token-wise using ONLY known ids.
   * shuffle   : ledger rows, invoices, payments and fx rows are reordered.
   * rename    : neutral line-item descriptions are permuted.
+  * retime    : every DOCUMENT timestamp (issued_at, due_at, payment timestamp) is re-expressed at another UTC
+                offset - the same instant, a different representation. An agent that compares strings or
+                assumes the company offset breaks; one that parses instants does not. Ledger rows stay in the
+                company offset (policy), so the economics and the period/FX-date rules are untouched.
 
 `verify_links` then PROVES the transformation preserved every financial link instead of
 trusting the substitution: row-by-row and document-by-document isomorphism under the
@@ -15,6 +19,7 @@ from __future__ import annotations
 
 import copy
 import json
+from datetime import datetime, timedelta, timezone
 import random
 import re
 from collections import Counter
@@ -70,7 +75,25 @@ def _walk(obj, mapping: dict):
     return obj
 
 
-def transform_episode(ep: Episode, seed: int, *, remap_ids=True, shuffle=True, rename=True):
+OFFSETS_MIN = (-480, -420, -360, -300, -240, -180, 0, 60, 120, 180, 240, 330, 345, 480, 540, 600, 720)
+
+
+def _reexpress(ts: str, rng: random.Random) -> str:
+    """Same instant, another fixed UTC offset (never the one it already has)."""
+    t = datetime.fromisoformat(ts)
+    cur = int(t.utcoffset().total_seconds() // 60)
+    off = rng.choice([o for o in OFFSETS_MIN if o != cur])
+    return t.astimezone(timezone(timedelta(minutes=off))).isoformat()
+
+
+def _retime(pub: PublicEpisode, rng: random.Random) -> None:
+    for d in pub.invoices:
+        d["issued_at"], d["due_at"] = _reexpress(d["issued_at"], rng), _reexpress(d["due_at"], rng)
+    for d in pub.payments:
+        d["timestamp"] = _reexpress(d["timestamp"], rng)
+
+
+def transform_episode(ep: Episode, seed: int, *, remap_ids=True, shuffle=True, rename=True, retime=True):
     """Returns (new_episode, id_mapping)."""
     rng = random.Random(f"transform|{seed}")
     pub, priv = copy.deepcopy(ep.public), copy.deepcopy(ep.private)
@@ -96,12 +119,14 @@ def transform_episode(ep: Episode, seed: int, *, remap_ids=True, shuffle=True, r
         for inv in pub.invoices:
             for line in inv["line_items"]:
                 line["description"] = swap.get(line["description"], line["description"])
+    if retime:
+        _retime(pub, rng)
     if shuffle:
         for table in (pub.ledger, pub.invoices, pub.payments, pub.fx):
             rng.shuffle(table)
     pub.manifest["episode_id"] = f"{pub.manifest['episode_id']}-x{seed}"
     priv.provenance["transformation"] = {"seed": seed, "remap_ids": remap_ids, "shuffle": shuffle,
-                                         "rename": rename, "description_map": swap}
+                                         "rename": rename, "retime": retime, "description_map": swap}
     return Episode(pub, priv), mapping
 
 
@@ -117,11 +142,23 @@ def _economic_rows(pub: PublicEpisode) -> Counter:
                    for r in pub.ledger)
 
 
+_INV_SKIP = ("doc_id", "entity_id", "invoice_id", "line_items", "issued_at", "due_at")
+
+
+def _offsets_changed(orig: Episode, new: Episode, mapping: dict) -> bool:
+    """True when the transformation really re-expressed document instants at other offsets."""
+    m = lambda x: mapping.get(x, x)
+    old = {m(d["invoice_id"]): d["issued_at"] for d in orig.public.invoices}
+    return any(datetime.fromisoformat(d["issued_at"]).utcoffset() != datetime.fromisoformat(old[d["invoice_id"]]).utcoffset()
+               for d in new.public.invoices)
+
+
 def verify_links(orig: Episode, new: Episode, mapping: dict) -> dict:
     """Prove that every financial link survived. Returns {check: bool}."""
     m = lambda x: mapping.get(x, x) if x is not None else None
     swap = new.private.provenance["transformation"]["description_map"]
     po, pn = orig.public, new.public
+    inst = lambda ts: datetime.fromisoformat(ts)
 
     rows_n = {r["row_id"]: r for r in pn.ledger}
     ledger_ok = len(rows_n) == len(po.ledger) == len(pn.ledger) and all(
@@ -129,8 +166,10 @@ def verify_links(orig: Episode, new: Episode, mapping: dict) -> dict:
     inv_n = {d["invoice_id"]: d for d in pn.invoices}
     inv_ok = len(inv_n) == len(po.invoices) == len(pn.invoices) and all(
         inv_n.get(m(d["invoice_id"])) is not None
-        and {k: v for k, v in inv_n[m(d["invoice_id"])].items() if k not in ("doc_id", "entity_id", "invoice_id", "line_items")}
-        == {k: v for k, v in d.items() if k not in ("doc_id", "entity_id", "invoice_id", "line_items")}
+        and {k: v for k, v in inv_n[m(d["invoice_id"])].items() if k not in _INV_SKIP}
+        == {k: v for k, v in d.items() if k not in _INV_SKIP}
+        and inst(inv_n[m(d["invoice_id"])]["issued_at"]) == inst(d["issued_at"])
+        and inst(inv_n[m(d["invoice_id"])]["due_at"]) == inst(d["due_at"])
         and inv_n[m(d["invoice_id"])]["doc_id"] == m(d["doc_id"]) and inv_n[m(d["invoice_id"])]["entity_id"] == m(d["entity_id"])
         and Counter((swap.get(l["description"], l["description"]), l["amount_minor"]) for l in d["line_items"])
         == Counter((l["description"], l["amount_minor"]) for l in inv_n[m(d["invoice_id"])]["line_items"])
@@ -139,8 +178,8 @@ def verify_links(orig: Episode, new: Episode, mapping: dict) -> dict:
     pay_ok = len(pay_n) == len(po.payments) == len(pn.payments) and all(
         pay_n.get(m(d["payment_id"])) is not None
         and pay_n[m(d["payment_id"])]["doc_id"] == m(d["doc_id"])
-        and (pay_n[m(d["payment_id"])]["timestamp"], pay_n[m(d["payment_id"])]["currency"], pay_n[m(d["payment_id"])]["amount_minor"])
-        == (d["timestamp"], d["currency"], d["amount_minor"])
+        and (inst(pay_n[m(d["payment_id"])]["timestamp"]), pay_n[m(d["payment_id"])]["currency"], pay_n[m(d["payment_id"])]["amount_minor"])
+        == (inst(d["timestamp"]), d["currency"], d["amount_minor"])
         and Counter((r["invoice_id"], r["allocated_minor"]) for r in pay_n[m(d["payment_id"])]["invoice_refs"])
         == Counter((m(r["invoice_id"]), r["allocated_minor"]) for r in d["invoice_refs"])
         for d in po.payments)
@@ -167,6 +206,8 @@ def verify_links(orig: Episode, new: Episode, mapping: dict) -> dict:
         == sorted(r["row_id"] for r in new.private.clean_baseline["ledger"]),
         "referential_integrity": referential_problems(pn) == [],
         "economic_ledger_equal": _economic_rows(po) == _economic_rows(pn),
+        "retime_applied_when_requested": (not new.private.provenance["transformation"].get("retime", False))
+        or not po.invoices or _offsets_changed(orig, new, mapping),
     }
 
 
