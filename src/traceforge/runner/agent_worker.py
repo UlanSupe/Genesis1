@@ -7,7 +7,7 @@ from __future__ import annotations
 import argparse
 import sys
 
-from ..policies import REGISTRY, make_policy
+from ..policies import ABLATIONS, REGISTRY, make_policy
 from .agent_protocol import decode, encode
 
 
@@ -18,7 +18,7 @@ def main(argv=None) -> int:
     ap.add_argument("--verify", action="store_true")
     ap.add_argument("--sandbox", action="store_true", help="install the audit-hook sandbox before serving")
     args = ap.parse_args(argv)
-    if args.policy not in REGISTRY:
+    if args.policy not in REGISTRY and args.policy not in ABLATIONS:
         print("unknown policy", file=sys.stderr)
         return 2
     policy = make_policy(args.policy, args.seed, args.verify)

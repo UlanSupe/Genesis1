@@ -110,6 +110,16 @@ def cmd_benchmark(ns) -> int:
     return 0
 
 
+def cmd_ablation(ns) -> int:
+    from .runner.ablation import render, run_ablation, write_ablation
+    splits = ("dev", "train") if ns.split == "all" else (ns.split,)
+    result = run_ablation(ns.datasets, splits, isolated=ns.isolated)
+    print(render(result))
+    j, c = write_ablation(result, ns.out, ns.name)
+    print(f"-> {j} , {c}")
+    return 0
+
+
 def cmd_demo(ns) -> int:
     from .reporting.demo_report import DEMO_SEED, run_demo
     cfg = _config_arg(ns)
@@ -229,6 +239,14 @@ def build_parser() -> argparse.ArgumentParser:
     b.add_argument("--seed", type=int, default=0, help="seed of the random policy")
     b.add_argument("--name", default="benchmark", help="output file stem (e.g. FINAL_BENCHMARK)")
     b.set_defaults(fn=cmd_benchmark)
+
+    ab = sub.add_parser("ablation", help="reward-sensitivity study: the auditor with one capability removed (real runs)")
+    ab.add_argument("--split", choices=("dev", "train", "all"), default="all")
+    ab.add_argument("--datasets", default="datasets")
+    ab.add_argument("--out", default="reports")
+    ab.add_argument("--name", default="ablation")
+    ab.add_argument("--isolated", action="store_true")
+    ab.set_defaults(fn=cmd_ablation)
 
     v = sub.add_parser("verify", help="run tests and end-to-end checks, write a report")
     v.add_argument("--root", default=".")

@@ -12,7 +12,7 @@ clean baseline). An independent validator proves every error is derivable from p
 * **Reward:** one-to-one maximum matching (amount +-1 minor unit, evidence must cover an allowed set); `clip(2*F1 - 1 - 0.002*inspection_steps, -1, 1)`; invalid submission = -1.
 * **Isolation:** the agent runs in a separate process (scrubbed env, empty cwd, bounded I/O, deadlines) plus an audit-hook sandbox for Python agents; the oracle is evaluator-only; trajectories never contain hidden truth.
 * **Generalisation:** metamorphic twins (re-labelled ids, shuffled rows, renamed text, identical economics) via `python -m traceforge pairs` / `paired-eval`; a hidden evaluation set (+ twins) is derived from an organizer secret via `python -m traceforge generate-eval`.
-* **Verify in 3 commands:** `python -m pytest` (1348 tests) - `python -m traceforge benchmark` (4 policies, identical episodes) - `python -m traceforge demo` (investigation + HTML report). `SPEC_COMPLIANCE.md` maps 71 requirements to passing tests.
+* **Verify in 3 commands:** `python -m pytest` (1366 tests) - `python -m traceforge benchmark` (4 policies, identical episodes) - `python -m traceforge demo` (investigation + HTML report). `SPEC_COMPLIANCE.md` maps 71 requirements to passing tests.
 * **Honest limits:** no LLM was run (the rule-based baseline solves every episode, so the benchmark does not yet separate strong agents); isolation is process-level + a Python-only audit hook, not an OS sandbox; verified on Windows / Python 3.12 only. Details: `JUDGE_SUMMARY.md`, `FINAL_AUDIT.md`.
 
 ---
@@ -57,7 +57,7 @@ pip install -r requirements-dev.txt   # pytest==9.1.1, только для те�
 
 python -m traceforge demo        # ДЕМОНСТРАЦИЯ: фиксированный seed, расследование, оценка, benchmark, reports/demo_report.html
 python -m traceforge benchmark   # все 4 политики на одинаковых эпизодах -> reports/benchmark.json/.csv (+ по уровням сложности)
-python -m pytest                 # 1348 тестов
+python -m pytest                 # 1366 тестов
 python -m traceforge verify      # тесты + матрица SPEC_COMPLIANCE.md + аудит + метаморфика + benchmark
 python -m traceforge generate    # datasets/train (10) и datasets/dev (10)
 ```
@@ -69,7 +69,7 @@ python -m traceforge generate    # datasets/train (10) и datasets/dev (10)
 `FINAL_BENCHMARK.json/.csv` (реальный benchmark, 52 эпизода x 4 политики), `requirements.txt`. Проверка в чистом окружении: `bash tools/clean_env_check.sh`.
 Сценарий презентации на 3 минуты — [DEMO_SCRIPT.md](DEMO_SCRIPT.md), устройство системы — [ARCHITECTURE.md](ARCHITECTURE.md) (диаграммы Mermaid).
 
-Проверено на Python 3.12.0 (Windows 11). Проект требует `>=3.11` и не использует возможностей
+CI (`.github/workflows/ci.yml`: Ubuntu/Windows/macOS × Python 3.11/3.12) настроен, но его результат здесь не наблюдался — смотрите вкладку Actions. Локально проверено на Python 3.12.0 (Windows 11). Проект требует `>=3.11` и не использует возможностей
 только 3.12, но на 3.11 в этой среде он не запускался.
 
 ## Команды CLI
@@ -87,6 +87,8 @@ python -m traceforge generate    # datasets/train (10) и datasets/dev (10)
 | `python -m traceforge pairs [--source datasets] [--split train\|dev\|eval\|all] [--out datasets/pairs] [--seed 0]` | Для каждого эпизода сохраняет метаморфическую пару (id переименованы, строки перемешаны, нейтральный текст изменён; те же суммы и те же ошибки). Пара не сохраняется, если проверка связей не пройдена; карта id — в `private/transformation.json` |
 | `python -m traceforge paired-eval [--split dev] [--policy all] [--mode eval] [--isolated]` | Те же политики на оригинале и на паре: `consistent_rate`, `mean_abs_delta_f1`, `robustness` → `reports/paired_eval.json/.csv`. Агент, запомнивший id или позиции строк, на парах проваливается |
 | `python -m traceforge generate-eval [--out eval_hidden] [--count 20] [--secret S] [--secret-out FILE] [--no-pairs]` | Скрытый набор организатора: seed каждого эпизода = первые 64 бита SHA-256(секрет, номер), плюс пары. Без `--secret` секрет случайный (128 бит) и выводится один раз; сам секрет в данные не попадает |
+
+| `python -m traceforge ablation [--split dev\|train\|all] [--isolated] [--out reports] [--name ablation]` | Исследование чувствительности награды: тот же аудитор с одной убранной способностью (слепой к одному типу ошибки, неполные доказательства, сумма с ошибкой, лишние обвинения, урезанный бюджет чтения, пустое объяснение). Сохранённый результат — `FINAL_ABLATION.json/.csv` |
 
 `generate` и `demo` принимают `--preset easy\|medium\|hard\|compound`. `verify` теперь формирует и `SPEC_COMPLIANCE.md`
 (требование помечается PASS только если все процитированные тесты реально найдены и прошли).
@@ -132,6 +134,7 @@ episode/private/  truth.json  provenance.json  clean_baseline.json
 * `ledger.csv`: `row_id, timestamp, account, debit_minor, credit_minor, currency, entity_id, invoice_id, payment_id`.
   Суммы проводок всегда в **базовой валюте**; колонка `currency` — валюта исходного документа.
 * `invoices.jsonl`: `doc_id, invoice_id, entity_id, issued_at, due_at, currency, total_minor, line_items`.
+* (Сущность «payment allocations» из условия — это `payments.invoice_refs`: разнесение платежа по счетам; в журнале ему соответствуют строки счёта 1200/2300.)
 * `payments.jsonl`: `doc_id, payment_id, timestamp, currency, amount_minor, invoice_refs`, где
   `invoice_refs = [{"invoice_id", "allocated_minor"}]`. Отрицательный `amount_minor` — возврат.
   Несопоставленный остаток платежа (`amount − Σallocated`) законно проводится на счёт 2300.
@@ -295,6 +298,9 @@ inspection_steps, elapsed_time (соглашение для пустых мно�
   или именем `truth.json`/`provenance.json`/`clean_baseline.json`/`transformation.json`, сокеты и DNS, `subprocess`/`os.system`/`exec`/`fork` и загрузку нативных
   библиотек (`ctypes`). Тест `test_sandbox.py` запускает враждебного агента **дважды** — без песочницы все атаки удаются (тест не пустой), с песочницей все заблокированы,
   а легитимный агент и счёт не меняются. Честный предел: это «лежачий полицейский», а не граница безопасности (нативный код, часть внутренних вызовов Windows, не-Python агенты).
+* **OS-граница для недоверенных агентов** (`runner/container.py`, `Dockerfile`, `tools/container_smoke.sh`): `docker_command(script)` запускает агента с `--network none --read-only
+  --cap-drop ALL --user 10001`, лимитами памяти/процессов/CPU и единственным примонтированным каталогом агента (только чтение); датасеты и `private/` не монтируются. Тесты проверяют
+  собранную команду; сам контейнер здесь **не запускался** (в окружении нет Docker) — смоук-проверка `bash tools/container_smoke.sh` рассчитана на машину с Docker.
 * Защита от утечек: `LeakGuard` (`assert_no_leak`) сканирует каждое наблюдение/`info`/траекторию на issue-id и
   служебные маркеры; тесты проверяют `info`, ошибки, исключения, траектории; seed не попадает ни в `info`, ни в траектории.
 
@@ -308,6 +314,14 @@ inspection_steps, elapsed_time (соглашение для пустых мно�
 | `oracle` | **оценщик** | Строит выводы из `truth.json`; проверяет, что награда 1.0 достижима |
 
 Измеренные результаты (режим eval, `python -m traceforge benchmark --seeds 8`, 208 прогонов; полные таблицы, в т.ч. по уровням сложности, — в `FINAL_ENGINEERING_REPORT.md` и `reports/benchmark*.csv`): на `dev` oracle F1 = 1.000 / reward = 1.000; reconciliation F1 = 1.000 / reward = 0.969 (15 шагов); mark_all F1 = 0.000 / reward = -1.000; random F1 = 0.000 / reward = -1.000. По уровням reconciliation держит F1 = 1.000, но тратит больше шагов (easy 12.4, hard 18.4), поэтому reward падает с 0.975 до 0.963.
+
+## Чувствительность награды (ablation)
+
+Бенчмарк из четырёх политик не различает сильных агентов (reconciliation решает всё), поэтому награда проверена обратным способом: тот же аудитор с **одной убранной
+способностью** (`policies/ablations.py`, `python -m traceforge ablation`, результат — `FINAL_ABLATION.json/.csv`, воспроизводится тестом). На `dev` (eval, одинаковые эпизоды):
+полный аудитор — F1 1.000 / reward 0.969; слепой к одному типу ошибки — 0.610…0.677; читает только 8 страниц — 0.106; +3 ложных обвинения — −0.001;
+неполный набор доказательств или сумма +5 — −0.606 (ни одного TP); текст объяснения пустой — **без изменений** (объяснение не оценивается). Награда ощутимо реагирует на каждый
+компонент правильного аудита, а не только на «угадал/не угадал».
 
 ## Метаморфическое тестирование
 
@@ -329,13 +343,13 @@ provenance, baseline), переставляет порядок строк и д�
 
 ## Тесты
 
-`python -m pytest` — **1348 тестов** (≈3 мин; последний прогон: 1348 passed, 0 failed, 0 skipped): контракт среды (`test_environment`,
+`python -m pytest` — **1366 тестов** (≈3 мин; последний прогон: 1366 passed, 0 failed, 0 skipped): контракт среды (`test_environment`,
 `test_pagination`, `test_calculator`, `test_isolation`, `test_trajectories`), атаки (`test_adversarial`), оценщик (`test_matcher`,
 `test_matcher_stress`, `test_reward`, `test_evidence`, `test_edge_cases`), генератор/данные (`test_generator`, `test_generator_quality`,
 `test_realism_levels`, `test_mutations`, `test_compound_scenarios`, `test_validator_integrity`, `test_property`, `test_reproducibility`),
 метаморфические пары (`test_metamorphic`, `test_transformations`), политики, отчёты и интеграция (`test_policies`, `test_reports`,
-`test_integration`), песочница и пары (`test_sandbox`, `test_pairs_eval`). `python -m traceforge verify` запускает набор один раз, строит `SPEC_COMPLIANCE.md` из реальных результатов
-(71 требование, PASS только при прохождении всех процитированных тестов) и отчёты `reports/*`. Итоговый отчёт — `FINAL_ENGINEERING_REPORT.md`,
+`test_integration`), песочница, пары, ablation, контейнер/CI (`test_sandbox`, `test_pairs_eval`, `test_ablations`, `test_container_ci`). `python -m traceforge verify` запускает набор один раз, строит `SPEC_COMPLIANCE.md` из реальных результатов
+(74 требования, PASS только при прохождении всех процитированных тестов) и отчёты `reports/*`. Итоговый отчёт — `FINAL_ENGINEERING_REPORT.md`,
 аудит — `ENGINEERING_AUDIT.md`. Проверка самих тестов внедрением ошибок: `python tools/mutation_check.py`.
 
 ## Ограничения

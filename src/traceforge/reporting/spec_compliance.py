@@ -319,6 +319,20 @@ REQUIREMENTS = [
                            "test_sandbox.py::test_private_paths_are_denied_even_inside_an_allowed_root",
                            "test_sandbox.py::test_the_sandbox_does_not_break_what_a_legitimate_agent_needs",
                            "test_sandbox.py::test_sandboxed_built_in_agent_result_equals_the_in_process_result"]),
+    ("Reward sensitivity: removing one capability (error family, evidence, amount, precision, budget) lowers the score; explanation text is not scored",
+     "policies/ablations.py, runner/ablation.py", ["test_ablations.py::test_explanation_text_is_not_scored",
+                                                   "test_ablations.py::test_blinding_one_error_family_costs_recall_but_never_precision",
+                                                   "test_ablations.py::test_incomplete_evidence_or_wrong_amount_earns_nothing",
+                                                   "test_ablations.py::test_unfounded_accusations_are_punished",
+                                                   "test_ablations.py::test_a_smaller_inspection_budget_means_less_found",
+                                                   "test_ablations.py::test_stored_ablation_file_is_reproducible",
+                                                   "test_ablations.py::test_ablations_are_not_leaderboard_policies"]),
+    ("Container command for untrusted agents (no network, read-only, no capabilities, only the agent folder mounted)",
+     "runner/container.py, Dockerfile", ["test_container_ci.py::test_docker_command_is_locked_down",
+                                         "test_container_ci.py::test_nothing_of_the_project_or_datasets_is_mounted",
+                                         "test_container_ci.py::test_dockerfile_runs_as_an_unprivileged_user"]),
+    ("Cross-platform CI definition (3 operating systems x Python 3.11/3.12)",
+     ".github/workflows/ci.yml", ["test_container_ci.py::test_ci_covers_three_operating_systems_and_both_python_versions"]),
 ]
 
 
