@@ -41,16 +41,16 @@ By suite:
 | suite | policy | eps | TP | FP | FN | precision | recall | F1 | reward | inspection steps |
 |---|---|---|---|---|---|---|---|---|---|---|
 | dev | random | 10 | 0 | 30 | 30 | 0.000 | 0.200 | 0.000 | −1.000 | 20.0 |
-| dev | reconciliation | 10 | 30 | 0 | 0 | 1.000 | 1.000 | 1.000 | 0.964 | 18.0 |
-| dev | mark_all | 10 | 0 | 300 | 30 | 0.000 | 0.200 | 0.000 | −1.000 | 18.0 |
+| dev | reconciliation | 10 | 30 | 0 | 0 | 1.000 | 1.000 | 1.000 | 0.969 | 15.3 |
+| dev | mark_all | 10 | 0 | 300 | 30 | 0.000 | 0.200 | 0.000 | −1.000 | 15.3 |
 | dev | oracle | 10 | 30 | 0 | 0 | 1.000 | 1.000 | 1.000 | 1.000 | 0.0 |
 | train | random | 10 | 0 | 30 | 28 | 0.000 | 0.200 | 0.000 | −1.000 | 20.0 |
-| train | reconciliation | 10 | 28 | 0 | 0 | 1.000 | 1.000 | 1.000 | 0.961 | 19.7 |
-| train | mark_all | 10 | 1 | 299 | 27 | 0.003 | 0.208 | 0.005 | −0.995 | 19.7 |
+| train | reconciliation | 10 | 28 | 0 | 0 | 1.000 | 1.000 | 1.000 | 0.968 | 16.1 |
+| train | mark_all | 10 | 0 | 300 | 28 | 0.000 | 0.200 | 0.000 | −1.000 | 16.1 |
 | train | oracle | 10 | 28 | 0 | 0 | 1.000 | 1.000 | 1.000 | 1.000 | 0.0 |
 | presets (32 generated) | random | 32 | 0 | 96 | 117 | 0.000 | 0.031 | 0.000 | −1.000 | 20.0 |
-| presets | reconciliation | 32 | 117 | 0 | 0 | 1.000 | 1.000 | 1.000 | 0.961 | 19.5 |
-| presets | mark_all | 32 | 1 | 959 | 116 | 0.001 | 0.039 | 0.002 | −0.998 | 19.5 |
+| presets | reconciliation | 32 | 117 | 0 | 0 | 1.000 | 1.000 | 1.000 | 0.967 | 16.5 |
+| presets | mark_all | 32 | 2 | 958 | 115 | 0.002 | 0.044 | 0.004 | −0.995 | 16.5 |
 | presets | oracle | 32 | 117 | 0 | 0 | 1.000 | 1.000 | 1.000 | 1.000 | 0.0 |
 
 By difficulty level (all suites pooled):
@@ -58,10 +58,10 @@ By difficulty level (all suites pooled):
 | level | policy | eps | issues | TP | FP | FN | F1 | reward | steps |
 |---|---|---|---|---|---|---|---|---|---|
 | easy | reconciliation | 14 | 24 | 24 | 0 | 0 | 1.000 | 0.975 | 12.4 |
-| medium | reconciliation | 10 | 26 | 26 | 0 | 0 | 1.000 | 0.966 | 17.1 |
-| hard | reconciliation | 15 | 75 | 75 | 0 | 0 | 1.000 | 0.952 | 24.1 |
-| compound (preset) | reconciliation | 8 | 38 | 38 | 0 | 0 | 1.000 | 0.951 | 24.6 |
-| easy / medium / hard / compound | mark_all | 14 / 10 / 15 / 8 | 24 / 26 / 75 / 38 | 0 / 0 / 1 / 1 | 420 / 300 / 449 / 239 | — | 0.000 / 0.000 / 0.003 / 0.007 | ≈ −1.0 | 12–25 |
+| medium | reconciliation | 10 | 26 | 26 | 0 | 0 | 1.000 | 0.968 | 15.9 |
+| hard | reconciliation | 15 | 75 | 75 | 0 | 0 | 1.000 | 0.963 | 18.4 |
+| compound (preset) | reconciliation | 8 | 38 | 38 | 0 | 0 | 1.000 | 0.962 | 19.1 |
+| easy / medium / hard / compound | mark_all | 14 / 10 / 15 / 8 | 24 / 26 / 75 / 38 | 0 / 0 / 1 / 1 | 420 / 300 / 449 / 239 | — | 0.000 / 0.000 / 0.004 / 0.007 | ≈ −1.0 | 12–19 |
 | easy / medium / hard / compound | random | 14 / 10 / 15 / 8 | same | 0 | 42 / 30 / 45 / 24 | — | 0.000 | −1.000 | 20.0 |
 | all levels (incl. dataset episodes with a compound scenario) | oracle | 52 | 175 | 175 | 0 | 0 | 1.000 | 1.000 | 0.0 |
 
@@ -119,11 +119,11 @@ Measured (`python -m traceforge demo`, seed 7, config = two compound scenarios a
 
 | item | result |
 |---|---|
-| company | 172 documents, 353 ledger lines, 4 currencies, 7 counterparties |
-| agent tool use | list_records 18, get_document 4, get_record 1, calculator 1, submit 1 (24 inspection steps) |
-| evaluator | TP 4, FP 0, FN 0; precision 1.000, recall 1.000, F1 1.000; reward 0.952 |
-| same agent without the verification phase | 18 inspection steps, reward 0.964 (identical findings): the verification costs exactly 6 steps = 0.012 reward |
-| baseline benchmark inside the demo (22 episodes: dev + 3 seeds x 4 presets; 88 runs) | random F1 0.000 / reward −1.000; reconciliation F1 1.000 / reward 0.963 / 18.5 steps; mark_all F1 0.003 / reward −0.997; oracle F1 1.000 / reward 1.000 |
+| company | 141 documents, 289 ledger lines, 4 currencies, 7 counterparties |
+| agent tool use | list_records 15, get_document 4, get_record 1, calculator 1, submit 1 (21 inspection steps) |
+| evaluator | TP 4, FP 0, FN 0; precision 1.000, recall 1.000, F1 1.000; reward 0.958 |
+| same agent without the verification phase | 15 inspection steps, reward 0.970 (identical findings): the verification costs exactly 6 steps = 0.012 reward |
+| baseline benchmark inside the demo (22 episodes: dev + 3 seeds x 4 presets; 88 runs) | random F1 0.000 / reward −1.000; reconciliation F1 1.000 / reward 0.969 / 15.7 steps; mark_all F1 0.000 / reward −1.000; oracle F1 1.000 / reward 1.000 |
 | verify after this stage | 10 / 10 sections PASS; 1278 passed, 0 failed; 56 / 56 spec requirements PASS |
 
 Defects found and fixed while building it (all caught by the new tests or by looking at the output): coloured table cells were measured

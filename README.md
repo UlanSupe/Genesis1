@@ -1,5 +1,22 @@
 # TraceForge — Evidence-First Financial Audit Gym
 
+## English summary
+
+**TraceForge** is an offline, stdlib-only (Python >= 3.11) reinforcement-learning environment for financial-audit agents. A seeded generator builds a
+synthetic company (ledger, invoices, payments, FX rates, policy; 20-200 documents per episode), injects verifiable errors (**duplicate, allocation, fx, cutoff** +
+2 compound scenarios) together with legitimate look-alike decoys, and stores `public/` (agent view) separately from `private/` (`truth.json`, `provenance.json`,
+clean baseline). An independent validator proves every error is derivable from public data and every clean company is clean.
+
+* **Contract:** Gymnasium-style `reset(seed, options)` / `step(action)`; 5 read-only tools (`list_records`, `get_record`, `get_document`, `calculator`, `submit`),
+  <= 50 rows per page, <= 100 steps; finding = `{type, affected_ids, amount, currency, evidence_ids, explanation}`.
+* **Reward:** one-to-one maximum matching (amount +-1 minor unit, evidence must cover an allowed set); `clip(2*F1 - 1 - 0.002*inspection_steps, -1, 1)`; invalid submission = -1.
+* **Isolation:** the agent runs in a separate process (scrubbed env, empty cwd, bounded I/O, deadlines) plus an audit-hook sandbox for Python agents; the oracle is evaluator-only; trajectories never contain hidden truth.
+* **Generalisation:** metamorphic twins (re-labelled ids, shuffled rows, renamed text, identical economics) via `python -m traceforge pairs` / `paired-eval`; a hidden evaluation set (+ twins) is derived from an organizer secret via `python -m traceforge generate-eval`.
+* **Verify in 3 commands:** `python -m pytest` (1348 tests) - `python -m traceforge benchmark` (4 policies, identical episodes) - `python -m traceforge demo` (investigation + HTML report). `SPEC_COMPLIANCE.md` maps 71 requirements to passing tests.
+* **Honest limits:** no LLM was run (the rule-based baseline solves every episode, so the benchmark does not yet separate strong agents); isolation is process-level + a Python-only audit hook, not an OS sandbox; verified on Windows / Python 3.12 only. Details: `JUDGE_SUMMARY.md`, `FINAL_AUDIT.md`.
+
+---
+
 TraceForge — автономная, воспроизводимая **RL-среда** для исследования и потенциального дообучения
 ИИ-агентов, выполняющих финансовый аудит. Это не бухгалтерский SaaS и не платёжное приложение:
 среда генерирует синтетические компании со связной историей операций, внедряет в неё проверяемые
@@ -290,7 +307,7 @@ inspection_steps, elapsed_time (соглашение для пустых мно�
 | `mark_all` | агент | Обвиняет самые «подозрительные» документы по всем типам (до 30) — проверка защиты от FP |
 | `oracle` | **оценщик** | Строит выводы из `truth.json`; проверяет, что награда 1.0 достижима |
 
-Измеренные результаты (режим eval, `python -m traceforge benchmark --seeds 8`, 208 прогонов; полные таблицы, в т.ч. по уровням сложности, — в `FINAL_ENGINEERING_REPORT.md` и `reports/benchmark*.csv`): на `dev` oracle F1 = 1.000 / reward = 1.000; reconciliation F1 = 1.000 / reward = 0.964 (18 шагов); mark_all F1 = 0.000 / reward = -1.000; random F1 = 0.000 / reward = -1.000. По уровням reconciliation держит F1 = 1.000, но тратит больше шагов (easy 12.4, hard 24.1), поэтому reward падает с 0.975 до 0.952.
+Измеренные результаты (режим eval, `python -m traceforge benchmark --seeds 8`, 208 прогонов; полные таблицы, в т.ч. по уровням сложности, — в `FINAL_ENGINEERING_REPORT.md` и `reports/benchmark*.csv`): на `dev` oracle F1 = 1.000 / reward = 1.000; reconciliation F1 = 1.000 / reward = 0.969 (15 шагов); mark_all F1 = 0.000 / reward = -1.000; random F1 = 0.000 / reward = -1.000. По уровням reconciliation держит F1 = 1.000, но тратит больше шагов (easy 12.4, hard 18.4), поэтому reward падает с 0.975 до 0.963.
 
 ## Метаморфическое тестирование
 

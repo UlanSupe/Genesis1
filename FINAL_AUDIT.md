@@ -67,14 +67,14 @@ Columns: implementation | verification (command or test) | actual result | statu
 | I2 | Tests | `tests/` (29 files, 1348 tests) | suite | see §6 | **PASS** |
 | I3 | CLI | `cli.py` | `--help`, `test_integration.py`, `test_demo.py` | generate, verify, demo, evaluate, inspect, audit, benchmark all run | **PASS** |
 | I4 | README | `README.md` | inspection + quick-start run (§7) | present, commands verified | **PASS** |
-| I5 | Demo | `reporting/demo_report.py` | `python -m traceforge demo`, `test_demo.py` (24) | 4/4 anomalies, F1 1.000, reward 0.952, HTML report | **PASS** |
+| I5 | Demo | `reporting/demo_report.py` | `python -m traceforge demo`, `test_demo.py` (24) | 4/4 anomalies, F1 1.000, reward 0.958, HTML report | **PASS** |
 | I6 | Benchmark output | `FINAL_BENCHMARK.json/.csv` | `python -m traceforge benchmark --suite all --seeds 8 --out . --name FINAL_BENCHMARK`; consistency test | 52 episodes × 4 policies = 208 runs | **PASS** |
 | I7 | Documentation | README, ARCHITECTURE, DEMO_SCRIPT, DESIGN, SPEC_COMPLIANCE, ENGINEERING_AUDIT, FINAL_ENGINEERING_REPORT, FINAL_AUDIT, JUDGE_SUMMARY | `test_I_deliverables_exist_and_commands_work` | present | **PASS** |
 | I8 | 10 train + 10 dev episodes | `datasets/` | same + `test_integration.py` | 10 + 10, each validated and regenerated bit-for-bit | **PASS** |
 | J1 | Runs offline, no external services | stdlib only | audit AST scan, booby-trapped sockets during episodes, `test_demo.py::test_demo_works_with_the_standard_library_only` (`python -S`) | no network/third-party imports; `dependencies = []` | **PASS** |
 | J2 | Python ≥ 3.11 | `requires-python` | grammar check only | all 93 files parse under 3.11; **runtime on 3.11 not run** (no interpreter) | **NOT VERIFIED** |
 | J3 | Non-Windows operating systems | `os.name`-guarded code | none available | not run | **NOT VERIFIED** |
-| J4 | Clean-environment install, tests, benchmark and demo | §7 | fresh virtual environment from a stripped copy | Fresh virtual environment (Python 3.12.0, contained only pip) built from a stripped copy of 295 submission files (no `reports/`, no cached trajectories, no tooling folders) by `tools/clean_env_check.sh`: `pip install -r requirements.txt` and `pip install -e .` exit 0; installed packages = traceforge, pytest and pytest's dependencies only; full suite **1324 passed, 0 failed**; benchmark 208 runs **identical** to `FINAL_BENCHMARK.json` (same dataset digest); demo 4/4 anomalies, reward 0.952. Windows / Python 3.12 only; needs network for `pip` | **PASS** |
+| J4 | Clean-environment install, tests, benchmark and demo | §7 | fresh virtual environment from a stripped copy | Fresh virtual environment (Python 3.12.0, contained only pip) built from a stripped copy of 502 submission files (re-run after the addendum changes) (no `reports/`, no cached trajectories, no tooling folders) by `tools/clean_env_check.sh`: `pip install -r requirements.txt` and `pip install -e .` exit 0; installed packages = traceforge, pytest and pytest's dependencies only; full suite **1348 passed, 0 failed**; benchmark 208 runs **identical** to `FINAL_BENCHMARK.json` (same dataset digest); demo 4/4 anomalies, reward 0.958. Windows / Python 3.12 only; needs network for `pip` | **PASS** |
 | J5 | Conformance to the original official specification text | — | the document was not provided | requirements verified against the task statements only | **NOT VERIFIED** |
 | K1 | No secrets / credentials | repository | regex scan for key/token/password patterns | none | **PASS** |
 | K2 | No absolute local paths | repository | scan of `src tests datasets configs examples tools *.md pyproject.toml` | none, except the substring "Genesis" inside a test that checks environment variables | **PASS** |
@@ -107,7 +107,7 @@ Source: `FINAL_BENCHMARK.json` / `.csv` (+ `_summary.csv`, `_by_level.csv`), pro
 
 ## 6. Final test results
 
-Final run (`python -m traceforge verify`, which runs `python -m pytest` once): **1348 tests: 1348 passed, 0 failed, 0 skipped** (after the addendum below; the audit itself ended at 1324). The 1324-test suite passed in the clean environment (1324 / 0 / 0); that clean-environment run was **not repeated** for the 1348-test state. Before this audit the suite had 1278 tests; this audit added 46 (37 official-requirement tests, 9 security regression tests), the addendum 24 (8 sandbox, 16 pairs/eval/alias).
+Final run (`python -m traceforge verify`, which runs `python -m pytest` once): **1348 tests: 1348 passed, 0 failed, 0 skipped** (after the addendum below; the audit itself ended at 1324). The 1348-test suite also passed in the clean environment (1348 / 0 / 0). Before this audit the suite had 1278 tests; this audit added 46 (37 official-requirement tests, 9 security regression tests), the addendum 24 (8 sandbox, 16 pairs/eval/alias).
 
 | Area | Files | Tests |
 |---|---|---|
@@ -130,13 +130,13 @@ Exact sequence a judge can use (Windows or POSIX; Python >= 3.11, tested on 3.12
 python -m venv .venv                      # optional but recommended; activate it
 pip install -r requirements.txt           # only pytest==9.1.1 (the package itself has no dependencies)
 pip install -e .                          # or, without installing: set PYTHONPATH=src
-python -m pytest                          # 1324 tests, about 2.5-3 minutes
+python -m pytest                          # 1348 tests, about 2.5-3 minutes
 python -m traceforge benchmark --suite all --seeds 8     # all 4 policies -> reports/benchmark.json / .csv
 python -m traceforge demo                 # fixed-seed demonstration -> reports/demo_report.html
 python -m traceforge verify               # everything above plus spec matrix, audit, metamorphic pairs
 ```
 
-This sequence was executed in a freshly created virtual environment from a copy containing only the submission files (`bash tools/clean_env_check.sh`; log summarised in row J4): install exit 0, `pytest` 1324 passed, benchmark identical to `FINAL_BENCHMARK.json`, demo 4/4 with reward 0.952. Not verified: other operating systems and Python 3.11 (rows J2, J3). The demo, benchmark and tests use no previously generated local artefacts (the stripped copy had none).
+This sequence was executed in a freshly created virtual environment from a copy containing only the submission files (`bash tools/clean_env_check.sh`; log summarised in row J4, re-run on the final state): install exit 0, `pytest` 1348 passed, benchmark identical to `FINAL_BENCHMARK.json`, demo 4/4 with reward 0.958. Not verified: other operating systems and Python 3.11 (rows J2, J3). The demo, benchmark and tests use no previously generated local artefacts (the stripped copy had none).
 
 ## 8. Repository cleanup
 
@@ -159,4 +159,5 @@ Why not simply "READY": the three PARTIAL items and three NOT VERIFIED items are
 * **Field name**: the finding amount is also accepted as `amount` / `amount_minor` (ints only).
 * **Scale**: hard episodes were above the brief's 20-200 documents guidance; invoice ranges were retuned (mean documents: easy ~116, medium ~155, hard ~179; about 95% of hard episodes <= 200). Stored datasets were regenerated; `FINAL_BENCHMARK.*` and `SPEC_COMPLIANCE.md` (71/71 PASS) were regenerated from real runs (same 175 issues; reconciliation reward 0.968).
 * **Organizer tooling**: `pairs`, `paired-eval`, `generate-eval` commands (stored pairs in `datasets/pairs`, robustness metric, secret-derived hidden set).
-* Not re-verified after these changes: clean-environment install (J4), Linux/macOS, Python 3.11.
+* Clean-environment run (J4) repeated on this final state: install exit 0, 1348 passed, benchmark identical to `FINAL_BENCHMARK.json`, demo 4/4 (reward 0.958). Demo figures in `DEMO_SCRIPT.md` / `FINAL_ENGINEERING_REPORT.md` were refreshed from the live demo (seed 7 now yields 141 documents, 289 ledger lines, 21 inspection steps).
+* Not verified: Linux/macOS, Python 3.11.
