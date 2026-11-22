@@ -1,10 +1,10 @@
 {
   "base_currency": "CHF",
-  "document_count": 153,
+  "document_count": 146,
   "episode_id": "train-007",
   "period_end": "2025-09-01T00:00:00+01:00",
   "period_start": "2025-08-01T00:00:00+01:00",
-  "record_count": 314,
+  "record_count": 301,
   "rounding_rules": {
     "currency_decimals": {
       "CAD": 2,

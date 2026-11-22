@@ -1,46 +1,46 @@
 [
   {
     "affected_ids": [
-      "PAY-0012"
+      "PAY-0023"
     ],
     "allowed_evidence_sets": [
       [
-        "DOC-0061",
-        "FX-2023-09-08-USD-GBP",
-        "ROW-00123"
+        "DOC-0075",
+        "FX-2023-09-13-CAD-GBP",
+        "ROW-00152"
       ],
       [
-        "DOC-0061",
-        "FX-2023-09-08-USD-GBP",
-        "ROW-00122"
+        "DOC-0075",
+        "FX-2023-09-13-CAD-GBP",
+        "ROW-00151"
       ]
     ],
     "currency": "GBP",
-    "expected_amount_minor": 822,
-    "explanation": "PAY-0012 (USD) was converted with a wrong FX input: used the rate of 2023-09-14 instead of 2023-09-08. How to see it: policy prescribes the rate of 2023-09-08 (FX-2023-09-08-USD-GBP); converting the document amount with it gives 262955 but the ledger anchor line ROW-00123 carries 262133 (the booked amount matches the rate of 2023-09-14). Expected amount: 822 GBP minor units (currency GBP).",
+    "expected_amount_minor": 3804,
+    "explanation": "PAY-0023 (CAD) was converted with a wrong FX input: used the rate of 2023-09-17 instead of 2023-09-13. How to see it: policy prescribes the rate of 2023-09-13 (FX-2023-09-13-CAD-GBP); converting the document amount with it gives 924917 but the ledger anchor line ROW-00152 carries 921113 (the booked amount matches the rate of 2023-09-17). Expected amount: 3804 GBP minor units (currency GBP).",
     "issue_id": "ISS-001",
     "root_cause": "fx_rate_of_wrong_date_used",
     "type": "fx"
   },
   {
     "affected_ids": [
-      "INV-0049"
+      "INV-0039"
     ],
     "allowed_evidence_sets": [
       [
-        "DOC-0060",
-        "FX-2023-09-08-JPY-GBP",
-        "ROW-00121"
+        "DOC-0048",
+        "FX-2023-09-05-JPY-GBP",
+        "ROW-00096"
       ],
       [
-        "DOC-0060",
-        "FX-2023-09-08-JPY-GBP",
-        "ROW-00120"
+        "DOC-0048",
+        "FX-2023-09-05-JPY-GBP",
+        "ROW-00097"
       ]
     ],
     "currency": "GBP",
-    "expected_amount_minor": 15888,
-    "explanation": "INV-0049 (JPY) was converted with a wrong FX input: used rate 0.00546450 instead of 0.00556410 (2023-09-08). How to see it: policy prescribes the rate of 2023-09-08 (FX-2023-09-08-JPY-GBP); converting the document amount with it gives 887563 but the ledger anchor line ROW-00121 carries 871675. Expected amount: 15888 GBP minor units (currency GBP).",
+    "expected_amount_minor": 6255,
+    "explanation": "INV-0039 (JPY) was converted with a wrong FX input: used rate 0.00541839 instead of 0.00551715 (2023-09-05). How to see it: policy prescribes the rate of 2023-09-05 (FX-2023-09-05-JPY-GBP); converting the document amount with it gives 349434 but the ledger anchor line ROW-00096 carries 343179. Expected amount: 6255 GBP minor units (currency GBP).",
     "issue_id": "ISS-002",
     "root_cause": "wrong_fx_rate_used",
     "type": "fx"

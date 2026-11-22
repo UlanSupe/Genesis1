@@ -1,0 +1,26 @@
+{
+  "episodes": [
+    "pair-train-000",
+    "pair-train-001",
+    "pair-train-002",
+    "pair-train-003",
+    "pair-train-004",
+    "pair-train-005",
+    "pair-train-006",
+    "pair-train-007",
+    "pair-train-008",
+    "pair-train-009"
+  ],
+  "originals": {
+    "pair-train-000": "train-000",
+    "pair-train-001": "train-001",
+    "pair-train-002": "train-002",
+    "pair-train-003": "train-003",
+    "pair-train-004": "train-004",
+    "pair-train-005": "train-005",
+    "pair-train-006": "train-006",
+    "pair-train-007": "train-007",
+    "pair-train-008": "train-008",
+    "pair-train-009": "train-009"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "base_currency": "EUR",
+  "document_count": 146,
+  "episode_id": "pair-dev-002",
+  "period_end": "2023-06-01T00:00:00+05:30",
+  "period_start": "2023-05-01T00:00:00+05:30",
+  "record_count": 300,
+  "rounding_rules": {
+    "currency_decimals": {
+      "CAD": 2,
+      "CHF": 2,
+      "EUR": 2,
+      "GBP": 2,
+      "JPY": 0,
+      "KWD": 3,
+      "SEK": 2,
+      "USD": 2
+    },
+    "mode": "ROUND_HALF_UP",
+    "scope": "per_ledger_line"
+  },
+  "schema_version": "1.0",
+  "timezone": "+05:30"
+}

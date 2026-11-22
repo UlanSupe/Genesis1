@@ -1,10 +1,10 @@
 {
   "base_currency": "USD",
-  "document_count": 269,
+  "document_count": 177,
   "episode_id": "train-002",
   "period_end": "2024-11-01T00:00:00+03:00",
   "period_start": "2024-10-01T00:00:00+03:00",
-  "record_count": 550,
+  "record_count": 364,
   "rounding_rules": {
     "currency_decimals": {
       "CAD": 2,

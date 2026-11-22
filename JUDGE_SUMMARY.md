@@ -35,15 +35,15 @@ Same seed + config + code ⇒ byte-identical episode (checked across processes a
 | policy | TP / FP / FN (issues = 175) | precision | recall | F1 | reward | inspection steps |
 |---|---|---|---|---|---|---|
 | random | 0 / 156 / 175 | 0.000 | 0.096 | 0.000 | −1.000 | 20.0 |
-| simple reconciliation | 175 / 0 / 0 | 1.000 | 1.000 | 1.000 | 0.961 | 19.2 |
-| mark-everything | 2 / 1558 / 173 | 0.001 | 0.103 | 0.002 | −0.998 | 19.2 |
+| simple reconciliation | 175 / 0 / 0 | 1.000 | 1.000 | 1.000 | 0.968 | 16.2 |
+| mark-everything | 2 / 1558 / 173 | 0.001 | 0.104 | 0.002 | −0.997 | 16.2 |
 | oracle (evaluator only) | 175 / 0 / 0 | 1.000 | 1.000 | 1.000 | 1.000 | 0.0 |
 
 (precision/recall/F1/reward/steps are means over episodes; an episode with no issues and no findings counts as precision = recall = 1, which is why random's mean recall is not 0.) What it demonstrates: accusing everything or guessing is punished; the top score is reachable (oracle); a transparent rule-based auditor can solve the episodes, as it must, because every error is derivable from public data. Harder levels cost it more steps (12 → 24) but not accuracy.
 
 ## 11. Limitations (stated plainly)
 * The rule-based baseline is perfect, so the benchmark does **not** discriminate between strong agents yet; **no LLM or learned agent was run**, and nothing here claims model improvement.
-* Isolation is process-level, not an OS sandbox: a hostile custom agent could read files, use the network or spawn processes (the tool API itself cannot). Stored `private/` folders are readable by such an agent; use in-memory episodes or a container.
+* Isolation is process-level plus an audit-hook sandbox for **Python** agents (`python -m traceforge.runner.sandbox`: no writes, no reads outside the interpreter/agent folder, no `private/`, no sockets, no subprocess, no native libraries; attack-tested twice, with and without the sandbox). It is a speed bump, not an OS boundary: native code, non-Python agents and some Windows internals are not covered, so a hostile custom agent could still read files, use the network or spawn processes (the tool API itself cannot). Stored `private/` folders are readable by such an agent; use in-memory episodes or a container.
 * The generator is open: anyone with the code and a **guessable** seed can regenerate an episode and its truth. Hidden evaluation must use high-entropy seeds (≥ 64 bits). The episode id an agent sees is a content digest and no longer reveals the seed (a flaw found and fixed in this audit).
 * The ±1 minor-unit amount tolerance and the definition of `inspection_steps` (actions before submit, invalid ones included) are published choices of this implementation.
 * Four error families, fixed UTC offsets (no DST), daily FX including weekends.

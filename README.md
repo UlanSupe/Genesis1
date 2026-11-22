@@ -40,7 +40,7 @@ pip install -r requirements-dev.txt   # pytest==9.1.1, только для те�
 
 python -m traceforge demo        # ДЕМОНСТРАЦИЯ: фиксированный seed, расследование, оценка, benchmark, reports/demo_report.html
 python -m traceforge benchmark   # все 4 политики на одинаковых эпизодах -> reports/benchmark.json/.csv (+ по уровням сложности)
-python -m pytest                 # 1324 теста
+python -m pytest                 # 1348 тестов
 python -m traceforge verify      # тесты + матрица SPEC_COMPLIANCE.md + аудит + метаморфика + benchmark
 python -m traceforge generate    # datasets/train (10) и datasets/dev (10)
 ```
@@ -66,6 +66,10 @@ python -m traceforge generate    # datasets/train (10) и datasets/dev (10)
 | `python -m traceforge inspect PATH [--table ledger] [--instructor]` | Просмотр эпизода (публичный вид; `--instructor` — ещё и закрытый эталон) |
 | `python -m traceforge audit [--skip-performance]` | Автоматический аудит: валидатор на всех пресетах/типах/сценариях, AST-скан архитектуры (нет `eval/exec`, глобального `random`, сети, сторонних зависимостей), проверка «структурных подсказок» генератора, воспроизводимость между процессами (`PYTHONHASHSEED`), фаззинг среды и калькулятора, замеры производительности → `reports/audit_report.json`, `reports/performance.json` |
 | `python -m traceforge benchmark [--suite dev\|train\|presets\|all] [--policy all] [--isolated]` | Все политики на одинаковых эпизодах; precision, recall, F1, reward, inspection steps, runtime, число выводов → `reports/benchmark.json`, `benchmark.csv`, `benchmark_summary.csv` |
+
+| `python -m traceforge pairs [--source datasets] [--split train\|dev\|eval\|all] [--out datasets/pairs] [--seed 0]` | Для каждого эпизода сохраняет метаморфическую пару (id переименованы, строки перемешаны, нейтральный текст изменён; те же суммы и те же ошибки). Пара не сохраняется, если проверка связей не пройдена; карта id — в `private/transformation.json` |
+| `python -m traceforge paired-eval [--split dev] [--policy all] [--mode eval] [--isolated]` | Те же политики на оригинале и на паре: `consistent_rate`, `mean_abs_delta_f1`, `robustness` → `reports/paired_eval.json/.csv`. Агент, запомнивший id или позиции строк, на парах проваливается |
+| `python -m traceforge generate-eval [--out eval_hidden] [--count 20] [--secret S] [--secret-out FILE] [--no-pairs]` | Скрытый набор организатора: seed каждого эпизода = первые 64 бита SHA-256(секрет, номер), плюс пары. Без `--secret` секрет случайный (128 бит) и выводится один раз; сам секрет в данные не попадает |
 
 `generate` и `demo` принимают `--preset easy\|medium\|hard\|compound`. `verify` теперь формирует и `SPEC_COMPLIANCE.md`
 (требование помечается PASS только если все процитированные тесты реально найдены и прошли).
@@ -226,7 +230,7 @@ obs, reward, terminated, truncated, info = env.step(action)
 ```
 
 Лимиты: ≤30 выводов, ≤10 `evidence_ids`, ≤20 `affected_ids`, `explanation` ≤1000 символов; `claimed_amount_minor` —
-целое (не bool/float). Неверная структура → завершение с `reward = −1` и запись в внутренний журнал оценщика
+целое (не bool/float). Сумма принимается под ключом `claimed_amount_minor` или под официальным алиасом `amount` (также `amount_minor`). Неверная структура → завершение с `reward = −1` и запись в внутренний журнал оценщика
 (агенту детали не сообщаются). `action.findings` может быть и просто списком — среда обернёт его сама.
 Текст `explanation` **не оценивается**.
 
@@ -269,6 +273,11 @@ inspection_steps, elapsed_time (соглашение для пустых мно�
 * Защита runner'а от враждебного агента: ограничение длины сообщения (агент убивается, память evaluator не растёт), stderr читается в
   ограниченный буфер, таймаут вызова и общий дедлайн эпизода, на POSIX — `RLIMIT_AS/CPU`. Кастомным агентам не передаётся `PYTHONPATH`
   (путь проекта и каталогов `private/` им неизвестен).
+* **Песочница для Python-агентов** (`runner/sandbox.py`, `python -m traceforge.runner.sandbox agent.py`; встроенные политики запускаются в ней по умолчанию): необратимый
+  `sys.addaudithook` запрещает любую запись/создание/удаление файлов, чтение вне интерпретатора/stdlib/каталога скрипта, любой путь с компонентом `private`
+  или именем `truth.json`/`provenance.json`/`clean_baseline.json`/`transformation.json`, сокеты и DNS, `subprocess`/`os.system`/`exec`/`fork` и загрузку нативных
+  библиотек (`ctypes`). Тест `test_sandbox.py` запускает враждебного агента **дважды** — без песочницы все атаки удаются (тест не пустой), с песочницей все заблокированы,
+  а легитимный агент и счёт не меняются. Честный предел: это «лежачий полицейский», а не граница безопасности (нативный код, часть внутренних вызовов Windows, не-Python агенты).
 * Защита от утечек: `LeakGuard` (`assert_no_leak`) сканирует каждое наблюдение/`info`/траекторию на issue-id и
   служебные маркеры; тесты проверяют `info`, ошибки, исключения, траектории; seed не попадает ни в `info`, ни в траектории.
 
@@ -293,6 +302,9 @@ provenance, baseline), переставляет порядок строк и д�
 
 ## Наборы данных
 
+Масштаб: в среднем ≈116 (easy), ≈155 (medium), ≈179 (hard) документов на эпизод (≈95 % hard-эпизодов ≤ 200), записей журнала — сотни; диапазон
+из условия (20–200 документов, 200–2000 записей) соблюдён. `datasets/pairs/{train,dev}` — по 10 пар (см. `pairs`/`paired-eval`).
+
 `datasets/train` и `datasets/dev` — по 10 эпизодов: 2 чистых (easy/hard), по одному на каждый тип ошибки,
 оба compound-сценария, смешанный (4–6 ошибок) и «все четыре типа ×3» (12 ошибок); базовые валюты EUR/USD/GBP/CHF/JPY,
 разные периоды. Файлы `private/` в репозитории **открыты намеренно** (открытые наборы); для скрытой оценки
@@ -300,13 +312,13 @@ provenance, baseline), переставляет порядок строк и д�
 
 ## Тесты
 
-`python -m pytest` — **1324 теста** (≈2,5 мин; последний прогон: 1324 passed, 0 failed, 0 skipped): контракт среды (`test_environment`,
+`python -m pytest` — **1348 тестов** (≈3 мин; последний прогон: 1348 passed, 0 failed, 0 skipped): контракт среды (`test_environment`,
 `test_pagination`, `test_calculator`, `test_isolation`, `test_trajectories`), атаки (`test_adversarial`), оценщик (`test_matcher`,
 `test_matcher_stress`, `test_reward`, `test_evidence`, `test_edge_cases`), генератор/данные (`test_generator`, `test_generator_quality`,
 `test_realism_levels`, `test_mutations`, `test_compound_scenarios`, `test_validator_integrity`, `test_property`, `test_reproducibility`),
 метаморфические пары (`test_metamorphic`, `test_transformations`), политики, отчёты и интеграция (`test_policies`, `test_reports`,
-`test_integration`). `python -m traceforge verify` запускает набор один раз, строит `SPEC_COMPLIANCE.md` из реальных результатов
-(67 требований, PASS только при прохождении всех процитированных тестов) и отчёты `reports/*`. Итоговый отчёт — `FINAL_ENGINEERING_REPORT.md`,
+`test_integration`), песочница и пары (`test_sandbox`, `test_pairs_eval`). `python -m traceforge verify` запускает набор один раз, строит `SPEC_COMPLIANCE.md` из реальных результатов
+(71 требование, PASS только при прохождении всех процитированных тестов) и отчёты `reports/*`. Итоговый отчёт — `FINAL_ENGINEERING_REPORT.md`,
 аудит — `ENGINEERING_AUDIT.md`. Проверка самих тестов внедрением ошибок: `python tools/mutation_check.py`.
 
 ## Ограничения
@@ -317,7 +329,7 @@ provenance, baseline), переставляет порядок строк и д�
 * Простая политика `reconciliation` решает эпизоды почти идеально, потому что ошибки по построению проверяемы по
   публичным данным (это и есть цель валидатора). Сложность для LLM-агентов определяется бюджетом шагов, объёмом данных и
   отвлекающими случаями; для усложнения увеличьте `difficulty`, `n_invoices`, число валют. Никаких выводов о качестве моделей мы не делаем.
-* Изоляция — на уровне процессов. Она не защищает от агента с доступом к файловой системе ОС (может прочитать
+* Изоляция — на уровне процессов (+ audit-hook песочница для Python-агентов, см. «Изоляция»). Для не-Python агентов и нативного кода она не защищает от доступа к файловой системе ОС (можно прочитать
   `private/` сохранённых эпизодов); для враждебных агентов запускайте их в контейнере/под другим пользователем и
   используйте эпизоды, сгенерированные в памяти. Знание `seed` + кода позволяет восстановить эталон — храните eval-seed в секрете.
 * В `train` режиме награда возвращается агенту; в `eval` — скрыта, но только если runner сам не передаёт её агенту.

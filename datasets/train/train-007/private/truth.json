@@ -5,41 +5,41 @@
     ],
     "allowed_evidence_sets": [
       [
-        "DOC-0118",
-        "ROW-00242",
-        "ROW-00244"
+        "DOC-0126",
+        "ROW-00258",
+        "ROW-00260"
       ],
       [
-        "DOC-0118",
-        "ROW-00241",
-        "ROW-00243"
+        "DOC-0126",
+        "ROW-00257",
+        "ROW-00259"
       ]
     ],
     "currency": "CHF",
-    "expected_amount_minor": 3451071,
-    "explanation": "The journal of INV-0077 (DOC-0118) was posted twice with identical accounts, amounts and timestamp; the extra posting overstates the ledger by 3451071 minor units. How to see it: the ledger holds two identical postings for INV-0077 while only one source document DOC-0118 exists (compare the anchor lines ROW-00244 and ROW-00242); a legitimate repeat would have its own document id. Expected amount: 3451071 CHF minor units (currency CHF).",
+    "expected_amount_minor": 1054202,
+    "explanation": "The journal of INV-0077 (DOC-0126) was posted twice with identical accounts, amounts and timestamp; the extra posting overstates the ledger by 1054202 minor units. How to see it: the ledger holds two identical postings for INV-0077 while only one source document DOC-0126 exists (compare the anchor lines ROW-00260 and ROW-00258); a legitimate repeat would have its own document id. Expected amount: 1054202 CHF minor units (currency CHF).",
     "issue_id": "ISS-001",
     "root_cause": "journal_posted_twice",
     "type": "duplicate"
   },
   {
     "affected_ids": [
-      "ROW-00277",
-      "ROW-00278"
+      "ROW-00279",
+      "ROW-00280"
     ],
     "allowed_evidence_sets": [
       [
-        "DOC-0124",
-        "ROW-00278"
+        "DOC-0129",
+        "ROW-00279"
       ],
       [
-        "DOC-0124",
-        "ROW-00277"
+        "DOC-0129",
+        "ROW-00280"
       ]
     ],
     "currency": "CHF",
-    "expected_amount_minor": 3435887,
-    "explanation": "INV-0080 (DOC-0124) is dated 2025-08-30T04:12:00+01:00 (inside the period) but its journal was booked at 2025-09-01T14:29:00+01:00 (after the period), in a different reporting period. How to see it: compare the document timestamp with the booking timestamp of the ledger lines against the period [2025-08-01T00:00:00+01:00, 2025-09-01T00:00:00+01:00) (end exclusive, instants compared across offsets). Expected amount: 3435887 CHF minor units (currency CHF).",
+    "expected_amount_minor": 1054202,
+    "explanation": "INV-0079 (DOC-0129) is dated 2025-08-31T08:15:00+01:00 (inside the period) but its journal was booked at 2025-09-01T14:29:00+01:00 (after the period), in a different reporting period. How to see it: compare the document timestamp with the booking timestamp of the ledger lines against the period [2025-08-01T00:00:00+01:00, 2025-09-01T00:00:00+01:00) (end exclusive, instants compared across offsets). Expected amount: 1054202 CHF minor units (currency CHF).",
     "issue_id": "ISS-002",
     "root_cause": "booked_in_wrong_reporting_period",
     "type": "cutoff"

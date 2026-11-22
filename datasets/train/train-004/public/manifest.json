@@ -1,10 +1,10 @@
 {
   "base_currency": "GBP",
-  "document_count": 181,
+  "document_count": 148,
   "episode_id": "train-004",
   "period_end": "2023-10-01T00:00:00+00:00",
   "period_start": "2023-09-01T00:00:00+00:00",
-  "record_count": 372,
+  "record_count": 301,
   "rounding_rules": {
     "currency_decimals": {
       "CAD": 2,

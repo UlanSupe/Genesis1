@@ -1,0 +1,278 @@
+[
+  {
+    "affected_ids": [
+      "INV-82217"
+    ],
+    "allowed_evidence_sets": [
+      [
+        "DOC-89902",
+        "ROW-64308",
+        "ROW-98550"
+      ],
+      [
+        "DOC-89902",
+        "ROW-25940",
+        "ROW-76095"
+      ]
+    ],
+    "currency": "EUR",
+    "expected_amount_minor": 37567,
+    "explanation": "The journal of INV-82217 (DOC-89902) was posted twice with identical accounts, amounts and timestamp; the extra posting overstates the ledger by 37567 minor units. How to see it: the ledger holds two identical postings for INV-82217 while only one source document DOC-89902 exists (compare the anchor lines ROW-98550 and ROW-64308); a legitimate repeat would have its own document id. Expected amount: 37567 EUR minor units (currency EUR).",
+    "issue_id": "ISS-001",
+    "root_cause": "journal_posted_twice",
+    "type": "duplicate"
+  },
+  {
+    "affected_ids": [
+      "INV-47694"
+    ],
+    "allowed_evidence_sets": [
+      [
+        "DOC-97274",
+        "ROW-63824",
+        "ROW-73876"
+      ],
+      [
+        "DOC-97274",
+        "ROW-35041",
+        "ROW-38129"
+      ]
+    ],
+    "currency": "EUR",
+    "expected_amount_minor": 340981,
+    "explanation": "The journal of INV-47694 (DOC-97274) was posted twice with identical accounts, amounts and timestamp; the extra posting overstates the ledger by 340981 minor units. How to see it: the ledger holds two identical postings for INV-47694 while only one source document DOC-97274 exists (compare the anchor lines ROW-63824 and ROW-73876); a legitimate repeat would have its own document id. Expected amount: 340981 EUR minor units (currency EUR).",
+    "issue_id": "ISS-002",
+    "root_cause": "journal_posted_twice",
+    "type": "duplicate"
+  },
+  {
+    "affected_ids": [
+      "INV-11513"
+    ],
+    "allowed_evidence_sets": [
+      [
+        "DOC-52719",
+        "ROW-41006",
+        "ROW-55805"
+      ],
+      [
+        "DOC-52719",
+        "ROW-34172",
+        "ROW-53590"
+      ]
+    ],
+    "currency": "EUR",
+    "expected_amount_minor": 19092,
+    "explanation": "The journal of INV-11513 (DOC-52719) was posted twice with identical accounts, amounts and timestamp; the extra posting overstates the ledger by 19092 minor units. How to see it: the ledger holds two identical postings for INV-11513 while only one source document DOC-52719 exists (compare the anchor lines ROW-55805 and ROW-41006); a legitimate repeat would have its own document id. Expected amount: 19092 EUR minor units (currency EUR).",
+    "issue_id": "ISS-003",
+    "root_cause": "journal_posted_twice",
+    "type": "duplicate"
+  },
+  {
+    "affected_ids": [
+      "INV-72485",
+      "PAY-96396"
+    ],
+    "allowed_evidence_sets": [
+      [
+        "DOC-72794",
+        "DOC-99743",
+        "ROW-58778",
+        "ROW-86737"
+      ],
+      [
+        "DOC-72794",
+        "DOC-99743",
+        "ROW-86737"
+      ],
+      [
+        "DOC-72794",
+        "DOC-99743",
+        "ROW-58778"
+      ]
+    ],
+    "currency": "EUR",
+    "expected_amount_minor": 9888,
+    "explanation": "Only part of the PAY-96396 allocation to INV-72485 was applied; 9888 minor units were left in unapplied receipts. How to see it: the AR credit ROW-86737 for INV-72485 is smaller than the converted allocation in DOC-72794; the difference sits in unapplied line ROW-58778 (2300). Invoice documents DOC-99743 show which invoices are involved. Expected amount: 9888 EUR minor units (currency EUR).",
+    "issue_id": "ISS-004",
+    "root_cause": "allocation_partially_applied",
+    "type": "allocation"
+  },
+  {
+    "affected_ids": [
+      "INV-49786",
+      "INV-85510",
+      "PAY-29750"
+    ],
+    "allowed_evidence_sets": [
+      [
+        "DOC-32511",
+        "DOC-41350",
+        "DOC-91113",
+        "ROW-85234"
+      ]
+    ],
+    "currency": "EUR",
+    "expected_amount_minor": 108541,
+    "explanation": "Allocation of PAY-29750 was applied to INV-85510 instead of INV-49786 (DOC-91113). How to see it: DOC-91113 allocates to INV-49786, but ledger line ROW-85234 carries invoice_id INV-85510; compare both invoices: INV-49786 is left open and INV-85510 is over-credited. Invoice documents DOC-32511, DOC-41350 show which invoices are involved. Expected amount: 108541 EUR minor units (currency EUR).",
+    "issue_id": "ISS-005",
+    "root_cause": "allocation_applied_to_wrong_invoice",
+    "type": "allocation"
+  },
+  {
+    "affected_ids": [
+      "INV-22353",
+      "INV-50315",
+      "PAY-38157"
+    ],
+    "allowed_evidence_sets": [
+      [
+        "DOC-25568",
+        "DOC-70036",
+        "DOC-92347",
+        "ROW-99349"
+      ]
+    ],
+    "currency": "EUR",
+    "expected_amount_minor": 18825,
+    "explanation": "Allocation of PAY-38157 was applied to INV-50315 instead of INV-22353 (DOC-25568). How to see it: DOC-25568 allocates to INV-22353, but ledger line ROW-99349 carries invoice_id INV-50315; compare both invoices: INV-22353 is left open and INV-50315 is over-credited. Invoice documents DOC-70036, DOC-92347 show which invoices are involved. Expected amount: 18825 EUR minor units (currency EUR).",
+    "issue_id": "ISS-006",
+    "root_cause": "allocation_applied_to_wrong_invoice",
+    "type": "allocation"
+  },
+  {
+    "affected_ids": [
+      "INV-80137"
+    ],
+    "allowed_evidence_sets": [
+      [
+        "DOC-74810",
+        "FX-2025-07-02-SEK-EUR",
+        "ROW-90481"
+      ],
+      [
+        "DOC-74810",
+        "FX-2025-07-02-SEK-EUR",
+        "ROW-74198"
+      ]
+    ],
+    "currency": "EUR",
+    "expected_amount_minor": 267,
+    "explanation": "INV-80137 (SEK) was converted with a wrong FX input: used the rate of 2025-06-30 instead of 2025-07-02. How to see it: policy prescribes the rate of 2025-07-02 (FX-2025-07-02-SEK-EUR); converting the document amount with it gives 27765 but the ledger anchor line ROW-90481 carries 27498 (the booked amount matches the rate of 2025-06-30). Expected amount: 267 EUR minor units (currency EUR).",
+    "issue_id": "ISS-007",
+    "root_cause": "fx_rate_of_wrong_date_used",
+    "type": "fx"
+  },
+  {
+    "affected_ids": [
+      "INV-72485"
+    ],
+    "allowed_evidence_sets": [
+      [
+        "DOC-99743",
+        "FX-2025-05-28-SEK-EUR",
+        "ROW-93228"
+      ],
+      [
+        "DOC-99743",
+        "FX-2025-05-28-SEK-EUR",
+        "ROW-85741"
+      ]
+    ],
+    "currency": "EUR",
+    "expected_amount_minor": 288,
+    "explanation": "INV-72485 (SEK) was converted with a wrong FX input: used rate 0.08937431 instead of 0.09005876 (2025-05-28). How to see it: policy prescribes the rate of 2025-05-28 (FX-2025-05-28-SEK-EUR); converting the document amount with it gives 37904 but the ledger anchor line ROW-93228 carries 37616. Expected amount: 288 EUR minor units (currency EUR).",
+    "issue_id": "ISS-008",
+    "root_cause": "wrong_fx_rate_used",
+    "type": "fx"
+  },
+  {
+    "affected_ids": [
+      "INV-11344"
+    ],
+    "allowed_evidence_sets": [
+      [
+        "DOC-80706",
+        "FX-2025-06-10-JPY-EUR",
+        "ROW-85585"
+      ],
+      [
+        "DOC-80706",
+        "FX-2025-06-10-JPY-EUR",
+        "ROW-31564"
+      ]
+    ],
+    "currency": "EUR",
+    "expected_amount_minor": 880,
+    "explanation": "INV-11344 (JPY) was converted with a wrong FX input: used rate 0.00615251 instead of 0.00619027 (2025-06-10). How to see it: policy prescribes the rate of 2025-06-10 (FX-2025-06-10-JPY-EUR); converting the document amount with it gives 144347 but the ledger anchor line ROW-85585 carries 143467. Expected amount: 880 EUR minor units (currency EUR).",
+    "issue_id": "ISS-009",
+    "root_cause": "wrong_fx_rate_used",
+    "type": "fx"
+  },
+  {
+    "affected_ids": [
+      "ROW-76539",
+      "ROW-91071"
+    ],
+    "allowed_evidence_sets": [
+      [
+        "DOC-14982",
+        "ROW-76539"
+      ],
+      [
+        "DOC-14982",
+        "ROW-91071"
+      ]
+    ],
+    "currency": "EUR",
+    "expected_amount_minor": 18001,
+    "explanation": "INV-77535 (DOC-14982) is dated 2025-05-31T08:14:00+01:00 (before the period) but its journal was booked at 2025-06-01T02:30:00+01:00 (inside the period), in a different reporting period. How to see it: compare the document timestamp with the booking timestamp of the ledger lines against the period [2025-06-01T00:00:00+01:00, 2025-07-01T00:00:00+01:00) (end exclusive, instants compared across offsets). Expected amount: 18001 EUR minor units (currency EUR).",
+    "issue_id": "ISS-010",
+    "root_cause": "booked_in_wrong_reporting_period",
+    "type": "cutoff"
+  },
+  {
+    "affected_ids": [
+      "ROW-33919",
+      "ROW-82570"
+    ],
+    "allowed_evidence_sets": [
+      [
+        "DOC-59771",
+        "ROW-82570"
+      ],
+      [
+        "DOC-59771",
+        "ROW-33919"
+      ]
+    ],
+    "currency": "EUR",
+    "expected_amount_minor": 307605,
+    "explanation": "INV-79549 (DOC-59771) is dated 2025-05-31T19:13:00+01:00 (before the period) but its journal was booked at 2025-06-01T01:18:00+01:00 (inside the period), in a different reporting period. How to see it: compare the document timestamp with the booking timestamp of the ledger lines against the period [2025-06-01T00:00:00+01:00, 2025-07-01T00:00:00+01:00) (end exclusive, instants compared across offsets). Expected amount: 307605 EUR minor units (currency EUR).",
+    "issue_id": "ISS-011",
+    "root_cause": "booked_in_wrong_reporting_period",
+    "type": "cutoff"
+  },
+  {
+    "affected_ids": [
+      "ROW-16915",
+      "ROW-31683"
+    ],
+    "allowed_evidence_sets": [
+      [
+        "DOC-84794",
+        "ROW-16915"
+      ],
+      [
+        "DOC-84794",
+        "ROW-31683"
+      ]
+    ],
+    "currency": "EUR",
+    "expected_amount_minor": 154190,
+    "explanation": "INV-45262 (DOC-84794) is dated 2025-05-31T04:09:00+01:00 (before the period) but its journal was booked at 2025-06-01T01:52:00+01:00 (inside the period), in a different reporting period. How to see it: compare the document timestamp with the booking timestamp of the ledger lines against the period [2025-06-01T00:00:00+01:00, 2025-07-01T00:00:00+01:00) (end exclusive, instants compared across offsets). Expected amount: 154190 EUR minor units (currency EUR).",
+    "issue_id": "ISS-012",
+    "root_cause": "booked_in_wrong_reporting_period",
+    "type": "cutoff"
+  }
+]

@@ -1,0 +1,798 @@
+{
+  "compound_scenarios": [],
+  "generator": {
+    "attempt": 0,
+    "config": {
+      "base_currency": "JPY",
+      "clean": null,
+      "clean_rate": 0,
+      "compound_rate": 0.5,
+      "difficulty": "easy",
+      "episode_id": "dev-008",
+      "foreign_currencies": null,
+      "issue_counts": null,
+      "max_issues": 6,
+      "min_issues": 4,
+      "min_ledger_rows": 200,
+      "mutation_weights": {
+        "allocation": 1,
+        "cutoff": 1,
+        "duplicate": 1,
+        "fx": 1
+      },
+      "n_entities": null,
+      "n_invoices": null,
+      "period_start": null,
+      "scenarios": null,
+      "timezone_minutes": null
+    },
+    "plan": {
+      "clean": false,
+      "counts": {
+        "allocation": 0,
+        "cutoff": 2,
+        "duplicate": 3,
+        "fx": 1
+      },
+      "explicit": false,
+      "scenarios": []
+    },
+    "seed": 2008,
+    "traceforge_version": "1.0.0"
+  },
+  "mutations": [
+    {
+      "available_evidence": [
+        [
+          "DOC-76000",
+          "ROW-37859",
+          "ROW-10421"
+        ],
+        [
+          "DOC-76000",
+          "ROW-61847",
+          "ROW-88748"
+        ]
+      ],
+      "causal_description": "The journal of INV-92988 (DOC-76000) was posted twice with identical accounts, amounts and timestamp; the extra posting overstates the ledger by 353438 minor units.",
+      "changed_amount_minor": 353438,
+      "document_ids": [
+        "DOC-76000"
+      ],
+      "issue_id": "ISS-001",
+      "issue_type": "duplicate",
+      "modified_rows": [
+        {
+          "account": "1200",
+          "credit_minor": 0,
+          "currency": "CHF",
+          "debit_minor": 353438,
+          "entity_id": "ENT-86408",
+          "invoice_id": "INV-92988",
+          "payment_id": null,
+          "row_id": "ROW-10421",
+          "timestamp": "2023-07-20T16:23:00+03:00"
+        },
+        {
+          "account": "4000",
+          "credit_minor": 353438,
+          "currency": "CHF",
+          "debit_minor": 0,
+          "entity_id": "ENT-86408",
+          "invoice_id": "INV-92988",
+          "payment_id": null,
+          "row_id": "ROW-88748",
+          "timestamp": "2023-07-20T16:23:00+03:00"
+        }
+      ],
+      "mutation_id": "MUT-001",
+      "root_cause": "journal_posted_twice",
+      "scenario": null,
+      "source_rows": [
+        {
+          "account": "1200",
+          "credit_minor": 0,
+          "currency": "CHF",
+          "debit_minor": 353438,
+          "entity_id": "ENT-86408",
+          "invoice_id": "INV-92988",
+          "payment_id": null,
+          "row_id": "ROW-37859",
+          "timestamp": "2023-07-20T16:23:00+03:00"
+        },
+        {
+          "account": "4000",
+          "credit_minor": 353438,
+          "currency": "CHF",
+          "debit_minor": 0,
+          "entity_id": "ENT-86408",
+          "invoice_id": "INV-92988",
+          "payment_id": null,
+          "row_id": "ROW-61847",
+          "timestamp": "2023-07-20T16:23:00+03:00"
+        }
+      ],
+      "variant": "repost"
+    },
+    {
+      "available_evidence": [
+        [
+          "DOC-72335",
+          "ROW-42401",
+          "ROW-22204"
+        ],
+        [
+          "DOC-72335",
+          "ROW-36061",
+          "ROW-12301"
+        ]
+      ],
+      "causal_description": "The journal of INV-86367 (DOC-72335) was posted twice with identical accounts, amounts and timestamp; the extra posting overstates the ledger by 2430010 minor units.",
+      "changed_amount_minor": 2430010,
+      "document_ids": [
+        "DOC-72335"
+      ],
+      "issue_id": "ISS-002",
+      "issue_type": "duplicate",
+      "modified_rows": [
+        {
+          "account": "1200",
+          "credit_minor": 0,
+          "currency": "KWD",
+          "debit_minor": 2430010,
+          "entity_id": "ENT-79444",
+          "invoice_id": "INV-86367",
+          "payment_id": null,
+          "row_id": "ROW-22204",
+          "timestamp": "2023-08-01T07:19:00+03:00"
+        },
+        {
+          "account": "4000",
+          "credit_minor": 2430010,
+          "currency": "KWD",
+          "debit_minor": 0,
+          "entity_id": "ENT-79444",
+          "invoice_id": "INV-86367",
+          "payment_id": null,
+          "row_id": "ROW-12301",
+          "timestamp": "2023-08-01T07:19:00+03:00"
+        }
+      ],
+      "mutation_id": "MUT-002",
+      "root_cause": "journal_posted_twice",
+      "scenario": null,
+      "source_rows": [
+        {
+          "account": "1200",
+          "credit_minor": 0,
+          "currency": "KWD",
+          "debit_minor": 2430010,
+          "entity_id": "ENT-79444",
+          "invoice_id": "INV-86367",
+          "payment_id": null,
+          "row_id": "ROW-42401",
+          "timestamp": "2023-08-01T07:19:00+03:00"
+        },
+        {
+          "account": "4000",
+          "credit_minor": 2430010,
+          "currency": "KWD",
+          "debit_minor": 0,
+          "entity_id": "ENT-79444",
+          "invoice_id": "INV-86367",
+          "payment_id": null,
+          "row_id": "ROW-36061",
+          "timestamp": "2023-08-01T07:19:00+03:00"
+        }
+      ],
+      "variant": "repost"
+    },
+    {
+      "available_evidence": [
+        [
+          "DOC-94330",
+          "ROW-22281",
+          "ROW-22918"
+        ],
+        [
+          "DOC-94330",
+          "ROW-40980",
+          "ROW-13327"
+        ]
+      ],
+      "causal_description": "The journal of PAY-50830 (DOC-94330) was posted twice with identical accounts, amounts and timestamp; the extra posting overstates the ledger by 6220103 minor units.",
+      "changed_amount_minor": 6220103,
+      "document_ids": [
+        "DOC-94330"
+      ],
+      "issue_id": "ISS-003",
+      "issue_type": "duplicate",
+      "modified_rows": [
+        {
+          "account": "1000",
+          "credit_minor": 0,
+          "currency": "KWD",
+          "debit_minor": 6220103,
+          "entity_id": "ENT-79444",
+          "invoice_id": null,
+          "payment_id": "PAY-50830",
+          "row_id": "ROW-22918",
+          "timestamp": "2023-09-04T22:22:00+03:00"
+        },
+        {
+          "account": "1200",
+          "credit_minor": 6220103,
+          "currency": "KWD",
+          "debit_minor": 0,
+          "entity_id": "ENT-79444",
+          "invoice_id": "INV-54755",
+          "payment_id": "PAY-50830",
+          "row_id": "ROW-13327",
+          "timestamp": "2023-09-04T22:22:00+03:00"
+        }
+      ],
+      "mutation_id": "MUT-003",
+      "root_cause": "journal_posted_twice",
+      "scenario": null,
+      "source_rows": [
+        {
+          "account": "1000",
+          "credit_minor": 0,
+          "currency": "KWD",
+          "debit_minor": 6220103,
+          "entity_id": "ENT-79444",
+          "invoice_id": null,
+          "payment_id": "PAY-50830",
+          "row_id": "ROW-22281",
+          "timestamp": "2023-09-04T22:22:00+03:00"
+        },
+        {
+          "account": "1200",
+          "credit_minor": 6220103,
+          "currency": "KWD",
+          "debit_minor": 0,
+          "entity_id": "ENT-79444",
+          "invoice_id": "INV-54755",
+          "payment_id": "PAY-50830",
+          "row_id": "ROW-40980",
+          "timestamp": "2023-09-04T22:22:00+03:00"
+        }
+      ],
+      "variant": "repost"
+    },
+    {
+      "available_evidence": [
+        [
+          "DOC-54004",
+          "ROW-37855",
+          "FX-2023-09-02-KWD-JPY"
+        ],
+        [
+          "DOC-54004",
+          "ROW-34464",
+          "FX-2023-09-02-KWD-JPY"
+        ]
+      ],
+      "causal_description": "PAY-40827 (KWD) was converted with a wrong FX input: used rate 506.29873297 instead of 488.46959283 (2023-09-02).",
+      "changed_amount_minor": 373308,
+      "document_ids": [
+        "DOC-54004"
+      ],
+      "issue_id": "ISS-004",
+      "issue_type": "fx",
+      "modified_rows": [
+        {
+          "account": "1000",
+          "credit_minor": 0,
+          "currency": "KWD",
+          "debit_minor": 10600905,
+          "entity_id": "ENT-79444",
+          "invoice_id": null,
+          "payment_id": "PAY-40827",
+          "row_id": "ROW-37855",
+          "timestamp": "2023-09-02T21:38:00+03:00"
+        },
+        {
+          "account": "1200",
+          "credit_minor": 10600905,
+          "currency": "KWD",
+          "debit_minor": 0,
+          "entity_id": "ENT-79444",
+          "invoice_id": "INV-17056",
+          "payment_id": "PAY-40827",
+          "row_id": "ROW-34464",
+          "timestamp": "2023-09-02T21:38:00+03:00"
+        }
+      ],
+      "mutation_id": "MUT-004",
+      "root_cause": "wrong_fx_rate_used",
+      "scenario": null,
+      "source_rows": [
+        {
+          "account": "1000",
+          "credit_minor": 0,
+          "currency": "KWD",
+          "debit_minor": 10227597,
+          "entity_id": "ENT-79444",
+          "invoice_id": null,
+          "payment_id": "PAY-40827",
+          "row_id": "ROW-37855",
+          "timestamp": "2023-09-02T21:38:00+03:00"
+        },
+        {
+          "account": "1200",
+          "credit_minor": 10227597,
+          "currency": "KWD",
+          "debit_minor": 0,
+          "entity_id": "ENT-79444",
+          "invoice_id": "INV-17056",
+          "payment_id": "PAY-40827",
+          "row_id": "ROW-34464",
+          "timestamp": "2023-09-02T21:38:00+03:00"
+        }
+      ],
+      "variant": "wrong_rate"
+    },
+    {
+      "available_evidence": [
+        [
+          "DOC-38713",
+          "ROW-76577"
+        ],
+        [
+          "DOC-38713",
+          "ROW-25609"
+        ]
+      ],
+      "causal_description": "PAY-65726 (DOC-38713) is dated 2023-09-04T03:35:00-04:00 (after the period) but its journal was booked at 2023-08-30T02:59:00+03:00 (inside the period), in a different reporting period.",
+      "changed_amount_minor": 12700078,
+      "document_ids": [
+        "DOC-38713"
+      ],
+      "issue_id": "ISS-005",
+      "issue_type": "cutoff",
+      "modified_rows": [
+        {
+          "account": "1000",
+          "credit_minor": 0,
+          "currency": "KWD",
+          "debit_minor": 12700078,
+          "entity_id": "ENT-36709",
+          "invoice_id": null,
+          "payment_id": "PAY-65726",
+          "row_id": "ROW-76577",
+          "timestamp": "2023-08-30T02:59:00+03:00"
+        },
+        {
+          "account": "1200",
+          "credit_minor": 12700078,
+          "currency": "KWD",
+          "debit_minor": 0,
+          "entity_id": "ENT-36709",
+          "invoice_id": "INV-59668",
+          "payment_id": "PAY-65726",
+          "row_id": "ROW-25609",
+          "timestamp": "2023-08-30T02:59:00+03:00"
+        }
+      ],
+      "mutation_id": "MUT-005",
+      "root_cause": "booked_in_wrong_reporting_period",
+      "scenario": null,
+      "source_rows": [
+        {
+          "account": "1000",
+          "credit_minor": 0,
+          "currency": "KWD",
+          "debit_minor": 12700078,
+          "entity_id": "ENT-36709",
+          "invoice_id": null,
+          "payment_id": "PAY-65726",
+          "row_id": "ROW-76577",
+          "timestamp": "2023-09-04T10:35:00+03:00"
+        },
+        {
+          "account": "1200",
+          "credit_minor": 12700078,
+          "currency": "KWD",
+          "debit_minor": 0,
+          "entity_id": "ENT-36709",
+          "invoice_id": "INV-59668",
+          "payment_id": "PAY-65726",
+          "row_id": "ROW-25609",
+          "timestamp": "2023-09-04T10:35:00+03:00"
+        }
+      ],
+      "variant": "period_shift"
+    },
+    {
+      "available_evidence": [
+        [
+          "DOC-40970",
+          "ROW-33574"
+        ],
+        [
+          "DOC-40970",
+          "ROW-32269"
+        ]
+      ],
+      "causal_description": "INV-70678 (DOC-40970) is dated 2023-07-31T14:03:00+03:00 (before the period) but its journal was booked at 2023-08-02T20:31:00+03:00 (inside the period), in a different reporting period.",
+      "changed_amount_minor": 5845833,
+      "document_ids": [
+        "DOC-40970"
+      ],
+      "issue_id": "ISS-006",
+      "issue_type": "cutoff",
+      "modified_rows": [
+        {
+          "account": "1200",
+          "credit_minor": 0,
+          "currency": "KWD",
+          "debit_minor": 5845833,
+          "entity_id": "ENT-79444",
+          "invoice_id": "INV-70678",
+          "payment_id": null,
+          "row_id": "ROW-33574",
+          "timestamp": "2023-08-02T20:31:00+03:00"
+        },
+        {
+          "account": "4000",
+          "credit_minor": 5845833,
+          "currency": "KWD",
+          "debit_minor": 0,
+          "entity_id": "ENT-79444",
+          "invoice_id": "INV-70678",
+          "payment_id": null,
+          "row_id": "ROW-32269",
+          "timestamp": "2023-08-02T20:31:00+03:00"
+        }
+      ],
+      "mutation_id": "MUT-006",
+      "root_cause": "booked_in_wrong_reporting_period",
+      "scenario": null,
+      "source_rows": [
+        {
+          "account": "1200",
+          "credit_minor": 0,
+          "currency": "KWD",
+          "debit_minor": 5845833,
+          "entity_id": "ENT-79444",
+          "invoice_id": "INV-70678",
+          "payment_id": null,
+          "row_id": "ROW-33574",
+          "timestamp": "2023-07-31T14:03:00+03:00"
+        },
+        {
+          "account": "4000",
+          "credit_minor": 5845833,
+          "currency": "KWD",
+          "debit_minor": 0,
+          "entity_id": "ENT-79444",
+          "invoice_id": "INV-70678",
+          "payment_id": null,
+          "row_id": "ROW-32269",
+          "timestamp": "2023-07-31T14:03:00+03:00"
+        }
+      ],
+      "variant": "period_shift"
+    }
+  ],
+  "transformation": {
+    "description_map": {
+      "Audit support": "Training package",
+      "Cloud hosting": "Software subscription",
+      "Consulting services": "Consulting services",
+      "Hardware supply": "Marketing campaign",
+      "Licence renewal": "Hardware supply",
+      "Logistics fee": "Logistics fee",
+      "Maintenance contract": "Maintenance contract",
+      "Marketing campaign": "Audit support",
+      "Software subscription": "Licence renewal",
+      "Training package": "Cloud hosting"
+    },
+    "remap_ids": true,
+    "rename": true,
+    "seed": 8,
+    "shuffle": true
+  },
+  "validation": {
+    "checks": [
+      {
+        "detail": [],
+        "name": "1_clean_baseline_consistent",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "2_public_data_consistent",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "1b_baseline_equals_independent_expected_ledger",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "2b_referential_integrity_and_balances",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "4b_baseline_plus_manifests_equals_public_ledger",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "4c_manifest_causality",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "3_truth_equals_independent_derivation",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "4_mutations_changed_exactly_the_intended_documents",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "5_expected_amounts_exceed_tolerance",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "6_evidence_available_to_agent",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "7_issue_count_bounds",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "8_no_private_markers_in_public",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "9_size_requirements",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "10_affected_ids_exist_in_public_data",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "11_every_evidence_set_reconstructs_its_finding",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "12_clean_decoys_intact_and_not_labeled_as_errors",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "13_financial_totals_change_only_by_declared_anomalies",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "14_every_issue_has_root_cause_and_explanation",
+        "ok": true
+      }
+    ],
+    "ok": true
+  },
+  "world": {
+    "clean_decoys": [
+      "INV-53748",
+      "INV-89692",
+      "INV-69256",
+      "INV-32556",
+      "INV-14330",
+      "INV-56298",
+      "INV-81344",
+      "INV-70785",
+      "INV-67646",
+      "INV-48012",
+      "INV-61262",
+      "INV-23357",
+      "INV-31668",
+      "INV-21255",
+      "INV-72953",
+      "INV-14269",
+      "INV-54615",
+      "INV-54014",
+      "INV-31602",
+      "INV-46422",
+      "INV-54022",
+      "INV-24331",
+      "INV-59668",
+      "INV-63937",
+      "PAY-27694",
+      "PAY-60395",
+      "PAY-67311",
+      "PAY-74039",
+      "PAY-47915",
+      "PAY-83000",
+      "PAY-89565",
+      "PAY-78770",
+      "PAY-36921",
+      "PAY-95421",
+      "PAY-28239",
+      "PAY-13499",
+      "PAY-44664",
+      "PAY-73290",
+      "PAY-95779",
+      "PAY-97609",
+      "PAY-16299",
+      "PAY-33839"
+    ],
+    "company": {
+      "name": "Delta Systems Ltd"
+    },
+    "difficulty": "easy",
+    "document_tags": {
+      "INV-12489": "regular",
+      "INV-14269": "decoy",
+      "INV-14330": "decoy",
+      "INV-17056": "regular",
+      "INV-19301": "regular",
+      "INV-20470": "regular",
+      "INV-21255": "decoy",
+      "INV-22160": "regular",
+      "INV-23357": "decoy",
+      "INV-24331": "decoy",
+      "INV-27746": "regular",
+      "INV-28048": "regular",
+      "INV-31528": "regular",
+      "INV-31602": "decoy",
+      "INV-31668": "decoy",
+      "INV-32556": "decoy",
+      "INV-41455": "regular",
+      "INV-43358": "regular",
+      "INV-45053": "regular",
+      "INV-46422": "decoy",
+      "INV-48012": "decoy",
+      "INV-49808": "regular",
+      "INV-50006": "regular",
+      "INV-53195": "regular",
+      "INV-53748": "decoy",
+      "INV-53978": "regular",
+      "INV-54014": "decoy",
+      "INV-54022": "decoy",
+      "INV-54492": "regular",
+      "INV-54615": "decoy",
+      "INV-54755": "regular",
+      "INV-56298": "decoy",
+      "INV-59668": "decoy",
+      "INV-59847": "regular",
+      "INV-61262": "decoy",
+      "INV-63937": "decoy",
+      "INV-64483": "regular",
+      "INV-65234": "regular",
+      "INV-67111": "regular",
+      "INV-67646": "decoy",
+      "INV-68937": "regular",
+      "INV-69256": "decoy",
+      "INV-70678": "regular",
+      "INV-70785": "decoy",
+      "INV-71006": "regular",
+      "INV-71044": "regular",
+      "INV-72953": "decoy",
+      "INV-76054": "regular",
+      "INV-81344": "decoy",
+      "INV-81734": "regular",
+      "INV-82144": "regular",
+      "INV-82987": "regular",
+      "INV-85057": "regular",
+      "INV-85340": "regular",
+      "INV-86367": "regular",
+      "INV-86931": "regular",
+      "INV-88731": "regular",
+      "INV-89057": "regular",
+      "INV-89692": "decoy",
+      "INV-90307": "regular",
+      "INV-90434": "regular",
+      "INV-90666": "regular",
+      "INV-92988": "regular",
+      "INV-95858": "regular",
+      "INV-96103": "regular",
+      "PAY-13499": "decoy",
+      "PAY-14936": "regular",
+      "PAY-16299": "decoy",
+      "PAY-17361": "regular",
+      "PAY-17874": "regular",
+      "PAY-20502": "regular",
+      "PAY-21244": "regular",
+      "PAY-25002": "regular",
+      "PAY-27675": "regular",
+      "PAY-27694": "decoy",
+      "PAY-28239": "decoy",
+      "PAY-31775": "regular",
+      "PAY-33839": "decoy",
+      "PAY-35047": "regular",
+      "PAY-36921": "decoy",
+      "PAY-38295": "regular",
+      "PAY-40827": "regular",
+      "PAY-44664": "decoy",
+      "PAY-47363": "regular",
+      "PAY-47915": "decoy",
+      "PAY-50830": "regular",
+      "PAY-56914": "regular",
+      "PAY-58446": "regular",
+      "PAY-59359": "regular",
+      "PAY-60395": "decoy",
+      "PAY-64776": "regular",
+      "PAY-65726": "decoy",
+      "PAY-67311": "decoy",
+      "PAY-70627": "regular",
+      "PAY-71831": "regular",
+      "PAY-73290": "decoy",
+      "PAY-74039": "decoy",
+      "PAY-75304": "regular",
+      "PAY-78770": "decoy",
+      "PAY-83000": "decoy",
+      "PAY-84616": "regular",
+      "PAY-88797": "regular",
+      "PAY-89565": "decoy",
+      "PAY-91576": "regular",
+      "PAY-95273": "regular",
+      "PAY-95421": "decoy",
+      "PAY-95779": "decoy",
+      "PAY-97609": "decoy",
+      "PAY-97977": "regular",
+      "PAY-99222": "regular"
+    },
+    "entities": [
+      {
+        "currency": "KWD",
+        "entity_id": "ENT-36709",
+        "name": "Counterparty Granite 1",
+        "tz_minutes": -240
+      },
+      {
+        "currency": "CHF",
+        "entity_id": "ENT-86408",
+        "name": "Counterparty Indigo 2",
+        "tz_minutes": 600
+      },
+      {
+        "currency": "CHF",
+        "entity_id": "ENT-76085",
+        "name": "Counterparty Orion 3",
+        "tz_minutes": -480
+      },
+      {
+        "currency": "KWD",
+        "entity_id": "ENT-77946",
+        "name": "Counterparty Granite 4",
+        "tz_minutes": 0
+      },
+      {
+        "currency": "KWD",
+        "entity_id": "ENT-31755",
+        "name": "Counterparty Helix 5",
+        "tz_minutes": -420
+      },
+      {
+        "currency": "KWD",
+        "entity_id": "ENT-79444",
+        "name": "Counterparty Meridian 6",
+        "tz_minutes": -300
+      },
+      {
+        "currency": "CHF",
+        "entity_id": "ENT-10016",
+        "name": "Counterparty Lumen 7",
+        "tz_minutes": 480
+      }
+    ]
+  }
+}

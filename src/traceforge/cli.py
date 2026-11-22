@@ -51,6 +51,41 @@ def cmd_verify(ns) -> int:
     return 0 if report["ok"] else 1
 
 
+def cmd_pairs(ns) -> int:
+    from .generator.pairs import build_pairs
+    splits = ("train", "dev") if ns.split == "all" else (ns.split,)
+    for sp in splits:
+        r = build_pairs(ns.source, sp, ns.out, ns.seed)
+        print(f"{sp}: {r['pairs']} paired transformations -> {r['out']}")
+    return 0
+
+
+def cmd_paired_eval(ns) -> int:
+    from .runner.episode_runner import AGENT_NAMES
+    from .runner.paired import render, run_paired, write_paired
+    policies = AGENT_NAMES if ns.policy == "all" else (ns.policy,)
+    result = run_paired(ns.source, ns.pairs, ns.split, policies, mode=ns.mode, isolated=ns.isolated, policy_seed=ns.seed)
+    j, c = write_paired(result, ns.out, ns.name)
+    print(render(result))
+    print()
+    print(f"{len(result['rows'])} paired runs -> {j} , {c}")
+    return 0
+
+
+def cmd_generate_eval(ns) -> int:
+    from .generator.pairs import generate_eval
+    res = generate_eval(ns.out, ns.count, ns.secret, not ns.no_pairs)
+    print(f"{res['episodes']} hidden evaluation episodes -> {res['out']}")
+    if "pairs" in res:
+        print(f"{res['pairs']['pairs']} paired transformations -> {res['pairs']['out']}")
+    if ns.secret_out:
+        Path(ns.secret_out).write_text(res["secret"] + "\n", encoding="utf-8")
+        print(f"secret written to {ns.secret_out}  (keep it private; the same secret regenerates the same set)")
+    elif not ns.secret:
+        print(f"SECRET (shown once, store it privately): {res['secret']}")
+    return 0
+
+
 def cmd_audit(ns) -> int:
     from .reporting import audit
     report = audit.run_audit(ns.out, performance=not ns.skip_performance)
@@ -150,6 +185,33 @@ def build_parser() -> argparse.ArgumentParser:
     g.add_argument("--preset", choices=sorted(PRESETS), help="easy|medium|hard|compound")
     g.add_argument("--clean", action="store_true")
     g.set_defaults(fn=cmd_generate)
+
+    pr = sub.add_parser("pairs", help="build the paired (metamorphic) twin of every episode of a split")
+    pr.add_argument("--source", default="datasets")
+    pr.add_argument("--split", choices=("train", "dev", "eval", "all"), default="all")
+    pr.add_argument("--out", default="datasets/pairs")
+    pr.add_argument("--seed", type=int, default=0)
+    pr.set_defaults(fn=cmd_pairs)
+
+    pe = sub.add_parser("paired-eval", help="run policies on originals and their twins; report robustness to re-labelling/re-ordering")
+    pe.add_argument("--source", default="datasets")
+    pe.add_argument("--pairs", default="datasets/pairs")
+    pe.add_argument("--split", default="dev")
+    pe.add_argument("--policy", default="all", choices=("all", "random", "reconciliation", "mark_all", "oracle"))
+    pe.add_argument("--mode", choices=("train", "eval"), default="eval")
+    pe.add_argument("--isolated", action="store_true")
+    pe.add_argument("--seed", type=int, default=0)
+    pe.add_argument("--out", default="reports")
+    pe.add_argument("--name", default="paired_eval")
+    pe.set_defaults(fn=cmd_paired_eval)
+
+    ge = sub.add_parser("generate-eval", help="organizer tool: hidden evaluation episodes from a SECRET (+ their paired twins)")
+    ge.add_argument("--out", default="eval_hidden")
+    ge.add_argument("--count", type=int, default=20)
+    ge.add_argument("--secret", help="organizer secret (default: random 128-bit, printed once)")
+    ge.add_argument("--secret-out", help="write the secret to this file instead of printing it")
+    ge.add_argument("--no-pairs", action="store_true")
+    ge.set_defaults(fn=cmd_generate_eval)
 
     a = sub.add_parser("audit", help="automated audit of architecture, data quality, tells, fuzzing, performance")
     a.add_argument("--out", default="reports")

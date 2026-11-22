@@ -1,0 +1,48 @@
+[
+  {
+    "affected_ids": [
+      "INV-84473"
+    ],
+    "allowed_evidence_sets": [
+      [
+        "DOC-30037",
+        "ROW-85947",
+        "ROW-99777"
+      ],
+      [
+        "DOC-30037",
+        "ROW-44514",
+        "ROW-66414"
+      ]
+    ],
+    "currency": "USD",
+    "expected_amount_minor": 594910,
+    "explanation": "The journal of INV-84473 (DOC-30037) was posted twice with identical accounts, amounts and timestamp; the extra posting overstates the ledger by 594910 minor units. How to see it: the ledger holds two identical postings for INV-84473 while only one source document DOC-30037 exists (compare the anchor lines ROW-99777 and ROW-85947); a legitimate repeat would have its own document id. Expected amount: 594910 USD minor units (currency USD).",
+    "issue_id": "ISS-001",
+    "root_cause": "journal_posted_twice",
+    "type": "duplicate"
+  },
+  {
+    "affected_ids": [
+      "INV-30205"
+    ],
+    "allowed_evidence_sets": [
+      [
+        "DOC-15057",
+        "ROW-10315",
+        "ROW-72097"
+      ],
+      [
+        "DOC-15057",
+        "ROW-57902",
+        "ROW-69983"
+      ]
+    ],
+    "currency": "USD",
+    "expected_amount_minor": 1133618,
+    "explanation": "The journal of INV-30205 (DOC-15057) was posted twice with identical accounts, amounts and timestamp; the extra posting overstates the ledger by 1133618 minor units. How to see it: the ledger holds two identical postings for INV-30205 while only one source document DOC-15057 exists (compare the anchor lines ROW-72097 and ROW-10315); a legitimate repeat would have its own document id. Expected amount: 1133618 USD minor units (currency USD).",
+    "issue_id": "ISS-002",
+    "root_cause": "journal_posted_twice",
+    "type": "duplicate"
+  }
+]

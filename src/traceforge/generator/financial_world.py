@@ -25,9 +25,9 @@ DIFF = {
     "easy":   dict(tz=2, repeat=1, sameamt=1, refunds=1, over=1, recurring=1, split=1, boundary=2,
                    n_inv=(30, 45), n_ent=(5, 7), mix=(55, 65, 75, 85)),
     "medium": dict(tz=4, repeat=2, sameamt=2, refunds=2, over=2, recurring=1, split=1, boundary=3,
-                   n_inv=(45, 80), n_ent=(6, 10), mix=(45, 60, 72, 85)),
+                   n_inv=(38, 62), n_ent=(6, 10), mix=(45, 60, 72, 85)),
     "hard":   dict(tz=6, repeat=3, sameamt=3, refunds=4, over=3, recurring=2, split=2, boundary=4,
-                   n_inv=(70, 130), n_ent=(8, 14), mix=(30, 48, 65, 85)),
+                   n_inv=(36, 46), n_ent=(8, 14), mix=(30, 48, 65, 85)),
 }
 FX_LEAD_DAYS, FX_TAIL_DAYS = 30, 15
 

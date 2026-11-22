@@ -49,20 +49,20 @@
     {
       "available_evidence": [
         [
-          "DOC-0083",
-          "ROW-00168",
-          "ROW-00167"
+          "DOC-0042",
+          "ROW-00084",
+          "ROW-00083"
         ],
         [
-          "DOC-0083",
-          "ROW-00169",
-          "ROW-00170"
+          "DOC-0042",
+          "ROW-00086",
+          "ROW-00085"
         ]
       ],
-      "causal_description": "The journal of INV-0068 (DOC-0083) was posted twice with identical accounts, amounts and timestamp; the extra posting overstates the ledger by 21568 minor units.",
-      "changed_amount_minor": 21568,
+      "causal_description": "The journal of INV-0035 (DOC-0042) was posted twice with identical accounts, amounts and timestamp; the extra posting overstates the ledger by 37567 minor units.",
+      "changed_amount_minor": 37567,
       "document_ids": [
-        "DOC-0083"
+        "DOC-0042"
       ],
       "issue_id": "ISS-001",
       "issue_type": "duplicate",
@@ -71,23 +71,23 @@
           "account": "1200",
           "credit_minor": 0,
           "currency": "SEK",
-          "debit_minor": 21568,
-          "entity_id": "ENT-011",
-          "invoice_id": "INV-0068",
+          "debit_minor": 37567,
+          "entity_id": "ENT-007",
+          "invoice_id": "INV-0035",
           "payment_id": null,
-          "row_id": "ROW-00167",
-          "timestamp": "2025-06-08T12:48:00+01:00"
+          "row_id": "ROW-00083",
+          "timestamp": "2025-06-01T04:46:00+01:00"
         },
         {
           "account": "4000",
-          "credit_minor": 21568,
+          "credit_minor": 37567,
           "currency": "SEK",
           "debit_minor": 0,
-          "entity_id": "ENT-011",
-          "invoice_id": "INV-0068",
+          "entity_id": "ENT-007",
+          "invoice_id": "INV-0035",
           "payment_id": null,
-          "row_id": "ROW-00170",
-          "timestamp": "2025-06-08T12:48:00+01:00"
+          "row_id": "ROW-00085",
+          "timestamp": "2025-06-01T04:46:00+01:00"
         }
       ],
       "mutation_id": "MUT-001",
@@ -98,23 +98,23 @@
           "account": "1200",
           "credit_minor": 0,
           "currency": "SEK",
-          "debit_minor": 21568,
-          "entity_id": "ENT-011",
-          "invoice_id": "INV-0068",
+          "debit_minor": 37567,
+          "entity_id": "ENT-007",
+          "invoice_id": "INV-0035",
           "payment_id": null,
-          "row_id": "ROW-00168",
-          "timestamp": "2025-06-08T12:48:00+01:00"
+          "row_id": "ROW-00084",
+          "timestamp": "2025-06-01T04:46:00+01:00"
         },
         {
           "account": "4000",
-          "credit_minor": 21568,
+          "credit_minor": 37567,
           "currency": "SEK",
           "debit_minor": 0,
-          "entity_id": "ENT-011",
-          "invoice_id": "INV-0068",
+          "entity_id": "ENT-007",
+          "invoice_id": "INV-0035",
           "payment_id": null,
-          "row_id": "ROW-00169",
-          "timestamp": "2025-06-08T12:48:00+01:00"
+          "row_id": "ROW-00086",
+          "timestamp": "2025-06-01T04:46:00+01:00"
         }
       ],
       "variant": "repost"
@@ -122,20 +122,20 @@
     {
       "available_evidence": [
         [
-          "DOC-0140",
-          "ROW-00287",
-          "ROW-00286"
+          "DOC-0067",
+          "ROW-00139",
+          "ROW-00140"
         ],
         [
-          "DOC-0140",
-          "ROW-00289",
-          "ROW-00288"
+          "DOC-0067",
+          "ROW-00142",
+          "ROW-00141"
         ]
       ],
-      "causal_description": "The journal of INV-0099 (DOC-0140) was posted twice with identical accounts, amounts and timestamp; the extra posting overstates the ledger by 22761 minor units.",
-      "changed_amount_minor": 22761,
+      "causal_description": "The journal of INV-0050 (DOC-0067) was posted twice with identical accounts, amounts and timestamp; the extra posting overstates the ledger by 340981 minor units.",
+      "changed_amount_minor": 340981,
       "document_ids": [
-        "DOC-0140"
+        "DOC-0067"
       ],
       "issue_id": "ISS-002",
       "issue_type": "duplicate",
@@ -143,24 +143,24 @@
         {
           "account": "1200",
           "credit_minor": 0,
-          "currency": "EUR",
-          "debit_minor": 22761,
-          "entity_id": "ENT-013",
-          "invoice_id": "INV-0099",
+          "currency": "USD",
+          "debit_minor": 340981,
+          "entity_id": "ENT-012",
+          "invoice_id": "INV-0050",
           "payment_id": null,
-          "row_id": "ROW-00286",
-          "timestamp": "2025-06-17T18:14:00+01:00"
+          "row_id": "ROW-00140",
+          "timestamp": "2025-06-08T00:16:00+01:00"
         },
         {
           "account": "4000",
-          "credit_minor": 22761,
-          "currency": "EUR",
+          "credit_minor": 340981,
+          "currency": "USD",
           "debit_minor": 0,
-          "entity_id": "ENT-013",
-          "invoice_id": "INV-0099",
+          "entity_id": "ENT-012",
+          "invoice_id": "INV-0050",
           "payment_id": null,
-          "row_id": "ROW-00288",
-          "timestamp": "2025-06-17T18:14:00+01:00"
+          "row_id": "ROW-00141",
+          "timestamp": "2025-06-08T00:16:00+01:00"
         }
       ],
       "mutation_id": "MUT-002",
@@ -170,24 +170,24 @@
         {
           "account": "1200",
           "credit_minor": 0,
-          "currency": "EUR",
-          "debit_minor": 22761,
-          "entity_id": "ENT-013",
-          "invoice_id": "INV-0099",
+          "currency": "USD",
+          "debit_minor": 340981,
+          "entity_id": "ENT-012",
+          "invoice_id": "INV-0050",
           "payment_id": null,
-          "row_id": "ROW-00287",
-          "timestamp": "2025-06-17T18:14:00+01:00"
+          "row_id": "ROW-00139",
+          "timestamp": "2025-06-08T00:16:00+01:00"
         },
         {
           "account": "4000",
-          "credit_minor": 22761,
-          "currency": "EUR",
+          "credit_minor": 340981,
+          "currency": "USD",
           "debit_minor": 0,
-          "entity_id": "ENT-013",
-          "invoice_id": "INV-0099",
+          "entity_id": "ENT-012",
+          "invoice_id": "INV-0050",
           "payment_id": null,
-          "row_id": "ROW-00289",
-          "timestamp": "2025-06-17T18:14:00+01:00"
+          "row_id": "ROW-00142",
+          "timestamp": "2025-06-08T00:16:00+01:00"
         }
       ],
       "variant": "repost"
@@ -195,20 +195,20 @@
     {
       "available_evidence": [
         [
-          "DOC-0065",
-          "ROW-00130",
-          "ROW-00131"
+          "DOC-0066",
+          "ROW-00135",
+          "ROW-00136"
         ],
         [
-          "DOC-0065",
-          "ROW-00129",
-          "ROW-00132"
+          "DOC-0066",
+          "ROW-00137",
+          "ROW-00138"
         ]
       ],
-      "causal_description": "The journal of INV-0056 (DOC-0065) was posted twice with identical accounts, amounts and timestamp; the extra posting overstates the ledger by 18661 minor units.",
-      "changed_amount_minor": 18661,
+      "causal_description": "The journal of INV-0049 (DOC-0066) was posted twice with identical accounts, amounts and timestamp; the extra posting overstates the ledger by 19092 minor units.",
+      "changed_amount_minor": 19092,
       "document_ids": [
-        "DOC-0065"
+        "DOC-0066"
       ],
       "issue_id": "ISS-003",
       "issue_type": "duplicate",
@@ -216,24 +216,24 @@
         {
           "account": "1200",
           "credit_minor": 0,
-          "currency": "EUR",
-          "debit_minor": 18661,
-          "entity_id": "ENT-003",
-          "invoice_id": "INV-0056",
+          "currency": "SEK",
+          "debit_minor": 19092,
+          "entity_id": "ENT-007",
+          "invoice_id": "INV-0049",
           "payment_id": null,
-          "row_id": "ROW-00131",
-          "timestamp": "2025-06-03T16:40:00+01:00"
+          "row_id": "ROW-00136",
+          "timestamp": "2025-06-07T22:18:00+01:00"
         },
         {
           "account": "4000",
-          "credit_minor": 18661,
-          "currency": "EUR",
+          "credit_minor": 19092,
+          "currency": "SEK",
           "debit_minor": 0,
-          "entity_id": "ENT-003",
-          "invoice_id": "INV-0056",
+          "entity_id": "ENT-007",
+          "invoice_id": "INV-0049",
           "payment_id": null,
-          "row_id": "ROW-00132",
-          "timestamp": "2025-06-03T16:40:00+01:00"
+          "row_id": "ROW-00138",
+          "timestamp": "2025-06-07T22:18:00+01:00"
         }
       ],
       "mutation_id": "MUT-003",
@@ -243,24 +243,24 @@
         {
           "account": "1200",
           "credit_minor": 0,
-          "currency": "EUR",
-          "debit_minor": 18661,
-          "entity_id": "ENT-003",
-          "invoice_id": "INV-0056",
+          "currency": "SEK",
+          "debit_minor": 19092,
+          "entity_id": "ENT-007",
+          "invoice_id": "INV-0049",
           "payment_id": null,
-          "row_id": "ROW-00130",
-          "timestamp": "2025-06-03T16:40:00+01:00"
+          "row_id": "ROW-00135",
+          "timestamp": "2025-06-07T22:18:00+01:00"
         },
         {
           "account": "4000",
-          "credit_minor": 18661,
-          "currency": "EUR",
+          "credit_minor": 19092,
+          "currency": "SEK",
           "debit_minor": 0,
-          "entity_id": "ENT-003",
-          "invoice_id": "INV-0056",
+          "entity_id": "ENT-007",
+          "invoice_id": "INV-0049",
           "payment_id": null,
-          "row_id": "ROW-00129",
-          "timestamp": "2025-06-03T16:40:00+01:00"
+          "row_id": "ROW-00137",
+          "timestamp": "2025-06-07T22:18:00+01:00"
         }
       ],
       "variant": "repost"
@@ -268,51 +268,51 @@
     {
       "available_evidence": [
         [
-          "ROW-00521",
-          "ROW-00523",
-          "DOC-0191",
-          "DOC-0253"
+          "ROW-00148",
+          "ROW-00149",
+          "DOC-0027",
+          "DOC-0070"
         ],
         [
-          "ROW-00521",
-          "DOC-0191",
-          "DOC-0253"
+          "ROW-00148",
+          "DOC-0027",
+          "DOC-0070"
         ],
         [
-          "ROW-00523",
-          "DOC-0191",
-          "DOC-0253"
+          "ROW-00149",
+          "DOC-0027",
+          "DOC-0070"
         ]
       ],
-      "causal_description": "Only part of the PAY-0099 allocation to INV-0135 was applied; 10689 minor units were left in unapplied receipts.",
-      "changed_amount_minor": 10689,
+      "causal_description": "Only part of the PAY-0018 allocation to INV-0025 was applied; 9888 minor units were left in unapplied receipts.",
+      "changed_amount_minor": 9888,
       "document_ids": [
-        "DOC-0253"
+        "DOC-0070"
       ],
       "issue_id": "ISS-004",
       "issue_type": "allocation",
       "modified_rows": [
         {
           "account": "1200",
-          "credit_minor": 12072,
-          "currency": "EUR",
+          "credit_minor": 27389,
+          "currency": "SEK",
           "debit_minor": 0,
-          "entity_id": "ENT-013",
-          "invoice_id": "INV-0135",
-          "payment_id": "PAY-0099",
-          "row_id": "ROW-00521",
-          "timestamp": "2025-07-09T03:20:00+01:00"
+          "entity_id": "ENT-007",
+          "invoice_id": "INV-0025",
+          "payment_id": "PAY-0018",
+          "row_id": "ROW-00148",
+          "timestamp": "2025-06-09T16:46:00+01:00"
         },
         {
           "account": "2300",
-          "credit_minor": 10689,
-          "currency": "EUR",
+          "credit_minor": 9888,
+          "currency": "SEK",
           "debit_minor": 0,
-          "entity_id": "ENT-013",
+          "entity_id": "ENT-007",
           "invoice_id": null,
-          "payment_id": "PAY-0099",
-          "row_id": "ROW-00523",
-          "timestamp": "2025-07-09T03:20:00+01:00"
+          "payment_id": "PAY-0018",
+          "row_id": "ROW-00149",
+          "timestamp": "2025-06-09T16:46:00+01:00"
         }
       ],
       "mutation_id": "MUT-004",
@@ -321,14 +321,14 @@
       "source_rows": [
         {
           "account": "1200",
-          "credit_minor": 22761,
-          "currency": "EUR",
+          "credit_minor": 37277,
+          "currency": "SEK",
           "debit_minor": 0,
-          "entity_id": "ENT-013",
-          "invoice_id": "INV-0135",
-          "payment_id": "PAY-0099",
-          "row_id": "ROW-00521",
-          "timestamp": "2025-07-09T03:20:00+01:00"
+          "entity_id": "ENT-007",
+          "invoice_id": "INV-0025",
+          "payment_id": "PAY-0018",
+          "row_id": "ROW-00148",
+          "timestamp": "2025-06-09T16:46:00+01:00"
         }
       ],
       "variant": "partial"
@@ -336,98 +336,77 @@
     {
       "available_evidence": [
         [
-          "ROW-00201",
-          "ROW-00199",
-          "DOC-0021",
-          "DOC-0098"
-        ],
-        [
-          "ROW-00201",
-          "DOC-0021",
-          "DOC-0098"
-        ],
-        [
-          "ROW-00199",
-          "DOC-0021",
-          "DOC-0098"
+          "ROW-00119",
+          "DOC-0025",
+          "DOC-0058",
+          "DOC-0115"
         ]
       ],
-      "causal_description": "Only part of the PAY-0022 allocation to INV-0020 was applied; 5257 minor units were left in unapplied receipts.",
-      "changed_amount_minor": 5257,
+      "causal_description": "Allocation of PAY-0012 was applied to INV-0075 instead of INV-0023 (DOC-0058).",
+      "changed_amount_minor": 108541,
       "document_ids": [
-        "DOC-0098"
+        "DOC-0058"
       ],
       "issue_id": "ISS-005",
       "issue_type": "allocation",
       "modified_rows": [
         {
           "account": "1200",
-          "credit_minor": 5631,
-          "currency": "SEK",
+          "credit_minor": 108541,
+          "currency": "EUR",
           "debit_minor": 0,
-          "entity_id": "ENT-011",
-          "invoice_id": "INV-0020",
-          "payment_id": "PAY-0022",
-          "row_id": "ROW-00201",
-          "timestamp": "2025-06-11T15:03:00+01:00"
-        },
-        {
-          "account": "2300",
-          "credit_minor": 5257,
-          "currency": "SEK",
-          "debit_minor": 0,
-          "entity_id": "ENT-011",
-          "invoice_id": null,
-          "payment_id": "PAY-0022",
-          "row_id": "ROW-00199",
-          "timestamp": "2025-06-11T15:03:00+01:00"
+          "entity_id": "ENT-013",
+          "invoice_id": "INV-0075",
+          "payment_id": "PAY-0012",
+          "row_id": "ROW-00119",
+          "timestamp": "2025-06-04T18:24:00+01:00"
         }
       ],
       "mutation_id": "MUT-005",
-      "root_cause": "allocation_partially_applied",
+      "root_cause": "allocation_applied_to_wrong_invoice",
       "scenario": null,
       "source_rows": [
         {
           "account": "1200",
-          "credit_minor": 10888,
-          "currency": "SEK",
+          "credit_minor": 108541,
+          "currency": "EUR",
           "debit_minor": 0,
-          "entity_id": "ENT-011",
-          "invoice_id": "INV-0020",
-          "payment_id": "PAY-0022",
-          "row_id": "ROW-00201",
-          "timestamp": "2025-06-11T15:03:00+01:00"
+          "entity_id": "ENT-013",
+          "invoice_id": "INV-0023",
+          "payment_id": "PAY-0012",
+          "row_id": "ROW-00119",
+          "timestamp": "2025-06-04T18:24:00+01:00"
         }
       ],
-      "variant": "partial"
+      "variant": "wrong_invoice"
     },
     {
       "available_evidence": [
         [
-          "ROW-00449",
-          "DOC-0142",
-          "DOC-0148",
-          "DOC-0219"
+          "ROW-00223",
+          "DOC-0021",
+          "DOC-0073",
+          "DOC-0107"
         ]
       ],
-      "causal_description": "Allocation of PAY-0072 was applied to INV-0107 instead of INV-0101 (DOC-0219).",
-      "changed_amount_minor": 93032,
+      "causal_description": "Allocation of PAY-0037 was applied to INV-0021 instead of INV-0054 (DOC-0107).",
+      "changed_amount_minor": 18825,
       "document_ids": [
-        "DOC-0219"
+        "DOC-0107"
       ],
       "issue_id": "ISS-006",
       "issue_type": "allocation",
       "modified_rows": [
         {
           "account": "1200",
-          "credit_minor": 93032,
-          "currency": "EUR",
+          "credit_minor": 18825,
+          "currency": "SEK",
           "debit_minor": 0,
-          "entity_id": "ENT-013",
-          "invoice_id": "INV-0107",
-          "payment_id": "PAY-0072",
-          "row_id": "ROW-00449",
-          "timestamp": "2025-06-30T14:59:00+01:00"
+          "entity_id": "ENT-006",
+          "invoice_id": "INV-0021",
+          "payment_id": "PAY-0037",
+          "row_id": "ROW-00223",
+          "timestamp": "2025-06-18T10:13:00+01:00"
         }
       ],
       "mutation_id": "MUT-006",
@@ -436,14 +415,14 @@
       "source_rows": [
         {
           "account": "1200",
-          "credit_minor": 93032,
-          "currency": "EUR",
+          "credit_minor": 18825,
+          "currency": "SEK",
           "debit_minor": 0,
-          "entity_id": "ENT-013",
-          "invoice_id": "INV-0101",
-          "payment_id": "PAY-0072",
-          "row_id": "ROW-00449",
-          "timestamp": "2025-06-30T14:59:00+01:00"
+          "entity_id": "ENT-006",
+          "invoice_id": "INV-0054",
+          "payment_id": "PAY-0037",
+          "row_id": "ROW-00223",
+          "timestamp": "2025-06-18T10:13:00+01:00"
         }
       ],
       "variant": "wrong_invoice"
@@ -451,20 +430,20 @@
     {
       "available_evidence": [
         [
-          "DOC-0110",
-          "ROW-00225",
-          "FX-2025-06-13-SEK-EUR"
+          "DOC-0155",
+          "ROW-00323",
+          "FX-2025-07-02-SEK-EUR"
         ],
         [
-          "DOC-0110",
-          "ROW-00224",
-          "FX-2025-06-13-SEK-EUR"
+          "DOC-0155",
+          "ROW-00322",
+          "FX-2025-07-02-SEK-EUR"
         ]
       ],
-      "causal_description": "INV-0084 (SEK) was converted with a wrong FX input: used rate 0.08984127 instead of 0.08854846 (2025-06-13).",
-      "changed_amount_minor": 317,
+      "causal_description": "INV-0095 (SEK) was converted with a wrong FX input: used the rate of 2025-06-30 instead of 2025-07-02.",
+      "changed_amount_minor": 267,
       "document_ids": [
-        "DOC-0110"
+        "DOC-0155"
       ],
       "issue_id": "ISS-007",
       "issue_type": "fx",
@@ -473,71 +452,71 @@
           "account": "1200",
           "credit_minor": 0,
           "currency": "SEK",
-          "debit_minor": 21977,
+          "debit_minor": 27498,
           "entity_id": "ENT-011",
-          "invoice_id": "INV-0084",
+          "invoice_id": "INV-0095",
           "payment_id": null,
-          "row_id": "ROW-00225",
-          "timestamp": "2025-06-13T12:48:00+01:00"
+          "row_id": "ROW-00323",
+          "timestamp": "2025-07-02T19:16:00+01:00"
         },
         {
           "account": "4000",
-          "credit_minor": 21977,
+          "credit_minor": 27498,
           "currency": "SEK",
           "debit_minor": 0,
           "entity_id": "ENT-011",
-          "invoice_id": "INV-0084",
+          "invoice_id": "INV-0095",
           "payment_id": null,
-          "row_id": "ROW-00224",
-          "timestamp": "2025-06-13T12:48:00+01:00"
+          "row_id": "ROW-00322",
+          "timestamp": "2025-07-02T19:16:00+01:00"
         }
       ],
       "mutation_id": "MUT-007",
-      "root_cause": "wrong_fx_rate_used",
+      "root_cause": "fx_rate_of_wrong_date_used",
       "scenario": null,
       "source_rows": [
         {
           "account": "1200",
           "credit_minor": 0,
           "currency": "SEK",
-          "debit_minor": 21660,
+          "debit_minor": 27765,
           "entity_id": "ENT-011",
-          "invoice_id": "INV-0084",
+          "invoice_id": "INV-0095",
           "payment_id": null,
-          "row_id": "ROW-00225",
-          "timestamp": "2025-06-13T12:48:00+01:00"
+          "row_id": "ROW-00323",
+          "timestamp": "2025-07-02T19:16:00+01:00"
         },
         {
           "account": "4000",
-          "credit_minor": 21660,
+          "credit_minor": 27765,
           "currency": "SEK",
           "debit_minor": 0,
           "entity_id": "ENT-011",
-          "invoice_id": "INV-0084",
+          "invoice_id": "INV-0095",
           "payment_id": null,
-          "row_id": "ROW-00224",
-          "timestamp": "2025-06-13T12:48:00+01:00"
+          "row_id": "ROW-00322",
+          "timestamp": "2025-07-02T19:16:00+01:00"
         }
       ],
-      "variant": "wrong_rate"
+      "variant": "wrong_date"
     },
     {
       "available_evidence": [
         [
-          "DOC-0135",
-          "ROW-00276",
-          "FX-2025-06-17-SEK-EUR"
+          "DOC-0027",
+          "ROW-00054",
+          "FX-2025-05-28-SEK-EUR"
         ],
         [
-          "DOC-0135",
-          "ROW-00275",
-          "FX-2025-06-17-SEK-EUR"
+          "DOC-0027",
+          "ROW-00053",
+          "FX-2025-05-28-SEK-EUR"
         ]
       ],
-      "causal_description": "INV-0096 (SEK) was converted with a wrong FX input: used the rate of 2025-06-15 instead of 2025-06-17.",
-      "changed_amount_minor": 147,
+      "causal_description": "INV-0025 (SEK) was converted with a wrong FX input: used rate 0.08937431 instead of 0.09005876 (2025-05-28).",
+      "changed_amount_minor": 288,
       "document_ids": [
-        "DOC-0135"
+        "DOC-0027"
       ],
       "issue_id": "ISS-008",
       "issue_type": "fx",
@@ -546,71 +525,71 @@
           "account": "1200",
           "credit_minor": 0,
           "currency": "SEK",
-          "debit_minor": 20981,
-          "entity_id": "ENT-001",
-          "invoice_id": "INV-0096",
+          "debit_minor": 37616,
+          "entity_id": "ENT-007",
+          "invoice_id": "INV-0025",
           "payment_id": null,
-          "row_id": "ROW-00276",
-          "timestamp": "2025-06-17T12:14:00+01:00"
+          "row_id": "ROW-00054",
+          "timestamp": "2025-05-28T04:46:00+01:00"
         },
         {
           "account": "4000",
-          "credit_minor": 20981,
+          "credit_minor": 37616,
           "currency": "SEK",
           "debit_minor": 0,
-          "entity_id": "ENT-001",
-          "invoice_id": "INV-0096",
+          "entity_id": "ENT-007",
+          "invoice_id": "INV-0025",
           "payment_id": null,
-          "row_id": "ROW-00275",
-          "timestamp": "2025-06-17T12:14:00+01:00"
+          "row_id": "ROW-00053",
+          "timestamp": "2025-05-28T04:46:00+01:00"
         }
       ],
       "mutation_id": "MUT-008",
-      "root_cause": "fx_rate_of_wrong_date_used",
+      "root_cause": "wrong_fx_rate_used",
       "scenario": null,
       "source_rows": [
         {
           "account": "1200",
           "credit_minor": 0,
           "currency": "SEK",
-          "debit_minor": 21128,
-          "entity_id": "ENT-001",
-          "invoice_id": "INV-0096",
+          "debit_minor": 37904,
+          "entity_id": "ENT-007",
+          "invoice_id": "INV-0025",
           "payment_id": null,
-          "row_id": "ROW-00276",
-          "timestamp": "2025-06-17T12:14:00+01:00"
+          "row_id": "ROW-00054",
+          "timestamp": "2025-05-28T04:46:00+01:00"
         },
         {
           "account": "4000",
-          "credit_minor": 21128,
+          "credit_minor": 37904,
           "currency": "SEK",
           "debit_minor": 0,
-          "entity_id": "ENT-001",
-          "invoice_id": "INV-0096",
+          "entity_id": "ENT-007",
+          "invoice_id": "INV-0025",
           "payment_id": null,
-          "row_id": "ROW-00275",
-          "timestamp": "2025-06-17T12:14:00+01:00"
+          "row_id": "ROW-00053",
+          "timestamp": "2025-05-28T04:46:00+01:00"
         }
       ],
-      "variant": "wrong_date"
+      "variant": "wrong_rate"
     },
     {
       "available_evidence": [
         [
-          "DOC-0028",
-          "ROW-00055",
-          "FX-2025-05-25-SEK-EUR"
+          "DOC-0075",
+          "ROW-00159",
+          "FX-2025-06-10-JPY-EUR"
         ],
         [
-          "DOC-0028",
-          "ROW-00056",
-          "FX-2025-05-25-SEK-EUR"
+          "DOC-0075",
+          "ROW-00158",
+          "FX-2025-06-10-JPY-EUR"
         ]
       ],
-      "causal_description": "INV-0027 (SEK) was converted with a wrong FX input: used rate 0.08996684 instead of 0.09065582 (2025-05-25).",
-      "changed_amount_minor": 88,
+      "causal_description": "INV-0055 (JPY) was converted with a wrong FX input: used rate 0.00615251 instead of 0.00619027 (2025-06-10).",
+      "changed_amount_minor": 880,
       "document_ids": [
-        "DOC-0028"
+        "DOC-0075"
       ],
       "issue_id": "ISS-009",
       "issue_type": "fx",
@@ -618,24 +597,24 @@
         {
           "account": "1200",
           "credit_minor": 0,
-          "currency": "SEK",
-          "debit_minor": 11459,
-          "entity_id": "ENT-006",
-          "invoice_id": "INV-0027",
+          "currency": "JPY",
+          "debit_minor": 143467,
+          "entity_id": "ENT-008",
+          "invoice_id": "INV-0055",
           "payment_id": null,
-          "row_id": "ROW-00055",
-          "timestamp": "2025-05-25T05:24:00+01:00"
+          "row_id": "ROW-00159",
+          "timestamp": "2025-06-10T20:31:00+01:00"
         },
         {
           "account": "4000",
-          "credit_minor": 11459,
-          "currency": "SEK",
+          "credit_minor": 143467,
+          "currency": "JPY",
           "debit_minor": 0,
-          "entity_id": "ENT-006",
-          "invoice_id": "INV-0027",
+          "entity_id": "ENT-008",
+          "invoice_id": "INV-0055",
           "payment_id": null,
-          "row_id": "ROW-00056",
-          "timestamp": "2025-05-25T05:24:00+01:00"
+          "row_id": "ROW-00158",
+          "timestamp": "2025-06-10T20:31:00+01:00"
         }
       ],
       "mutation_id": "MUT-009",
@@ -645,24 +624,24 @@
         {
           "account": "1200",
           "credit_minor": 0,
-          "currency": "SEK",
-          "debit_minor": 11547,
-          "entity_id": "ENT-006",
-          "invoice_id": "INV-0027",
+          "currency": "JPY",
+          "debit_minor": 144347,
+          "entity_id": "ENT-008",
+          "invoice_id": "INV-0055",
           "payment_id": null,
-          "row_id": "ROW-00055",
-          "timestamp": "2025-05-25T05:24:00+01:00"
+          "row_id": "ROW-00159",
+          "timestamp": "2025-06-10T20:31:00+01:00"
         },
         {
           "account": "4000",
-          "credit_minor": 11547,
-          "currency": "SEK",
+          "credit_minor": 144347,
+          "currency": "JPY",
           "debit_minor": 0,
-          "entity_id": "ENT-006",
-          "invoice_id": "INV-0027",
+          "entity_id": "ENT-008",
+          "invoice_id": "INV-0055",
           "payment_id": null,
-          "row_id": "ROW-00056",
-          "timestamp": "2025-05-25T05:24:00+01:00"
+          "row_id": "ROW-00158",
+          "timestamp": "2025-06-10T20:31:00+01:00"
         }
       ],
       "variant": "wrong_rate"
@@ -670,18 +649,18 @@
     {
       "available_evidence": [
         [
-          "DOC-0063",
-          "ROW-00103"
+          "DOC-0034",
+          "ROW-00078"
         ],
         [
-          "DOC-0063",
-          "ROW-00104"
+          "DOC-0034",
+          "ROW-00077"
         ]
       ],
-      "causal_description": "INV-0054 (DOC-0063) is dated 2025-06-03T12:32:00+01:00 (inside the period) but its journal was booked at 2025-05-31T21:32:00+01:00 (before the period), in a different reporting period.",
-      "changed_amount_minor": 341035,
+      "causal_description": "INV-0032 (DOC-0034) is dated 2025-05-31T08:14:00+01:00 (before the period) but its journal was booked at 2025-06-01T02:30:00+01:00 (inside the period), in a different reporting period.",
+      "changed_amount_minor": 18001,
       "document_ids": [
-        "DOC-0063"
+        "DOC-0034"
       ],
       "issue_id": "ISS-010",
       "issue_type": "cutoff",
@@ -689,24 +668,24 @@
         {
           "account": "1200",
           "credit_minor": 0,
-          "currency": "JPY",
-          "debit_minor": 341035,
-          "entity_id": "ENT-008",
-          "invoice_id": "INV-0054",
+          "currency": "SEK",
+          "debit_minor": 18001,
+          "entity_id": "ENT-007",
+          "invoice_id": "INV-0032",
           "payment_id": null,
-          "row_id": "ROW-00103",
-          "timestamp": "2025-05-31T21:32:00+01:00"
+          "row_id": "ROW-00078",
+          "timestamp": "2025-06-01T02:30:00+01:00"
         },
         {
           "account": "4000",
-          "credit_minor": 341035,
-          "currency": "JPY",
+          "credit_minor": 18001,
+          "currency": "SEK",
           "debit_minor": 0,
-          "entity_id": "ENT-008",
-          "invoice_id": "INV-0054",
+          "entity_id": "ENT-007",
+          "invoice_id": "INV-0032",
           "payment_id": null,
-          "row_id": "ROW-00104",
-          "timestamp": "2025-05-31T21:32:00+01:00"
+          "row_id": "ROW-00077",
+          "timestamp": "2025-06-01T02:30:00+01:00"
         }
       ],
       "mutation_id": "MUT-010",
@@ -716,24 +695,24 @@
         {
           "account": "1200",
           "credit_minor": 0,
-          "currency": "JPY",
-          "debit_minor": 341035,
-          "entity_id": "ENT-008",
-          "invoice_id": "INV-0054",
+          "currency": "SEK",
+          "debit_minor": 18001,
+          "entity_id": "ENT-007",
+          "invoice_id": "INV-0032",
           "payment_id": null,
-          "row_id": "ROW-00103",
-          "timestamp": "2025-06-03T12:32:00+01:00"
+          "row_id": "ROW-00078",
+          "timestamp": "2025-05-31T08:14:00+01:00"
         },
         {
           "account": "4000",
-          "credit_minor": 341035,
-          "currency": "JPY",
+          "credit_minor": 18001,
+          "currency": "SEK",
           "debit_minor": 0,
-          "entity_id": "ENT-008",
-          "invoice_id": "INV-0054",
+          "entity_id": "ENT-007",
+          "invoice_id": "INV-0032",
           "payment_id": null,
-          "row_id": "ROW-00104",
-          "timestamp": "2025-06-03T12:32:00+01:00"
+          "row_id": "ROW-00077",
+          "timestamp": "2025-05-31T08:14:00+01:00"
         }
       ],
       "variant": "period_shift"
@@ -741,18 +720,18 @@
     {
       "available_evidence": [
         [
-          "DOC-0203",
-          "ROW-00459"
+          "DOC-0035",
+          "ROW-00071"
         ],
         [
-          "DOC-0203",
-          "ROW-00458"
+          "DOC-0035",
+          "ROW-00072"
         ]
       ],
-      "causal_description": "INV-0139 (DOC-0203) is dated 2025-06-29T00:05:00+01:00 (inside the period) but its journal was booked at 2025-07-01T00:38:00+01:00 (after the period), in a different reporting period.",
-      "changed_amount_minor": 2578,
+      "causal_description": "INV-0033 (DOC-0035) is dated 2025-05-31T19:13:00+01:00 (before the period) but its journal was booked at 2025-06-01T01:18:00+01:00 (inside the period), in a different reporting period.",
+      "changed_amount_minor": 307605,
       "document_ids": [
-        "DOC-0203"
+        "DOC-0035"
       ],
       "issue_id": "ISS-011",
       "issue_type": "cutoff",
@@ -760,24 +739,24 @@
         {
           "account": "1200",
           "credit_minor": 0,
-          "currency": "SEK",
-          "debit_minor": 2578,
-          "entity_id": "ENT-006",
-          "invoice_id": "INV-0139",
+          "currency": "EUR",
+          "debit_minor": 307605,
+          "entity_id": "ENT-013",
+          "invoice_id": "INV-0033",
           "payment_id": null,
-          "row_id": "ROW-00459",
-          "timestamp": "2025-07-01T00:38:00+01:00"
+          "row_id": "ROW-00071",
+          "timestamp": "2025-06-01T01:18:00+01:00"
         },
         {
           "account": "4000",
-          "credit_minor": 2578,
-          "currency": "SEK",
+          "credit_minor": 307605,
+          "currency": "EUR",
           "debit_minor": 0,
-          "entity_id": "ENT-006",
-          "invoice_id": "INV-0139",
+          "entity_id": "ENT-013",
+          "invoice_id": "INV-0033",
           "payment_id": null,
-          "row_id": "ROW-00458",
-          "timestamp": "2025-07-01T00:38:00+01:00"
+          "row_id": "ROW-00072",
+          "timestamp": "2025-06-01T01:18:00+01:00"
         }
       ],
       "mutation_id": "MUT-011",
@@ -787,24 +766,24 @@
         {
           "account": "1200",
           "credit_minor": 0,
-          "currency": "SEK",
-          "debit_minor": 2578,
-          "entity_id": "ENT-006",
-          "invoice_id": "INV-0139",
+          "currency": "EUR",
+          "debit_minor": 307605,
+          "entity_id": "ENT-013",
+          "invoice_id": "INV-0033",
           "payment_id": null,
-          "row_id": "ROW-00459",
-          "timestamp": "2025-06-29T00:05:00+01:00"
+          "row_id": "ROW-00071",
+          "timestamp": "2025-05-31T19:13:00+01:00"
         },
         {
           "account": "4000",
-          "credit_minor": 2578,
-          "currency": "SEK",
+          "credit_minor": 307605,
+          "currency": "EUR",
           "debit_minor": 0,
-          "entity_id": "ENT-006",
-          "invoice_id": "INV-0139",
+          "entity_id": "ENT-013",
+          "invoice_id": "INV-0033",
           "payment_id": null,
-          "row_id": "ROW-00458",
-          "timestamp": "2025-06-29T00:05:00+01:00"
+          "row_id": "ROW-00072",
+          "timestamp": "2025-05-31T19:13:00+01:00"
         }
       ],
       "variant": "period_shift"
@@ -812,58 +791,43 @@
     {
       "available_evidence": [
         [
-          "DOC-0229",
-          "ROW-00456"
+          "DOC-0032",
+          "ROW-00076"
         ],
         [
-          "DOC-0229",
-          "ROW-00457"
-        ],
-        [
-          "DOC-0229",
-          "ROW-00455"
+          "DOC-0032",
+          "ROW-00074"
         ]
       ],
-      "causal_description": "PAY-0079 (DOC-0229) is dated 2025-07-02T00:28:00+02:00 (after the period) but its journal was booked at 2025-06-30T23:02:00+01:00 (inside the period), in a different reporting period.",
-      "changed_amount_minor": 9591,
+      "causal_description": "INV-0030 (DOC-0032) is dated 2025-05-31T04:09:00+01:00 (before the period) but its journal was booked at 2025-06-01T01:52:00+01:00 (inside the period), in a different reporting period.",
+      "changed_amount_minor": 154190,
       "document_ids": [
-        "DOC-0229"
+        "DOC-0032"
       ],
       "issue_id": "ISS-012",
       "issue_type": "cutoff",
       "modified_rows": [
         {
-          "account": "1000",
-          "credit_minor": 0,
-          "currency": "SEK",
-          "debit_minor": 9591,
-          "entity_id": "ENT-006",
-          "invoice_id": null,
-          "payment_id": "PAY-0079",
-          "row_id": "ROW-00456",
-          "timestamp": "2025-06-30T23:02:00+01:00"
-        },
-        {
           "account": "1200",
-          "credit_minor": 9496,
-          "currency": "SEK",
-          "debit_minor": 0,
-          "entity_id": "ENT-006",
-          "invoice_id": "INV-0108",
-          "payment_id": "PAY-0079",
-          "row_id": "ROW-00457",
-          "timestamp": "2025-06-30T23:02:00+01:00"
+          "credit_minor": 0,
+          "currency": "CAD",
+          "debit_minor": 154190,
+          "entity_id": "ENT-009",
+          "invoice_id": "INV-0030",
+          "payment_id": null,
+          "row_id": "ROW-00076",
+          "timestamp": "2025-06-01T01:52:00+01:00"
         },
         {
-          "account": "2300",
-          "credit_minor": 95,
-          "currency": "SEK",
+          "account": "4000",
+          "credit_minor": 154190,
+          "currency": "CAD",
           "debit_minor": 0,
-          "entity_id": "ENT-006",
-          "invoice_id": null,
-          "payment_id": "PAY-0079",
-          "row_id": "ROW-00455",
-          "timestamp": "2025-06-30T23:02:00+01:00"
+          "entity_id": "ENT-009",
+          "invoice_id": "INV-0030",
+          "payment_id": null,
+          "row_id": "ROW-00074",
+          "timestamp": "2025-06-01T01:52:00+01:00"
         }
       ],
       "mutation_id": "MUT-012",
@@ -871,37 +835,26 @@
       "scenario": null,
       "source_rows": [
         {
-          "account": "1000",
-          "credit_minor": 0,
-          "currency": "SEK",
-          "debit_minor": 9591,
-          "entity_id": "ENT-006",
-          "invoice_id": null,
-          "payment_id": "PAY-0079",
-          "row_id": "ROW-00456",
-          "timestamp": "2025-07-01T23:28:00+01:00"
-        },
-        {
           "account": "1200",
-          "credit_minor": 9496,
-          "currency": "SEK",
-          "debit_minor": 0,
-          "entity_id": "ENT-006",
-          "invoice_id": "INV-0108",
-          "payment_id": "PAY-0079",
-          "row_id": "ROW-00457",
-          "timestamp": "2025-07-01T23:28:00+01:00"
+          "credit_minor": 0,
+          "currency": "CAD",
+          "debit_minor": 154190,
+          "entity_id": "ENT-009",
+          "invoice_id": "INV-0030",
+          "payment_id": null,
+          "row_id": "ROW-00076",
+          "timestamp": "2025-05-31T04:09:00+01:00"
         },
         {
-          "account": "2300",
-          "credit_minor": 95,
-          "currency": "SEK",
+          "account": "4000",
+          "credit_minor": 154190,
+          "currency": "CAD",
           "debit_minor": 0,
-          "entity_id": "ENT-006",
-          "invoice_id": null,
-          "payment_id": "PAY-0079",
-          "row_id": "ROW-00455",
-          "timestamp": "2025-07-01T23:28:00+01:00"
+          "entity_id": "ENT-009",
+          "invoice_id": "INV-0030",
+          "payment_id": null,
+          "row_id": "ROW-00074",
+          "timestamp": "2025-05-31T04:09:00+01:00"
         }
       ],
       "variant": "period_shift"
@@ -1004,70 +957,75 @@
   },
   "world": {
     "clean_decoys": [
-      "INV-0016",
+      "INV-0006",
+      "INV-0009",
+      "INV-0010",
+      "INV-0017",
+      "INV-0019",
+      "INV-0022",
       "INV-0023",
-      "INV-0030",
-      "INV-0039",
+      "INV-0024",
+      "INV-0026",
+      "INV-0034",
       "INV-0040",
-      "INV-0041",
-      "INV-0046",
-      "INV-0064",
-      "INV-0067",
+      "INV-0048",
+      "INV-0051",
+      "INV-0052",
+      "INV-0053",
+      "INV-0054",
+      "INV-0056",
+      "INV-0057",
+      "INV-0058",
+      "INV-0060",
+      "INV-0062",
+      "INV-0063",
+      "INV-0065",
+      "INV-0066",
+      "INV-0068",
       "INV-0069",
-      "INV-0071",
+      "INV-0070",
+      "INV-0072",
+      "INV-0073",
+      "INV-0074",
       "INV-0076",
+      "INV-0077",
       "INV-0080",
-      "INV-0083",
-      "INV-0085",
-      "INV-0088",
-      "INV-0089",
-      "INV-0098",
-      "INV-0100",
-      "INV-0101",
-      "INV-0102",
-      "INV-0104",
-      "INV-0108",
-      "INV-0110",
-      "INV-0116",
-      "INV-0118",
-      "INV-0120",
-      "INV-0127",
-      "INV-0128",
-      "INV-0135",
-      "INV-0140",
-      "PAY-0006",
+      "PAY-0003",
+      "PAY-0004",
+      "PAY-0005",
       "PAY-0007",
-      "PAY-0012",
-      "PAY-0013",
-      "PAY-0014",
-      "PAY-0016",
-      "PAY-0017",
-      "PAY-0018",
+      "PAY-0008",
+      "PAY-0010",
+      "PAY-0011",
+      "PAY-0015",
       "PAY-0020",
-      "PAY-0026",
+      "PAY-0023",
+      "PAY-0024",
+      "PAY-0025",
       "PAY-0027",
       "PAY-0028",
-      "PAY-0029",
-      "PAY-0031",
-      "PAY-0034",
+      "PAY-0033",
       "PAY-0035",
+      "PAY-0036",
+      "PAY-0038",
+      "PAY-0039",
       "PAY-0040",
-      "PAY-0043",
-      "PAY-0046",
+      "PAY-0042",
+      "PAY-0044",
+      "PAY-0045",
       "PAY-0047",
-      "PAY-0050",
+      "PAY-0048",
+      "PAY-0051",
       "PAY-0053",
+      "PAY-0054",
+      "PAY-0055",
+      "PAY-0056",
       "PAY-0057",
-      "PAY-0058",
-      "PAY-0059",
-      "PAY-0068",
-      "PAY-0071",
-      "PAY-0074",
-      "PAY-0075",
-      "PAY-0076",
-      "PAY-0083",
-      "PAY-0086",
-      "PAY-0089"
+      "PAY-0060",
+      "PAY-0061",
+      "PAY-0062",
+      "PAY-0063",
+      "PAY-0065"
     ],
     "company": {
       "name": "Falcon Trading Ltd"
@@ -1079,254 +1037,169 @@
       "INV-0003": "regular",
       "INV-0004": "regular",
       "INV-0005": "regular",
-      "INV-0006": "regular",
+      "INV-0006": "decoy",
       "INV-0007": "regular",
       "INV-0008": "regular",
-      "INV-0009": "regular",
-      "INV-0010": "regular",
+      "INV-0009": "decoy",
+      "INV-0010": "decoy",
       "INV-0011": "regular",
       "INV-0012": "regular",
       "INV-0013": "regular",
       "INV-0014": "regular",
       "INV-0015": "regular",
-      "INV-0016": "decoy",
-      "INV-0017": "regular",
+      "INV-0016": "regular",
+      "INV-0017": "decoy",
       "INV-0018": "regular",
-      "INV-0019": "regular",
+      "INV-0019": "decoy",
       "INV-0020": "regular",
       "INV-0021": "regular",
-      "INV-0022": "regular",
+      "INV-0022": "decoy",
       "INV-0023": "decoy",
-      "INV-0024": "regular",
-      "INV-0025": "regular",
-      "INV-0026": "regular",
+      "INV-0024": "decoy",
+      "INV-0025": "decoy",
+      "INV-0026": "decoy",
       "INV-0027": "regular",
       "INV-0028": "regular",
       "INV-0029": "regular",
-      "INV-0030": "decoy",
+      "INV-0030": "regular",
       "INV-0031": "regular",
       "INV-0032": "regular",
       "INV-0033": "regular",
-      "INV-0034": "regular",
-      "INV-0035": "regular",
+      "INV-0034": "decoy",
+      "INV-0035": "decoy",
       "INV-0036": "regular",
       "INV-0037": "regular",
       "INV-0038": "regular",
-      "INV-0039": "decoy",
+      "INV-0039": "regular",
       "INV-0040": "decoy",
-      "INV-0041": "decoy",
+      "INV-0041": "regular",
       "INV-0042": "regular",
       "INV-0043": "regular",
       "INV-0044": "regular",
       "INV-0045": "regular",
-      "INV-0046": "decoy",
+      "INV-0046": "regular",
       "INV-0047": "regular",
-      "INV-0048": "regular",
-      "INV-0049": "regular",
-      "INV-0050": "regular",
-      "INV-0051": "regular",
-      "INV-0052": "regular",
-      "INV-0053": "regular",
+      "INV-0048": "decoy",
+      "INV-0049": "decoy",
+      "INV-0050": "decoy",
+      "INV-0051": "decoy",
+      "INV-0052": "decoy",
+      "INV-0053": "decoy",
       "INV-0054": "decoy",
-      "INV-0055": "regular",
+      "INV-0055": "decoy",
       "INV-0056": "decoy",
-      "INV-0057": "regular",
-      "INV-0058": "regular",
+      "INV-0057": "decoy",
+      "INV-0058": "decoy",
       "INV-0059": "regular",
-      "INV-0060": "regular",
+      "INV-0060": "decoy",
       "INV-0061": "regular",
-      "INV-0062": "regular",
-      "INV-0063": "regular",
-      "INV-0064": "decoy",
-      "INV-0065": "regular",
-      "INV-0066": "regular",
-      "INV-0067": "decoy",
+      "INV-0062": "decoy",
+      "INV-0063": "decoy",
+      "INV-0064": "regular",
+      "INV-0065": "decoy",
+      "INV-0066": "decoy",
+      "INV-0067": "regular",
       "INV-0068": "decoy",
       "INV-0069": "decoy",
-      "INV-0070": "regular",
-      "INV-0071": "decoy",
-      "INV-0072": "regular",
-      "INV-0073": "regular",
-      "INV-0074": "regular",
+      "INV-0070": "decoy",
+      "INV-0071": "regular",
+      "INV-0072": "decoy",
+      "INV-0073": "decoy",
+      "INV-0074": "decoy",
       "INV-0075": "regular",
       "INV-0076": "decoy",
-      "INV-0077": "regular",
+      "INV-0077": "decoy",
       "INV-0078": "regular",
       "INV-0079": "regular",
       "INV-0080": "decoy",
       "INV-0081": "regular",
       "INV-0082": "regular",
-      "INV-0083": "decoy",
-      "INV-0084": "decoy",
-      "INV-0085": "decoy",
+      "INV-0083": "regular",
+      "INV-0084": "regular",
+      "INV-0085": "regular",
       "INV-0086": "regular",
       "INV-0087": "regular",
-      "INV-0088": "decoy",
-      "INV-0089": "decoy",
+      "INV-0088": "regular",
+      "INV-0089": "regular",
       "INV-0090": "regular",
       "INV-0091": "regular",
       "INV-0092": "regular",
       "INV-0093": "regular",
       "INV-0094": "regular",
       "INV-0095": "regular",
-      "INV-0096": "decoy",
+      "INV-0096": "regular",
       "INV-0097": "regular",
-      "INV-0098": "decoy",
-      "INV-0099": "decoy",
-      "INV-0100": "decoy",
-      "INV-0101": "decoy",
-      "INV-0102": "decoy",
-      "INV-0103": "regular",
-      "INV-0104": "decoy",
-      "INV-0105": "regular",
-      "INV-0106": "regular",
-      "INV-0107": "regular",
-      "INV-0108": "decoy",
-      "INV-0109": "regular",
-      "INV-0110": "decoy",
-      "INV-0111": "regular",
-      "INV-0112": "regular",
-      "INV-0113": "regular",
-      "INV-0114": "regular",
-      "INV-0115": "regular",
-      "INV-0116": "decoy",
-      "INV-0117": "regular",
-      "INV-0118": "decoy",
-      "INV-0119": "regular",
-      "INV-0120": "decoy",
-      "INV-0121": "regular",
-      "INV-0122": "regular",
-      "INV-0123": "regular",
-      "INV-0124": "regular",
-      "INV-0125": "regular",
-      "INV-0126": "regular",
-      "INV-0127": "decoy",
-      "INV-0128": "decoy",
-      "INV-0129": "regular",
-      "INV-0130": "regular",
-      "INV-0131": "regular",
-      "INV-0132": "regular",
-      "INV-0133": "regular",
-      "INV-0134": "regular",
-      "INV-0135": "decoy",
-      "INV-0136": "regular",
-      "INV-0137": "regular",
-      "INV-0138": "regular",
-      "INV-0139": "regular",
-      "INV-0140": "decoy",
-      "INV-0141": "regular",
-      "INV-0142": "regular",
-      "INV-0143": "regular",
-      "INV-0144": "regular",
-      "INV-0145": "regular",
-      "INV-0146": "regular",
-      "INV-0147": "regular",
-      "INV-0148": "regular",
-      "INV-0149": "regular",
-      "INV-0150": "regular",
-      "INV-0151": "regular",
-      "INV-0152": "regular",
-      "INV-0153": "regular",
-      "INV-0154": "regular",
       "PAY-0001": "regular",
       "PAY-0002": "regular",
-      "PAY-0003": "regular",
-      "PAY-0004": "regular",
-      "PAY-0005": "regular",
-      "PAY-0006": "decoy",
+      "PAY-0003": "decoy",
+      "PAY-0004": "decoy",
+      "PAY-0005": "decoy",
+      "PAY-0006": "regular",
       "PAY-0007": "decoy",
-      "PAY-0008": "regular",
+      "PAY-0008": "decoy",
       "PAY-0009": "regular",
-      "PAY-0010": "regular",
-      "PAY-0011": "regular",
+      "PAY-0010": "decoy",
+      "PAY-0011": "decoy",
       "PAY-0012": "decoy",
-      "PAY-0013": "decoy",
-      "PAY-0014": "decoy",
-      "PAY-0015": "regular",
-      "PAY-0016": "decoy",
-      "PAY-0017": "decoy",
+      "PAY-0013": "regular",
+      "PAY-0014": "regular",
+      "PAY-0015": "decoy",
+      "PAY-0016": "regular",
+      "PAY-0017": "regular",
       "PAY-0018": "decoy",
       "PAY-0019": "regular",
       "PAY-0020": "decoy",
       "PAY-0021": "regular",
       "PAY-0022": "regular",
-      "PAY-0023": "regular",
-      "PAY-0024": "regular",
-      "PAY-0025": "regular",
-      "PAY-0026": "decoy",
+      "PAY-0023": "decoy",
+      "PAY-0024": "decoy",
+      "PAY-0025": "decoy",
+      "PAY-0026": "regular",
       "PAY-0027": "decoy",
       "PAY-0028": "decoy",
-      "PAY-0029": "decoy",
+      "PAY-0029": "regular",
       "PAY-0030": "regular",
-      "PAY-0031": "decoy",
+      "PAY-0031": "regular",
       "PAY-0032": "regular",
-      "PAY-0033": "regular",
-      "PAY-0034": "decoy",
+      "PAY-0033": "decoy",
+      "PAY-0034": "regular",
       "PAY-0035": "decoy",
-      "PAY-0036": "regular",
-      "PAY-0037": "regular",
-      "PAY-0038": "regular",
-      "PAY-0039": "regular",
+      "PAY-0036": "decoy",
+      "PAY-0037": "decoy",
+      "PAY-0038": "decoy",
+      "PAY-0039": "decoy",
       "PAY-0040": "decoy",
       "PAY-0041": "regular",
-      "PAY-0042": "regular",
-      "PAY-0043": "decoy",
-      "PAY-0044": "regular",
-      "PAY-0045": "regular",
-      "PAY-0046": "decoy",
+      "PAY-0042": "decoy",
+      "PAY-0043": "regular",
+      "PAY-0044": "decoy",
+      "PAY-0045": "decoy",
+      "PAY-0046": "regular",
       "PAY-0047": "decoy",
-      "PAY-0048": "regular",
+      "PAY-0048": "decoy",
       "PAY-0049": "regular",
-      "PAY-0050": "decoy",
-      "PAY-0051": "regular",
+      "PAY-0050": "regular",
+      "PAY-0051": "decoy",
       "PAY-0052": "regular",
       "PAY-0053": "decoy",
-      "PAY-0054": "regular",
-      "PAY-0055": "regular",
-      "PAY-0056": "regular",
+      "PAY-0054": "decoy",
+      "PAY-0055": "decoy",
+      "PAY-0056": "decoy",
       "PAY-0057": "decoy",
-      "PAY-0058": "decoy",
-      "PAY-0059": "decoy",
-      "PAY-0060": "regular",
-      "PAY-0061": "regular",
-      "PAY-0062": "regular",
-      "PAY-0063": "regular",
+      "PAY-0058": "regular",
+      "PAY-0059": "regular",
+      "PAY-0060": "decoy",
+      "PAY-0061": "decoy",
+      "PAY-0062": "decoy",
+      "PAY-0063": "decoy",
       "PAY-0064": "regular",
-      "PAY-0065": "regular",
+      "PAY-0065": "decoy",
       "PAY-0066": "regular",
       "PAY-0067": "regular",
-      "PAY-0068": "decoy",
+      "PAY-0068": "regular",
       "PAY-0069": "regular",
       "PAY-0070": "regular",
-      "PAY-0071": "decoy",
-      "PAY-0072": "decoy",
-      "PAY-0073": "regular",
-      "PAY-0074": "decoy",
-      "PAY-0075": "decoy",
-      "PAY-0076": "decoy",
-      "PAY-0077": "regular",
-      "PAY-0078": "regular",
-      "PAY-0079": "decoy",
-      "PAY-0080": "regular",
-      "PAY-0081": "regular",
-      "PAY-0082": "regular",
-      "PAY-0083": "decoy",
-      "PAY-0084": "regular",
-      "PAY-0085": "regular",
-      "PAY-0086": "decoy",
-      "PAY-0087": "regular",
-      "PAY-0088": "regular",
-      "PAY-0089": "decoy",
-      "PAY-0090": "regular",
-      "PAY-0091": "regular",
-      "PAY-0092": "regular",
-      "PAY-0093": "regular",
-      "PAY-0094": "regular",
-      "PAY-0095": "regular",
-      "PAY-0096": "regular",
-      "PAY-0097": "regular",
-      "PAY-0098": "regular",
-      "PAY-0099": "decoy"
+      "PAY-0071": "regular"
     },
     "entities": [
       {

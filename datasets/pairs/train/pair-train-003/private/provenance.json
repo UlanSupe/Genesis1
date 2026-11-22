@@ -1,0 +1,435 @@
+{
+  "compound_scenarios": [],
+  "generator": {
+    "attempt": 0,
+    "config": {
+      "base_currency": "EUR",
+      "clean": null,
+      "clean_rate": 0.2,
+      "compound_rate": 0.15,
+      "difficulty": "easy",
+      "episode_id": "train-003",
+      "foreign_currencies": null,
+      "issue_counts": {
+        "allocation": 2
+      },
+      "max_issues": 6,
+      "min_issues": 1,
+      "min_ledger_rows": 200,
+      "mutation_weights": {
+        "allocation": 1,
+        "cutoff": 1,
+        "duplicate": 1,
+        "fx": 1
+      },
+      "n_entities": null,
+      "n_invoices": null,
+      "period_start": null,
+      "scenarios": null,
+      "timezone_minutes": null
+    },
+    "plan": {
+      "clean": false,
+      "counts": {
+        "allocation": 2,
+        "cutoff": 0,
+        "duplicate": 0,
+        "fx": 0
+      },
+      "explicit": true,
+      "scenarios": []
+    },
+    "seed": 1003,
+    "traceforge_version": "1.0.0"
+  },
+  "mutations": [
+    {
+      "available_evidence": [
+        [
+          "ROW-65138",
+          "DOC-90144",
+          "DOC-27142"
+        ]
+      ],
+      "causal_description": "Allocation of PAY-59966 to INV-14974 was never applied: the line was parked in unapplied receipts (2300), leaving the invoice open.",
+      "changed_amount_minor": 662937,
+      "document_ids": [
+        "DOC-27142"
+      ],
+      "issue_id": "ISS-001",
+      "issue_type": "allocation",
+      "modified_rows": [
+        {
+          "account": "2300",
+          "credit_minor": 662937,
+          "currency": "EUR",
+          "debit_minor": 0,
+          "entity_id": "ENT-16968",
+          "invoice_id": null,
+          "payment_id": "PAY-59966",
+          "row_id": "ROW-65138",
+          "timestamp": "2025-07-22T15:02:00+05:30"
+        }
+      ],
+      "mutation_id": "MUT-001",
+      "root_cause": "allocation_not_applied",
+      "scenario": null,
+      "source_rows": [
+        {
+          "account": "1200",
+          "credit_minor": 662937,
+          "currency": "EUR",
+          "debit_minor": 0,
+          "entity_id": "ENT-16968",
+          "invoice_id": "INV-14974",
+          "payment_id": "PAY-59966",
+          "row_id": "ROW-65138",
+          "timestamp": "2025-07-22T15:02:00+05:30"
+        }
+      ],
+      "variant": "unallocated"
+    },
+    {
+      "available_evidence": [
+        [
+          "ROW-17377",
+          "DOC-43171",
+          "DOC-89134"
+        ]
+      ],
+      "causal_description": "Allocation of PAY-75717 to INV-78074 was never applied: the line was parked in unapplied receipts (2300), leaving the invoice open.",
+      "changed_amount_minor": 631537,
+      "document_ids": [
+        "DOC-89134"
+      ],
+      "issue_id": "ISS-002",
+      "issue_type": "allocation",
+      "modified_rows": [
+        {
+          "account": "2300",
+          "credit_minor": 631537,
+          "currency": "CHF",
+          "debit_minor": 0,
+          "entity_id": "ENT-25575",
+          "invoice_id": null,
+          "payment_id": "PAY-75717",
+          "row_id": "ROW-17377",
+          "timestamp": "2025-09-06T07:06:00+05:30"
+        }
+      ],
+      "mutation_id": "MUT-002",
+      "root_cause": "allocation_not_applied",
+      "scenario": null,
+      "source_rows": [
+        {
+          "account": "1200",
+          "credit_minor": 631537,
+          "currency": "CHF",
+          "debit_minor": 0,
+          "entity_id": "ENT-25575",
+          "invoice_id": "INV-78074",
+          "payment_id": "PAY-75717",
+          "row_id": "ROW-17377",
+          "timestamp": "2025-09-06T07:06:00+05:30"
+        }
+      ],
+      "variant": "unallocated"
+    }
+  ],
+  "transformation": {
+    "description_map": {
+      "Audit support": "Consulting services",
+      "Cloud hosting": "Training package",
+      "Consulting services": "Cloud hosting",
+      "Hardware supply": "Licence renewal",
+      "Licence renewal": "Maintenance contract",
+      "Logistics fee": "Hardware supply",
+      "Maintenance contract": "Marketing campaign",
+      "Marketing campaign": "Software subscription",
+      "Software subscription": "Logistics fee",
+      "Training package": "Audit support"
+    },
+    "remap_ids": true,
+    "rename": true,
+    "seed": 3,
+    "shuffle": true
+  },
+  "validation": {
+    "checks": [
+      {
+        "detail": [],
+        "name": "1_clean_baseline_consistent",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "2_public_data_consistent",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "1b_baseline_equals_independent_expected_ledger",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "2b_referential_integrity_and_balances",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "4b_baseline_plus_manifests_equals_public_ledger",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "4c_manifest_causality",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "3_truth_equals_independent_derivation",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "4_mutations_changed_exactly_the_intended_documents",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "5_expected_amounts_exceed_tolerance",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "6_evidence_available_to_agent",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "7_issue_count_bounds",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "8_no_private_markers_in_public",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "9_size_requirements",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "10_affected_ids_exist_in_public_data",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "11_every_evidence_set_reconstructs_its_finding",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "12_clean_decoys_intact_and_not_labeled_as_errors",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "13_financial_totals_change_only_by_declared_anomalies",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "14_every_issue_has_root_cause_and_explanation",
+        "ok": true
+      }
+    ],
+    "ok": true
+  },
+  "world": {
+    "clean_decoys": [
+      "INV-72331",
+      "INV-88561",
+      "INV-98692",
+      "INV-90913",
+      "INV-18650",
+      "INV-67401",
+      "INV-42984",
+      "INV-24968",
+      "INV-17911",
+      "INV-23959",
+      "INV-13836",
+      "INV-24713",
+      "INV-52397",
+      "INV-95812",
+      "INV-37675",
+      "PAY-97284",
+      "PAY-16593",
+      "PAY-81729",
+      "PAY-82489",
+      "PAY-21203",
+      "PAY-77024",
+      "PAY-89332",
+      "PAY-67338",
+      "PAY-23387",
+      "PAY-68235",
+      "PAY-95363",
+      "PAY-30055",
+      "PAY-61396",
+      "PAY-16303",
+      "PAY-58041"
+    ],
+    "company": {
+      "name": "Cobalt Trading Ltd"
+    },
+    "difficulty": "easy",
+    "document_tags": {
+      "INV-10402": "regular",
+      "INV-13836": "decoy",
+      "INV-14190": "regular",
+      "INV-14974": "regular",
+      "INV-15841": "regular",
+      "INV-17911": "decoy",
+      "INV-18650": "decoy",
+      "INV-19111": "regular",
+      "INV-19752": "regular",
+      "INV-20331": "regular",
+      "INV-23677": "regular",
+      "INV-23959": "decoy",
+      "INV-24713": "decoy",
+      "INV-24968": "decoy",
+      "INV-29201": "regular",
+      "INV-30775": "regular",
+      "INV-32650": "regular",
+      "INV-36493": "regular",
+      "INV-37675": "decoy",
+      "INV-37708": "regular",
+      "INV-39232": "regular",
+      "INV-39640": "regular",
+      "INV-39723": "regular",
+      "INV-42812": "regular",
+      "INV-42984": "decoy",
+      "INV-43293": "regular",
+      "INV-45434": "regular",
+      "INV-46418": "regular",
+      "INV-47286": "regular",
+      "INV-48788": "regular",
+      "INV-50935": "regular",
+      "INV-52397": "decoy",
+      "INV-53047": "regular",
+      "INV-57071": "regular",
+      "INV-57084": "regular",
+      "INV-57943": "regular",
+      "INV-58602": "regular",
+      "INV-59554": "regular",
+      "INV-67401": "decoy",
+      "INV-69267": "regular",
+      "INV-70263": "regular",
+      "INV-70564": "regular",
+      "INV-71668": "regular",
+      "INV-71819": "regular",
+      "INV-72331": "decoy",
+      "INV-77867": "regular",
+      "INV-78074": "regular",
+      "INV-78244": "regular",
+      "INV-80973": "regular",
+      "INV-82932": "regular",
+      "INV-83074": "regular",
+      "INV-85358": "regular",
+      "INV-86079": "regular",
+      "INV-88561": "decoy",
+      "INV-90913": "decoy",
+      "INV-95812": "decoy",
+      "INV-98692": "decoy",
+      "INV-99386": "regular",
+      "INV-99541": "regular",
+      "INV-99741": "regular",
+      "PAY-11467": "regular",
+      "PAY-16303": "decoy",
+      "PAY-16485": "regular",
+      "PAY-16593": "decoy",
+      "PAY-18836": "regular",
+      "PAY-21203": "decoy",
+      "PAY-23387": "decoy",
+      "PAY-26559": "regular",
+      "PAY-27798": "regular",
+      "PAY-30055": "decoy",
+      "PAY-30161": "regular",
+      "PAY-32028": "regular",
+      "PAY-33757": "regular",
+      "PAY-35755": "regular",
+      "PAY-36409": "regular",
+      "PAY-44010": "regular",
+      "PAY-58041": "decoy",
+      "PAY-59966": "regular",
+      "PAY-61396": "decoy",
+      "PAY-61938": "regular",
+      "PAY-64715": "regular",
+      "PAY-65173": "regular",
+      "PAY-65489": "regular",
+      "PAY-67338": "decoy",
+      "PAY-67847": "regular",
+      "PAY-68235": "decoy",
+      "PAY-68894": "regular",
+      "PAY-70344": "regular",
+      "PAY-73822": "regular",
+      "PAY-75717": "regular",
+      "PAY-77024": "decoy",
+      "PAY-78741": "regular",
+      "PAY-80471": "regular",
+      "PAY-81729": "decoy",
+      "PAY-82217": "regular",
+      "PAY-82430": "regular",
+      "PAY-82489": "decoy",
+      "PAY-84499": "regular",
+      "PAY-85286": "regular",
+      "PAY-86520": "regular",
+      "PAY-89332": "decoy",
+      "PAY-91569": "regular",
+      "PAY-95363": "decoy",
+      "PAY-95901": "regular",
+      "PAY-97284": "decoy"
+    },
+    "entities": [
+      {
+        "currency": "USD",
+        "entity_id": "ENT-66250",
+        "name": "Counterparty Prism 1",
+        "tz_minutes": -240
+      },
+      {
+        "currency": "CHF",
+        "entity_id": "ENT-25575",
+        "name": "Counterparty Meridian 2",
+        "tz_minutes": 720
+      },
+      {
+        "currency": "EUR",
+        "entity_id": "ENT-58000",
+        "name": "Counterparty Juniper 3",
+        "tz_minutes": 330
+      },
+      {
+        "currency": "USD",
+        "entity_id": "ENT-38721",
+        "name": "Counterparty Indigo 4",
+        "tz_minutes": -420
+      },
+      {
+        "currency": "USD",
+        "entity_id": "ENT-44023",
+        "name": "Counterparty Helix 5",
+        "tz_minutes": 60
+      },
+      {
+        "currency": "EUR",
+        "entity_id": "ENT-16968",
+        "name": "Counterparty Delta 6",
+        "tz_minutes": 330
+      }
+    ]
+  }
+}

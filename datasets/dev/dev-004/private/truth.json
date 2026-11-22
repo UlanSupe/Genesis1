@@ -1,46 +1,46 @@
 [
   {
     "affected_ids": [
-      "PAY-0057"
+      "PAY-0025"
     ],
     "allowed_evidence_sets": [
       [
-        "DOC-0160",
-        "FX-2023-06-25-GBP-EUR",
-        "ROW-00328"
+        "DOC-0077",
+        "FX-2023-06-19-GBP-EUR",
+        "ROW-00158"
       ],
       [
-        "DOC-0160",
-        "FX-2023-06-25-GBP-EUR",
-        "ROW-00327"
+        "DOC-0077",
+        "FX-2023-06-19-GBP-EUR",
+        "ROW-00157"
       ]
     ],
     "currency": "EUR",
-    "expected_amount_minor": 749,
-    "explanation": "PAY-0057 (GBP) was converted with a wrong FX input: used rate 1.16589344 instead of 1.15675507 (2023-06-25). How to see it: policy prescribes the rate of 2023-06-25 (FX-2023-06-25-GBP-EUR); converting the document amount with it gives 94844 but the ledger anchor line ROW-00328 carries 95593. Expected amount: 749 EUR minor units (currency EUR).",
+    "expected_amount_minor": 1425,
+    "explanation": "PAY-0025 (GBP) was converted with a wrong FX input: used rate 1.15285986 instead of 1.14382365 (2023-06-19). How to see it: policy prescribes the rate of 2023-06-19 (FX-2023-06-19-GBP-EUR); converting the document amount with it gives 180352 but the ledger anchor line ROW-00158 carries 181777. Expected amount: 1425 EUR minor units (currency EUR).",
     "issue_id": "ISS-001",
     "root_cause": "wrong_fx_rate_used",
     "type": "fx"
   },
   {
     "affected_ids": [
-      "INV-0074"
+      "INV-0044"
     ],
     "allowed_evidence_sets": [
       [
-        "DOC-0101",
-        "FX-2023-06-14-GBP-EUR",
-        "ROW-00205"
+        "DOC-0059",
+        "FX-2023-06-12-USD-EUR",
+        "ROW-00120"
       ],
       [
-        "DOC-0101",
-        "FX-2023-06-14-GBP-EUR",
-        "ROW-00204"
+        "DOC-0059",
+        "FX-2023-06-12-USD-EUR",
+        "ROW-00121"
       ]
     ],
     "currency": "EUR",
-    "expected_amount_minor": 5486,
-    "explanation": "INV-0074 (GBP) was converted with a wrong FX input: used the rate of 2023-06-12 instead of 2023-06-14. How to see it: policy prescribes the rate of 2023-06-14 (FX-2023-06-14-GBP-EUR); converting the document amount with it gives 523333 but the ledger anchor line ROW-00205 carries 528819 (the booked amount matches the rate of 2023-06-12). Expected amount: 5486 EUR minor units (currency EUR).",
+    "expected_amount_minor": 1909,
+    "explanation": "INV-0044 (USD) was converted with a wrong FX input: used the rate of 2023-06-10 instead of 2023-06-12. How to see it: policy prescribes the rate of 2023-06-12 (FX-2023-06-12-USD-EUR); converting the document amount with it gives 304585 but the ledger anchor line ROW-00120 carries 302676 (the booked amount matches the rate of 2023-06-10). Expected amount: 1909 EUR minor units (currency EUR).",
     "issue_id": "ISS-002",
     "root_cause": "fx_rate_of_wrong_date_used",
     "type": "fx"

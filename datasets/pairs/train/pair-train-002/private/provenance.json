@@ -1,0 +1,657 @@
+{
+  "compound_scenarios": [],
+  "generator": {
+    "attempt": 0,
+    "config": {
+      "base_currency": "USD",
+      "clean": null,
+      "clean_rate": 0.2,
+      "compound_rate": 0.15,
+      "difficulty": "hard",
+      "episode_id": "train-002",
+      "foreign_currencies": null,
+      "issue_counts": {
+        "duplicate": 2
+      },
+      "max_issues": 6,
+      "min_issues": 1,
+      "min_ledger_rows": 200,
+      "mutation_weights": {
+        "allocation": 1,
+        "cutoff": 1,
+        "duplicate": 1,
+        "fx": 1
+      },
+      "n_entities": null,
+      "n_invoices": null,
+      "period_start": null,
+      "scenarios": null,
+      "timezone_minutes": null
+    },
+    "plan": {
+      "clean": false,
+      "counts": {
+        "allocation": 0,
+        "cutoff": 0,
+        "duplicate": 2,
+        "fx": 0
+      },
+      "explicit": true,
+      "scenarios": []
+    },
+    "seed": 1002,
+    "traceforge_version": "1.0.0"
+  },
+  "mutations": [
+    {
+      "available_evidence": [
+        [
+          "DOC-30037",
+          "ROW-99777",
+          "ROW-85947"
+        ],
+        [
+          "DOC-30037",
+          "ROW-66414",
+          "ROW-44514"
+        ]
+      ],
+      "causal_description": "The journal of INV-84473 (DOC-30037) was posted twice with identical accounts, amounts and timestamp; the extra posting overstates the ledger by 594910 minor units.",
+      "changed_amount_minor": 594910,
+      "document_ids": [
+        "DOC-30037"
+      ],
+      "issue_id": "ISS-001",
+      "issue_type": "duplicate",
+      "modified_rows": [
+        {
+          "account": "1200",
+          "credit_minor": 0,
+          "currency": "USD",
+          "debit_minor": 594910,
+          "entity_id": "ENT-34356",
+          "invoice_id": "INV-84473",
+          "payment_id": null,
+          "row_id": "ROW-85947",
+          "timestamp": "2024-10-17T21:53:00+03:00"
+        },
+        {
+          "account": "4000",
+          "credit_minor": 594910,
+          "currency": "USD",
+          "debit_minor": 0,
+          "entity_id": "ENT-34356",
+          "invoice_id": "INV-84473",
+          "payment_id": null,
+          "row_id": "ROW-44514",
+          "timestamp": "2024-10-17T21:53:00+03:00"
+        }
+      ],
+      "mutation_id": "MUT-001",
+      "root_cause": "journal_posted_twice",
+      "scenario": null,
+      "source_rows": [
+        {
+          "account": "1200",
+          "credit_minor": 0,
+          "currency": "USD",
+          "debit_minor": 594910,
+          "entity_id": "ENT-34356",
+          "invoice_id": "INV-84473",
+          "payment_id": null,
+          "row_id": "ROW-99777",
+          "timestamp": "2024-10-17T21:53:00+03:00"
+        },
+        {
+          "account": "4000",
+          "credit_minor": 594910,
+          "currency": "USD",
+          "debit_minor": 0,
+          "entity_id": "ENT-34356",
+          "invoice_id": "INV-84473",
+          "payment_id": null,
+          "row_id": "ROW-66414",
+          "timestamp": "2024-10-17T21:53:00+03:00"
+        }
+      ],
+      "variant": "repost"
+    },
+    {
+      "available_evidence": [
+        [
+          "DOC-15057",
+          "ROW-72097",
+          "ROW-10315"
+        ],
+        [
+          "DOC-15057",
+          "ROW-69983",
+          "ROW-57902"
+        ]
+      ],
+      "causal_description": "The journal of INV-30205 (DOC-15057) was posted twice with identical accounts, amounts and timestamp; the extra posting overstates the ledger by 1133618 minor units.",
+      "changed_amount_minor": 1133618,
+      "document_ids": [
+        "DOC-15057"
+      ],
+      "issue_id": "ISS-002",
+      "issue_type": "duplicate",
+      "modified_rows": [
+        {
+          "account": "1200",
+          "credit_minor": 0,
+          "currency": "USD",
+          "debit_minor": 1133618,
+          "entity_id": "ENT-91661",
+          "invoice_id": "INV-30205",
+          "payment_id": null,
+          "row_id": "ROW-10315",
+          "timestamp": "2024-10-07T09:27:00+03:00"
+        },
+        {
+          "account": "4000",
+          "credit_minor": 1133618,
+          "currency": "USD",
+          "debit_minor": 0,
+          "entity_id": "ENT-91661",
+          "invoice_id": "INV-30205",
+          "payment_id": null,
+          "row_id": "ROW-57902",
+          "timestamp": "2024-10-07T09:27:00+03:00"
+        }
+      ],
+      "mutation_id": "MUT-002",
+      "root_cause": "journal_posted_twice",
+      "scenario": null,
+      "source_rows": [
+        {
+          "account": "1200",
+          "credit_minor": 0,
+          "currency": "USD",
+          "debit_minor": 1133618,
+          "entity_id": "ENT-91661",
+          "invoice_id": "INV-30205",
+          "payment_id": null,
+          "row_id": "ROW-72097",
+          "timestamp": "2024-10-07T09:27:00+03:00"
+        },
+        {
+          "account": "4000",
+          "credit_minor": 1133618,
+          "currency": "USD",
+          "debit_minor": 0,
+          "entity_id": "ENT-91661",
+          "invoice_id": "INV-30205",
+          "payment_id": null,
+          "row_id": "ROW-69983",
+          "timestamp": "2024-10-07T09:27:00+03:00"
+        }
+      ],
+      "variant": "repost"
+    }
+  ],
+  "transformation": {
+    "description_map": {
+      "Audit support": "Consulting services",
+      "Cloud hosting": "Licence renewal",
+      "Consulting services": "Logistics fee",
+      "Hardware supply": "Training package",
+      "Licence renewal": "Audit support",
+      "Logistics fee": "Cloud hosting",
+      "Maintenance contract": "Maintenance contract",
+      "Marketing campaign": "Marketing campaign",
+      "Software subscription": "Hardware supply",
+      "Training package": "Software subscription"
+    },
+    "remap_ids": true,
+    "rename": true,
+    "seed": 2,
+    "shuffle": true
+  },
+  "validation": {
+    "checks": [
+      {
+        "detail": [],
+        "name": "1_clean_baseline_consistent",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "2_public_data_consistent",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "1b_baseline_equals_independent_expected_ledger",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "2b_referential_integrity_and_balances",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "4b_baseline_plus_manifests_equals_public_ledger",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "4c_manifest_causality",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "3_truth_equals_independent_derivation",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "4_mutations_changed_exactly_the_intended_documents",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "5_expected_amounts_exceed_tolerance",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "6_evidence_available_to_agent",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "7_issue_count_bounds",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "8_no_private_markers_in_public",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "9_size_requirements",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "10_affected_ids_exist_in_public_data",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "11_every_evidence_set_reconstructs_its_finding",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "12_clean_decoys_intact_and_not_labeled_as_errors",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "13_financial_totals_change_only_by_declared_anomalies",
+        "ok": true
+      },
+      {
+        "detail": [],
+        "name": "14_every_issue_has_root_cause_and_explanation",
+        "ok": true
+      }
+    ],
+    "ok": true
+  },
+  "world": {
+    "clean_decoys": [
+      "INV-37513",
+      "INV-17362",
+      "INV-77989",
+      "INV-65926",
+      "INV-26405",
+      "INV-25493",
+      "INV-82355",
+      "INV-57170",
+      "INV-69288",
+      "INV-18256",
+      "INV-60769",
+      "INV-70056",
+      "INV-60495",
+      "INV-70401",
+      "INV-53576",
+      "INV-48067",
+      "INV-54138",
+      "INV-80504",
+      "INV-30283",
+      "INV-11020",
+      "INV-99077",
+      "INV-11013",
+      "INV-73017",
+      "INV-66203",
+      "INV-49462",
+      "INV-39695",
+      "INV-37333",
+      "INV-36163",
+      "INV-73732",
+      "INV-56383",
+      "INV-63460",
+      "INV-33285",
+      "INV-19265",
+      "INV-87011",
+      "INV-49618",
+      "INV-68526",
+      "PAY-81084",
+      "PAY-27814",
+      "PAY-67287",
+      "PAY-87125",
+      "PAY-91023",
+      "PAY-88321",
+      "PAY-87449",
+      "PAY-49860",
+      "PAY-69892",
+      "PAY-52323",
+      "PAY-52069",
+      "PAY-29256",
+      "PAY-40012",
+      "PAY-70935",
+      "PAY-30501",
+      "PAY-45548",
+      "PAY-71973",
+      "PAY-17917",
+      "PAY-50804",
+      "PAY-50662",
+      "PAY-53358",
+      "PAY-26798",
+      "PAY-67213",
+      "PAY-57527",
+      "PAY-74338",
+      "PAY-56969",
+      "PAY-17149",
+      "PAY-23781",
+      "PAY-47729",
+      "PAY-88008",
+      "PAY-58914",
+      "PAY-74356",
+      "PAY-75149",
+      "PAY-68625",
+      "PAY-40312",
+      "PAY-85174",
+      "PAY-43354",
+      "PAY-12932",
+      "PAY-73782",
+      "PAY-84201",
+      "PAY-60685",
+      "PAY-99203"
+    ],
+    "company": {
+      "name": "Borealis Energy Ltd"
+    },
+    "difficulty": "hard",
+    "document_tags": {
+      "INV-11013": "decoy",
+      "INV-11020": "decoy",
+      "INV-13647": "regular",
+      "INV-16731": "regular",
+      "INV-17362": "decoy",
+      "INV-18256": "decoy",
+      "INV-18362": "regular",
+      "INV-19265": "decoy",
+      "INV-23683": "regular",
+      "INV-23844": "regular",
+      "INV-25493": "decoy",
+      "INV-26405": "decoy",
+      "INV-28796": "regular",
+      "INV-29071": "regular",
+      "INV-29227": "regular",
+      "INV-30205": "decoy",
+      "INV-30283": "decoy",
+      "INV-30343": "regular",
+      "INV-30963": "regular",
+      "INV-31221": "regular",
+      "INV-33285": "decoy",
+      "INV-34945": "regular",
+      "INV-35146": "regular",
+      "INV-35971": "regular",
+      "INV-36163": "decoy",
+      "INV-37333": "decoy",
+      "INV-37513": "decoy",
+      "INV-37736": "regular",
+      "INV-39695": "decoy",
+      "INV-39727": "regular",
+      "INV-44106": "regular",
+      "INV-44187": "regular",
+      "INV-44851": "regular",
+      "INV-46491": "regular",
+      "INV-47376": "regular",
+      "INV-48067": "decoy",
+      "INV-49462": "decoy",
+      "INV-49618": "decoy",
+      "INV-49824": "regular",
+      "INV-51224": "regular",
+      "INV-52094": "regular",
+      "INV-53576": "decoy",
+      "INV-53885": "regular",
+      "INV-54138": "decoy",
+      "INV-55685": "regular",
+      "INV-56022": "regular",
+      "INV-56383": "decoy",
+      "INV-57170": "decoy",
+      "INV-58776": "regular",
+      "INV-59100": "regular",
+      "INV-59628": "regular",
+      "INV-59723": "regular",
+      "INV-60495": "decoy",
+      "INV-60631": "regular",
+      "INV-60769": "decoy",
+      "INV-60859": "regular",
+      "INV-61570": "regular",
+      "INV-63164": "regular",
+      "INV-63460": "decoy",
+      "INV-63716": "regular",
+      "INV-64350": "regular",
+      "INV-64484": "regular",
+      "INV-65180": "regular",
+      "INV-65926": "decoy",
+      "INV-66203": "decoy",
+      "INV-66600": "regular",
+      "INV-68526": "decoy",
+      "INV-69288": "decoy",
+      "INV-69539": "regular",
+      "INV-69708": "regular",
+      "INV-70056": "decoy",
+      "INV-70401": "decoy",
+      "INV-70858": "regular",
+      "INV-73017": "decoy",
+      "INV-73464": "regular",
+      "INV-73732": "decoy",
+      "INV-76009": "regular",
+      "INV-76492": "regular",
+      "INV-77810": "regular",
+      "INV-77989": "decoy",
+      "INV-80504": "decoy",
+      "INV-81253": "regular",
+      "INV-82355": "decoy",
+      "INV-82775": "regular",
+      "INV-83335": "regular",
+      "INV-84434": "regular",
+      "INV-84473": "decoy",
+      "INV-86512": "regular",
+      "INV-87011": "decoy",
+      "INV-88972": "regular",
+      "INV-89217": "regular",
+      "INV-91480": "regular",
+      "INV-94204": "regular",
+      "INV-94220": "regular",
+      "INV-96637": "regular",
+      "INV-97217": "regular",
+      "INV-98981": "regular",
+      "INV-99077": "decoy",
+      "INV-99496": "regular",
+      "PAY-12932": "decoy",
+      "PAY-13970": "regular",
+      "PAY-16374": "regular",
+      "PAY-17079": "regular",
+      "PAY-17149": "decoy",
+      "PAY-17917": "decoy",
+      "PAY-19857": "regular",
+      "PAY-23781": "decoy",
+      "PAY-24231": "regular",
+      "PAY-26798": "decoy",
+      "PAY-27814": "decoy",
+      "PAY-29256": "decoy",
+      "PAY-30429": "regular",
+      "PAY-30501": "decoy",
+      "PAY-30731": "regular",
+      "PAY-33455": "regular",
+      "PAY-33649": "regular",
+      "PAY-39353": "regular",
+      "PAY-39955": "regular",
+      "PAY-40012": "decoy",
+      "PAY-40312": "decoy",
+      "PAY-43354": "decoy",
+      "PAY-44245": "regular",
+      "PAY-44513": "regular",
+      "PAY-45548": "decoy",
+      "PAY-45672": "regular",
+      "PAY-47729": "decoy",
+      "PAY-47768": "regular",
+      "PAY-49407": "regular",
+      "PAY-49860": "decoy",
+      "PAY-50662": "decoy",
+      "PAY-50804": "decoy",
+      "PAY-52069": "decoy",
+      "PAY-52323": "decoy",
+      "PAY-53358": "decoy",
+      "PAY-55344": "regular",
+      "PAY-56969": "decoy",
+      "PAY-57527": "decoy",
+      "PAY-58914": "decoy",
+      "PAY-59991": "regular",
+      "PAY-60152": "regular",
+      "PAY-60685": "decoy",
+      "PAY-62994": "regular",
+      "PAY-66420": "regular",
+      "PAY-66489": "regular",
+      "PAY-67213": "decoy",
+      "PAY-67287": "decoy",
+      "PAY-67599": "regular",
+      "PAY-68047": "regular",
+      "PAY-68050": "regular",
+      "PAY-68625": "decoy",
+      "PAY-69892": "decoy",
+      "PAY-70935": "decoy",
+      "PAY-71973": "decoy",
+      "PAY-72184": "regular",
+      "PAY-72519": "regular",
+      "PAY-73782": "decoy",
+      "PAY-74338": "decoy",
+      "PAY-74356": "decoy",
+      "PAY-75149": "decoy",
+      "PAY-77793": "regular",
+      "PAY-80204": "regular",
+      "PAY-81084": "decoy",
+      "PAY-84201": "decoy",
+      "PAY-85174": "decoy",
+      "PAY-87125": "decoy",
+      "PAY-87449": "decoy",
+      "PAY-88008": "decoy",
+      "PAY-88321": "decoy",
+      "PAY-89539": "regular",
+      "PAY-90112": "regular",
+      "PAY-90533": "regular",
+      "PAY-91023": "decoy",
+      "PAY-92267": "regular",
+      "PAY-93522": "regular",
+      "PAY-96272": "regular",
+      "PAY-99203": "decoy",
+      "PAY-99975": "regular"
+    },
+    "entities": [
+      {
+        "currency": "CAD",
+        "entity_id": "ENT-57812",
+        "name": "Counterparty Nimbus 1",
+        "tz_minutes": -240
+      },
+      {
+        "currency": "CHF",
+        "entity_id": "ENT-66660",
+        "name": "Counterparty Granite 2",
+        "tz_minutes": 540
+      },
+      {
+        "currency": "GBP",
+        "entity_id": "ENT-29383",
+        "name": "Counterparty Orion 3",
+        "tz_minutes": -420
+      },
+      {
+        "currency": "JPY",
+        "entity_id": "ENT-54100",
+        "name": "Counterparty Falcon 4",
+        "tz_minutes": -240
+      },
+      {
+        "currency": "CHF",
+        "entity_id": "ENT-93358",
+        "name": "Counterparty Falcon 5",
+        "tz_minutes": -360
+      },
+      {
+        "currency": "USD",
+        "entity_id": "ENT-91661",
+        "name": "Counterparty Cobalt 6",
+        "tz_minutes": 180
+      },
+      {
+        "currency": "USD",
+        "entity_id": "ENT-13966",
+        "name": "Counterparty Borealis 7",
+        "tz_minutes": 180
+      },
+      {
+        "currency": "USD",
+        "entity_id": "ENT-34356",
+        "name": "Counterparty Ember 8",
+        "tz_minutes": 180
+      },
+      {
+        "currency": "JPY",
+        "entity_id": "ENT-14338",
+        "name": "Counterparty Borealis 9",
+        "tz_minutes": 480
+      },
+      {
+        "currency": "USD",
+        "entity_id": "ENT-31084",
+        "name": "Counterparty Lumen 10",
+        "tz_minutes": 180
+      },
+      {
+        "currency": "USD",
+        "entity_id": "ENT-96867",
+        "name": "Counterparty Orion 11",
+        "tz_minutes": 180
+      },
+      {
+        "currency": "JPY",
+        "entity_id": "ENT-35786",
+        "name": "Counterparty Borealis 12",
+        "tz_minutes": 120
+      },
+      {
+        "currency": "USD",
+        "entity_id": "ENT-27277",
+        "name": "Counterparty Falcon 13",
+        "tz_minutes": 180
+      },
+      {
+        "currency": "JPY",
+        "entity_id": "ENT-65830",
+        "name": "Counterparty Delta 14",
+        "tz_minutes": -240
+      }
+    ]
+  }
+}

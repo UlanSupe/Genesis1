@@ -1,0 +1,47 @@
+[
+  {
+    "affected_ids": [
+      "INV-59150"
+    ],
+    "allowed_evidence_sets": [
+      [
+        "DOC-59759",
+        "ROW-38379",
+        "ROW-50492"
+      ],
+      [
+        "DOC-59759",
+        "ROW-88594",
+        "ROW-99700"
+      ]
+    ],
+    "currency": "EUR",
+    "expected_amount_minor": 1410680,
+    "explanation": "The journal of INV-59150 (DOC-59759) was posted twice with identical accounts, amounts and timestamp; the extra posting overstates the ledger by 1410680 minor units. How to see it: the ledger holds two identical postings for INV-59150 while only one source document DOC-59759 exists (compare the anchor lines ROW-38379 and ROW-50492); a legitimate repeat would have its own document id. Expected amount: 1410680 EUR minor units (currency EUR).",
+    "issue_id": "ISS-001",
+    "root_cause": "journal_posted_twice",
+    "type": "duplicate"
+  },
+  {
+    "affected_ids": [
+      "ROW-54533",
+      "ROW-96254"
+    ],
+    "allowed_evidence_sets": [
+      [
+        "DOC-51439",
+        "ROW-96254"
+      ],
+      [
+        "DOC-51439",
+        "ROW-54533"
+      ]
+    ],
+    "currency": "EUR",
+    "expected_amount_minor": 1410680,
+    "explanation": "INV-85644 (DOC-51439) is dated 2026-03-29T12:36:00+02:00 (inside the period) but its journal was booked at 2026-04-01T01:21:00+02:00 (after the period), in a different reporting period. How to see it: compare the document timestamp with the booking timestamp of the ledger lines against the period [2026-03-01T00:00:00+02:00, 2026-04-01T00:00:00+02:00) (end exclusive, instants compared across offsets). Expected amount: 1410680 EUR minor units (currency EUR).",
+    "issue_id": "ISS-002",
+    "root_cause": "booked_in_wrong_reporting_period",
+    "type": "cutoff"
+  }
+]

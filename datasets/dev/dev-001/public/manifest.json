@@ -1,10 +1,10 @@
 {
   "base_currency": "USD",
-  "document_count": 256,
+  "document_count": 182,
   "episode_id": "dev-001",
   "period_end": "2024-05-01T00:00:00+03:00",
   "period_start": "2024-04-01T00:00:00+03:00",
-  "record_count": 529,
+  "record_count": 371,
   "rounding_rules": {
     "currency_decimals": {
       "CAD": 2,

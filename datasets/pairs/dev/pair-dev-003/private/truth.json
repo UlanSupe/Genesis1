@@ -1,0 +1,51 @@
+[
+  {
+    "affected_ids": [
+      "INV-58602",
+      "PAY-46268"
+    ],
+    "allowed_evidence_sets": [
+      [
+        "DOC-31112",
+        "DOC-71847",
+        "ROW-62301"
+      ]
+    ],
+    "currency": "CHF",
+    "expected_amount_minor": 116734,
+    "explanation": "Allocation of PAY-46268 to INV-58602 was never applied: the line was parked in unapplied receipts (2300), leaving the invoice open. How to see it: DOC-71847 lists INV-58602 in invoice_refs, but ledger line ROW-62301 of PAY-46268 credits account 2300 with no invoice_id instead of 1200 for INV-58602. Invoice documents DOC-31112 show which invoices are involved. Expected amount: 116734 CHF minor units (currency CHF).",
+    "issue_id": "ISS-001",
+    "root_cause": "allocation_not_applied",
+    "type": "allocation"
+  },
+  {
+    "affected_ids": [
+      "INV-81729",
+      "PAY-47595"
+    ],
+    "allowed_evidence_sets": [
+      [
+        "DOC-19740",
+        "DOC-68663",
+        "ROW-27166",
+        "ROW-37402"
+      ],
+      [
+        "DOC-19740",
+        "DOC-68663",
+        "ROW-37402"
+      ],
+      [
+        "DOC-19740",
+        "DOC-68663",
+        "ROW-27166"
+      ]
+    ],
+    "currency": "CHF",
+    "expected_amount_minor": 166484,
+    "explanation": "Only part of the PAY-47595 allocation to INV-81729 was applied; 166484 minor units were left in unapplied receipts. How to see it: the AR credit ROW-37402 for INV-81729 is smaller than the converted allocation in DOC-68663; the difference sits in unapplied line ROW-27166 (2300). Invoice documents DOC-19740 show which invoices are involved. Expected amount: 166484 CHF minor units (currency CHF).",
+    "issue_id": "ISS-002",
+    "root_cause": "allocation_partially_applied",
+    "type": "allocation"
+  }
+]

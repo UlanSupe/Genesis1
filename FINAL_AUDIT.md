@@ -64,7 +64,7 @@ Columns: implementation | verification (command or test) | actual result | statu
 | H4 | Recorded, replayable trajectories | `trajectories/` | `test_H_*`, `test_trajectories.py`, `test_sec2_*` | replay exact; agent-view only | **PASS** |
 | H5 | Determinism across processes | audit | `python -m traceforge audit` | same digest under 4 `PYTHONHASHSEED` values | **PASS** |
 | I1 | Source code | `src/traceforge/` | `compileall`, suite | no broken imports | **PASS** |
-| I2 | Tests | `tests/` (27 files, 1324 tests) | suite | see §6 | **PASS** |
+| I2 | Tests | `tests/` (29 files, 1348 tests) | suite | see §6 | **PASS** |
 | I3 | CLI | `cli.py` | `--help`, `test_integration.py`, `test_demo.py` | generate, verify, demo, evaluate, inspect, audit, benchmark all run | **PASS** |
 | I4 | README | `README.md` | inspection + quick-start run (§7) | present, commands verified | **PASS** |
 | I5 | Demo | `reporting/demo_report.py` | `python -m traceforge demo`, `test_demo.py` (24) | 4/4 anomalies, F1 1.000, reward 0.952, HTML report | **PASS** |
@@ -103,11 +103,11 @@ Adversarial evaluator tests (`test_adversarial.py` 106 cases, `test_matcher_stre
 
 ## 5. Benchmark verification
 
-Source: `FINAL_BENCHMARK.json` / `.csv` (+ `_summary.csv`, `_by_level.csv`), produced by `python -m traceforge benchmark --suite all --seeds 8 --out . --name FINAL_BENCHMARK`; metadata records code version, Python, command and a digest of the stored dataset. 52 episodes (10 train, 10 dev, 32 generated), 175 injected issues, 208 runs, 0 agent errors. Same episode list, eval mode and 100-step cap for all policies (checked: identical episode sets). Oracle: evaluator-side only (G4). Mark-all: 1558 FP, reward −0.998. Random: 156 FP, 0 TP, reward −1.000 (same step cap, no truth access, no special treatment). Reconciliation: 175/175, F1 1.000, reward 0.961, uses only tool observations (static test + G2). Per-policy table: `JUDGE_SUMMARY.md` §10. Macro averages count an empty episode with no findings as precision = recall = 1.
+Source: `FINAL_BENCHMARK.json` / `.csv` (+ `_summary.csv`, `_by_level.csv`), produced by `python -m traceforge benchmark --suite all --seeds 8 --out . --name FINAL_BENCHMARK`; metadata records code version, Python, command and a digest of the stored dataset. 52 episodes (10 train, 10 dev, 32 generated), 175 injected issues, 208 runs, 0 agent errors. Same episode list, eval mode and 100-step cap for all policies (checked: identical episode sets). Oracle: evaluator-side only (G4). Mark-all: 1558 FP, reward −0.997. Random: 156 FP, 0 TP, reward −1.000 (same step cap, no truth access, no special treatment). Reconciliation: 175/175, F1 1.000, reward 0.968, uses only tool observations (static test + G2). Per-policy table: `JUDGE_SUMMARY.md` §10. Macro averages count an empty episode with no findings as precision = recall = 1.
 
 ## 6. Final test results
 
-Final run (`python -m traceforge verify`, which runs `python -m pytest` once): **1324 tests: 1324 passed, 0 failed, 0 skipped, 0 known failures** (164 s). The same suite passed in the clean environment (1324 / 0 / 0). Before this audit the suite had 1278 tests, all passing; this audit added 46 (37 official-requirement tests, 9 security regression tests).
+Final run (`python -m traceforge verify`, which runs `python -m pytest` once): **1348 tests: 1348 passed, 0 failed, 0 skipped** (after the addendum below; the audit itself ended at 1324). The 1324-test suite passed in the clean environment (1324 / 0 / 0); that clean-environment run was **not repeated** for the 1348-test state. Before this audit the suite had 1278 tests; this audit added 46 (37 official-requirement tests, 9 security regression tests), the addendum 24 (8 sandbox, 16 pairs/eval/alias).
 
 | Area | Files | Tests |
 |---|---|---|
@@ -152,3 +152,11 @@ Requirement matrix (section 2, 52 rows): **46 PASS, 3 PARTIAL, 0 FAIL, 3 NOT VER
 * No FAIL. No Critical vulnerability. One **High** vulnerability (F-1, seed recoverable from the episode id) and one Medium (F-2, trajectory inflation) were found, fixed and covered by regression tests.
 
 Why not simply "READY": the three PARTIAL items and three NOT VERIFIED items are real, stated limits, and the benchmark cannot yet separate strong agents (the transparent rule-based baseline is perfect and no learned agent was run). The evidence supports a correct, reproducible, offline environment with a verified evaluator; it does not support claims about model improvement or about hostile-agent containment beyond the tool interface.
+
+## Addendum - post-audit improvements (not part of the original audit run)
+
+* **C5 (agent-process sandbox)**: new `runner/sandbox.py` (irreversible audit hook; built-in policies run under it by default, custom Python agents via `python -m traceforge.runner.sandbox agent.py`). `tests/test_sandbox.py` runs a hostile agent twice: without the sandbox all 12 attacks succeed (including deleting a file), with it all are blocked and nothing on disk changes; a legitimate agent and its score are unaffected. Status: **PASS for Python agents, still PARTIAL overall** - audit hooks are not a security boundary (native code, some Windows internals, non-Python agents).
+* **Field name**: the finding amount is also accepted as `amount` / `amount_minor` (ints only).
+* **Scale**: hard episodes were above the brief's 20-200 documents guidance; invoice ranges were retuned (mean documents: easy ~116, medium ~155, hard ~179; about 95% of hard episodes <= 200). Stored datasets were regenerated; `FINAL_BENCHMARK.*` and `SPEC_COMPLIANCE.md` (71/71 PASS) were regenerated from real runs (same 175 issues; reconciliation reward 0.968).
+* **Organizer tooling**: `pairs`, `paired-eval`, `generate-eval` commands (stored pairs in `datasets/pairs`, robustness metric, secret-derived hidden set).
+* Not re-verified after these changes: clean-environment install (J4), Linux/macOS, Python 3.11.

@@ -1,0 +1,46 @@
+[
+  {
+    "affected_ids": [
+      "ROW-72573",
+      "ROW-80273"
+    ],
+    "allowed_evidence_sets": [
+      [
+        "DOC-91664",
+        "ROW-72573"
+      ],
+      [
+        "DOC-91664",
+        "ROW-80273"
+      ]
+    ],
+    "currency": "EUR",
+    "expected_amount_minor": 202758,
+    "explanation": "INV-53232 (DOC-91664) is dated 2025-05-30T07:36:00+00:00 (inside the period) but its journal was booked at 2025-06-01T01:46:00+00:00 (after the period), in a different reporting period. How to see it: compare the document timestamp with the booking timestamp of the ledger lines against the period [2025-05-01T00:00:00+00:00, 2025-06-01T00:00:00+00:00) (end exclusive, instants compared across offsets). Expected amount: 202758 EUR minor units (currency EUR).",
+    "issue_id": "ISS-001",
+    "root_cause": "booked_in_wrong_reporting_period",
+    "type": "cutoff"
+  },
+  {
+    "affected_ids": [
+      "ROW-20635",
+      "ROW-96714"
+    ],
+    "allowed_evidence_sets": [
+      [
+        "DOC-92302",
+        "ROW-96714"
+      ],
+      [
+        "DOC-92302",
+        "ROW-20635"
+      ]
+    ],
+    "currency": "EUR",
+    "expected_amount_minor": 193764,
+    "explanation": "INV-25724 (DOC-92302) is dated 2025-05-30T02:57:00+00:00 (inside the period) but its journal was booked at 2025-06-01T02:15:00+00:00 (after the period), in a different reporting period. How to see it: compare the document timestamp with the booking timestamp of the ledger lines against the period [2025-05-01T00:00:00+00:00, 2025-06-01T00:00:00+00:00) (end exclusive, instants compared across offsets). Expected amount: 193764 EUR minor units (currency EUR).",
+    "issue_id": "ISS-002",
+    "root_cause": "booked_in_wrong_reporting_period",
+    "type": "cutoff"
+  }
+]

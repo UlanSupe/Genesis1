@@ -58,13 +58,16 @@ class SubprocessAgent:
 
     def __init__(self, policy: str | None = None, seed: int = 0, cmd: list | None = None,
                  timeout: float = 60.0, total_timeout: float = 900.0, max_line: int = MAX_LINE,
-                 mem_mb: int = 2048, cpu_seconds: int = 900, verify: bool = False):
+                 mem_mb: int = 2048, cpu_seconds: int = 900, verify: bool = False,
+                 sandbox: bool = True):
         builtin = cmd is None
         if cmd is None:
             if policy is None:
                 raise ValueError("policy or cmd required")
             cmd = [sys.executable, "-m", "traceforge.runner.agent_worker",
-                   "--policy", policy, "--seed", str(seed)] + (["--verify"] if verify else [])
+                   "--policy", policy, "--seed", str(seed)]
+            cmd += ["--verify"] if verify else []
+            cmd += ["--sandbox"] if sandbox else []
         self.cmd, self.timeout, self.max_line = cmd, timeout, max_line
         self.deadline = time.monotonic() + total_timeout
         self._tmp = tempfile.TemporaryDirectory(prefix="tf_agent_")
@@ -72,7 +75,8 @@ class SubprocessAgent:
         self.workdir.mkdir()
         env = {k: os.environ[k] for k in _KEEP_ENV if k in os.environ}
         env.update(PYTHONDONTWRITEBYTECODE="1", PYTHONIOENCODING="utf-8")
-        if builtin:                       # only OUR worker needs the package; foreign agents must not learn
+        sandboxed = len(cmd) > 2 and cmd[1:3] == ["-m", "traceforge.runner.sandbox"]
+        if builtin or sandboxed:          # only OUR code needs the package; foreign agents must not learn
             env["PYTHONPATH"] = SRC_DIR   # where the project (and any stored dataset) lives
         extra = {"preexec_fn": _posix_limits(mem_mb, cpu_seconds)} if os.name == "posix" else {}
         try:

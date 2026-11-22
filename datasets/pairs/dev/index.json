@@ -1,0 +1,26 @@
+{
+  "episodes": [
+    "pair-dev-000",
+    "pair-dev-001",
+    "pair-dev-002",
+    "pair-dev-003",
+    "pair-dev-004",
+    "pair-dev-005",
+    "pair-dev-006",
+    "pair-dev-007",
+    "pair-dev-008",
+    "pair-dev-009"
+  ],
+  "originals": {
+    "pair-dev-000": "dev-000",
+    "pair-dev-001": "dev-001",
+    "pair-dev-002": "dev-002",
+    "pair-dev-003": "dev-003",
+    "pair-dev-004": "dev-004",
+    "pair-dev-005": "dev-005",
+    "pair-dev-006": "dev-006",
+    "pair-dev-007": "dev-007",
+    "pair-dev-008": "dev-008",
+    "pair-dev-009": "dev-009"
+  }
+}

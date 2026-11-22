@@ -42,6 +42,9 @@ class Finding:
     explanation: str
 
 
+AMOUNT_KEYS = ("claimed_amount_minor", "amount", "amount_minor")   # integer minor units in the base currency
+
+
 def fx_id(row: dict) -> str:
     return f"FX-{row['date']}-{row['source_currency']}-{row['target_currency']}"
 
@@ -79,7 +82,8 @@ def parse_submission(payload, episode_id: str):
         aff = _str_list(f.get("affected_ids"), MAX_AFFECTED)
         if aff is None:
             return None, f"finding {i}: bad affected_ids"
-        if not _is_int(f.get("claimed_amount_minor")):
+        amount = next((f[k] for k in AMOUNT_KEYS if k in f), None)          # canonical key first, then aliases
+        if not _is_int(amount):
             return None, f"finding {i}: bad claimed_amount_minor"
         if not isinstance(f.get("currency"), str):
             return None, f"finding {i}: bad currency"
@@ -89,5 +93,5 @@ def parse_submission(payload, episode_id: str):
         expl = f.get("explanation", "")
         if not isinstance(expl, str) or len(expl) > MAX_EXPLANATION:
             return None, f"finding {i}: bad explanation"
-        out.append(Finding(f["type"], aff, f["claimed_amount_minor"], f["currency"], ev, expl))
+        out.append(Finding(f["type"], aff, amount, f["currency"], ev, expl))
     return out, None

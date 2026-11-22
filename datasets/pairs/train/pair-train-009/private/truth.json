@@ -1,0 +1,296 @@
+[
+  {
+    "affected_ids": [
+      "INV-13483"
+    ],
+    "allowed_evidence_sets": [
+      [
+        "DOC-66462",
+        "ROW-38479",
+        "ROW-81332"
+      ],
+      [
+        "DOC-66462",
+        "ROW-23056",
+        "ROW-54240"
+      ]
+    ],
+    "currency": "USD",
+    "expected_amount_minor": 850770,
+    "explanation": "The journal of INV-13483 (DOC-66462) was posted twice with identical accounts, amounts and timestamp; the extra posting overstates the ledger by 850770 minor units. How to see it: the ledger holds two identical postings for INV-13483 while only one source document DOC-66462 exists (compare the anchor lines ROW-38479 and ROW-81332); a legitimate repeat would have its own document id. Expected amount: 850770 USD minor units (currency USD).",
+    "issue_id": "ISS-001",
+    "root_cause": "journal_posted_twice",
+    "type": "duplicate"
+  },
+  {
+    "affected_ids": [
+      "INV-96696"
+    ],
+    "allowed_evidence_sets": [
+      [
+        "DOC-26326",
+        "ROW-33919",
+        "ROW-82570"
+      ],
+      [
+        "DOC-26326",
+        "ROW-69580",
+        "ROW-88294"
+      ]
+    ],
+    "currency": "USD",
+    "expected_amount_minor": 818329,
+    "explanation": "The journal of INV-96696 (DOC-26326) was posted twice with identical accounts, amounts and timestamp; the extra posting overstates the ledger by 818329 minor units. How to see it: the ledger holds two identical postings for INV-96696 while only one source document DOC-26326 exists (compare the anchor lines ROW-82570 and ROW-33919); a legitimate repeat would have its own document id. Expected amount: 818329 USD minor units (currency USD).",
+    "issue_id": "ISS-002",
+    "root_cause": "journal_posted_twice",
+    "type": "duplicate"
+  },
+  {
+    "affected_ids": [
+      "INV-60739"
+    ],
+    "allowed_evidence_sets": [
+      [
+        "DOC-85941",
+        "ROW-38129",
+        "ROW-47910"
+      ],
+      [
+        "DOC-85941",
+        "ROW-35041",
+        "ROW-81725"
+      ]
+    ],
+    "currency": "USD",
+    "expected_amount_minor": 417655,
+    "explanation": "The journal of INV-60739 (DOC-85941) was posted twice with identical accounts, amounts and timestamp; the extra posting overstates the ledger by 417655 minor units. How to see it: the ledger holds two identical postings for INV-60739 while only one source document DOC-85941 exists (compare the anchor lines ROW-47910 and ROW-38129); a legitimate repeat would have its own document id. Expected amount: 417655 USD minor units (currency USD).",
+    "issue_id": "ISS-003",
+    "root_cause": "journal_posted_twice",
+    "type": "duplicate"
+  },
+  {
+    "affected_ids": [
+      "INV-24081",
+      "PAY-20216"
+    ],
+    "allowed_evidence_sets": [
+      [
+        "DOC-41350",
+        "DOC-62661",
+        "ROW-79433",
+        "ROW-90382"
+      ],
+      [
+        "DOC-41350",
+        "DOC-62661",
+        "ROW-79433"
+      ],
+      [
+        "DOC-41350",
+        "DOC-62661",
+        "ROW-90382"
+      ]
+    ],
+    "currency": "USD",
+    "expected_amount_minor": 44398,
+    "explanation": "Only part of the PAY-20216 allocation to INV-24081 was applied; 44398 minor units were left in unapplied receipts. How to see it: the AR credit ROW-79433 for INV-24081 is smaller than the converted allocation in DOC-62661; the difference sits in unapplied line ROW-90382 (2300). Invoice documents DOC-41350 show which invoices are involved. Expected amount: 44398 USD minor units (currency USD).",
+    "issue_id": "ISS-004",
+    "root_cause": "allocation_partially_applied",
+    "type": "allocation"
+  },
+  {
+    "affected_ids": [
+      "INV-11513",
+      "PAY-82411"
+    ],
+    "allowed_evidence_sets": [
+      [
+        "DOC-80706",
+        "DOC-97338",
+        "ROW-47214",
+        "ROW-75092"
+      ],
+      [
+        "DOC-80706",
+        "DOC-97338",
+        "ROW-75092"
+      ],
+      [
+        "DOC-80706",
+        "DOC-97338",
+        "ROW-47214"
+      ]
+    ],
+    "currency": "USD",
+    "expected_amount_minor": 3797,
+    "explanation": "Only part of the PAY-82411 allocation to INV-11513 was applied; 3797 minor units were left in unapplied receipts. How to see it: the AR credit ROW-75092 for INV-11513 is smaller than the converted allocation in DOC-97338; the difference sits in unapplied line ROW-47214 (2300). Invoice documents DOC-80706 show which invoices are involved. Expected amount: 3797 USD minor units (currency USD).",
+    "issue_id": "ISS-005",
+    "root_cause": "allocation_partially_applied",
+    "type": "allocation"
+  },
+  {
+    "affected_ids": [
+      "INV-41570",
+      "PAY-96396"
+    ],
+    "allowed_evidence_sets": [
+      [
+        "DOC-15752",
+        "DOC-52221",
+        "ROW-13292",
+        "ROW-63126"
+      ],
+      [
+        "DOC-15752",
+        "DOC-52221",
+        "ROW-63126"
+      ],
+      [
+        "DOC-15752",
+        "DOC-52221",
+        "ROW-13292"
+      ]
+    ],
+    "currency": "USD",
+    "expected_amount_minor": 10960,
+    "explanation": "Only part of the PAY-96396 allocation to INV-41570 was applied; 10960 minor units were left in unapplied receipts. How to see it: the AR credit ROW-63126 for INV-41570 is smaller than the converted allocation in DOC-15752; the difference sits in unapplied line ROW-13292 (2300). Invoice documents DOC-52221 show which invoices are involved. Expected amount: 10960 USD minor units (currency USD).",
+    "issue_id": "ISS-006",
+    "root_cause": "allocation_partially_applied",
+    "type": "allocation"
+  },
+  {
+    "affected_ids": [
+      "PAY-23088"
+    ],
+    "allowed_evidence_sets": [
+      [
+        "DOC-46379",
+        "FX-2024-07-04-SEK-USD",
+        "ROW-51770"
+      ],
+      [
+        "DOC-46379",
+        "FX-2024-07-04-SEK-USD",
+        "ROW-24157"
+      ]
+    ],
+    "currency": "USD",
+    "expected_amount_minor": 302,
+    "explanation": "PAY-23088 (SEK) was converted with a wrong FX input: used the rate of 2024-07-06 instead of 2024-07-04. How to see it: policy prescribes the rate of 2024-07-04 (FX-2024-07-04-SEK-USD); converting the document amount with it gives 54862 but the ledger anchor line ROW-51770 carries 55164 (the booked amount matches the rate of 2024-07-06). Expected amount: 302 USD minor units (currency USD).",
+    "issue_id": "ISS-007",
+    "root_cause": "fx_rate_of_wrong_date_used",
+    "type": "fx"
+  },
+  {
+    "affected_ids": [
+      "PAY-58228"
+    ],
+    "allowed_evidence_sets": [
+      [
+        "DOC-75865",
+        "FX-2024-06-10-SEK-USD",
+        "ROW-57033"
+      ],
+      [
+        "DOC-75865",
+        "FX-2024-06-10-SEK-USD",
+        "ROW-17340"
+      ]
+    ],
+    "currency": "USD",
+    "expected_amount_minor": 98,
+    "explanation": "PAY-58228 (SEK) was converted with a wrong FX input: used the rate of 2024-06-09 instead of 2024-06-10. How to see it: policy prescribes the rate of 2024-06-10 (FX-2024-06-10-SEK-USD); converting the document amount with it gives 19122 but the ledger anchor line ROW-57033 carries 19024 (the booked amount matches the rate of 2024-06-09). Expected amount: 98 USD minor units (currency USD).",
+    "issue_id": "ISS-008",
+    "root_cause": "fx_rate_of_wrong_date_used",
+    "type": "fx"
+  },
+  {
+    "affected_ids": [
+      "INV-20139"
+    ],
+    "allowed_evidence_sets": [
+      [
+        "DOC-82706",
+        "FX-2024-05-30-CHF-USD",
+        "ROW-99067"
+      ],
+      [
+        "DOC-82706",
+        "FX-2024-05-30-CHF-USD",
+        "ROW-20741"
+      ]
+    ],
+    "currency": "USD",
+    "expected_amount_minor": 14260,
+    "explanation": "INV-20139 (CHF) was converted with a wrong FX input: used rate 1.12172863 instead of 1.13558274 (2024-05-30). How to see it: policy prescribes the rate of 2024-05-30 (FX-2024-05-30-CHF-USD); converting the document amount with it gives 1168878 but the ledger anchor line ROW-99067 carries 1154618. Expected amount: 14260 USD minor units (currency USD).",
+    "issue_id": "ISS-009",
+    "root_cause": "wrong_fx_rate_used",
+    "type": "fx"
+  },
+  {
+    "affected_ids": [
+      "ROW-42634",
+      "ROW-85741"
+    ],
+    "allowed_evidence_sets": [
+      [
+        "DOC-30620",
+        "ROW-42634"
+      ],
+      [
+        "DOC-30620",
+        "ROW-85741"
+      ]
+    ],
+    "currency": "USD",
+    "expected_amount_minor": 587387,
+    "explanation": "PAY-26043 (DOC-30620) is dated 2024-06-02T11:40:00+02:00 (inside the period) but its journal was booked at 2024-05-31T23:29:00+02:00 (before the period), in a different reporting period. How to see it: compare the document timestamp with the booking timestamp of the ledger lines against the period [2024-06-01T00:00:00+02:00, 2024-07-01T00:00:00+02:00) (end exclusive, instants compared across offsets). Expected amount: 587387 USD minor units (currency USD).",
+    "issue_id": "ISS-010",
+    "root_cause": "booked_in_wrong_reporting_period",
+    "type": "cutoff"
+  },
+  {
+    "affected_ids": [
+      "ROW-95427",
+      "ROW-95988"
+    ],
+    "allowed_evidence_sets": [
+      [
+        "DOC-53746",
+        "ROW-95988"
+      ],
+      [
+        "DOC-53746",
+        "ROW-95427"
+      ]
+    ],
+    "currency": "USD",
+    "expected_amount_minor": 261434,
+    "explanation": "INV-45262 (DOC-53746) is dated 2024-06-03T07:46:00+02:00 (inside the period) but its journal was booked at 2024-05-31T23:18:00+02:00 (before the period), in a different reporting period. How to see it: compare the document timestamp with the booking timestamp of the ledger lines against the period [2024-06-01T00:00:00+02:00, 2024-07-01T00:00:00+02:00) (end exclusive, instants compared across offsets). Expected amount: 261434 USD minor units (currency USD).",
+    "issue_id": "ISS-011",
+    "root_cause": "booked_in_wrong_reporting_period",
+    "type": "cutoff"
+  },
+  {
+    "affected_ids": [
+      "ROW-28197",
+      "ROW-44862"
+    ],
+    "allowed_evidence_sets": [
+      [
+        "DOC-89367",
+        "ROW-44862"
+      ],
+      [
+        "DOC-89367",
+        "ROW-28197"
+      ]
+    ],
+    "currency": "USD",
+    "expected_amount_minor": 303854,
+    "explanation": "INV-44660 (DOC-89367) is dated 2024-05-31T15:24:00+02:00 (before the period) but its journal was booked at 2024-06-01T02:42:00+02:00 (inside the period), in a different reporting period. How to see it: compare the document timestamp with the booking timestamp of the ledger lines against the period [2024-06-01T00:00:00+02:00, 2024-07-01T00:00:00+02:00) (end exclusive, instants compared across offsets). Expected amount: 303854 USD minor units (currency USD).",
+    "issue_id": "ISS-012",
+    "root_cause": "booked_in_wrong_reporting_period",
+    "type": "cutoff"
+  }
+]
